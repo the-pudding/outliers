@@ -14,6 +14,6 @@
 
 <article>
   {#each copy.blocks as props, i}
-    <svelte:component this={blocks[props.block] ?? Text} {...props} />
+    <svelte:component this={blocks[props.block] ?? Text} id={props.id ?? `graf-${i}`} {...props} />
   {/each}
 </article>
