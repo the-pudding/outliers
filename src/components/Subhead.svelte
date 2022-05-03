@@ -1,10 +1,10 @@
 <script>
+  import Block from "$components/Block.svelte";
+
+  export let id;
   export let text;
 </script>
 
-<div class="text-3xl font-bold underline">
-  <h2>{@html text}</h2>
-</div>
-
-<style>
-</style>
+<Block {id} type="subhead">
+  <h2 class="text-xl">{@html text}</h2>
+</Block>

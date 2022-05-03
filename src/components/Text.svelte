@@ -1,13 +1,10 @@
 <script>
+  import Block from "$components/Block.svelte";
+
+  export let id;
   export let text;
 </script>
 
-<div class="text">
+<Block {id} type="text">
   <p>{@html text}</p>
-</div>
-
-<style>
-  p {
-    margin: 0;
-  }
-</style>
+</Block>
