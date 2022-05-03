@@ -2,7 +2,7 @@
   export let text;
 </script>
 
-<div class="subhead">
+<div class="text-3xl font-bold underline">
   <h2>{@html text}</h2>
 </div>
 
