@@ -1,13 +1,19 @@
 <script>
-  import Demo from "$components/helpers/Demo.svelte";
-  import WIP from "$components/helpers/WIP.svelte";
-  import Mapbox from "$components/Mapbox.svelte";
-  import Map from "$components/Map.svelte";
+  import copy from "$data/doc.json";
 
-  // import Footer from "$components/Footer.svelte";
+  import Text from "$components/Text.svelte";
+  import Subhead from "$components/Subhead.svelte";
+  import Image from "$components/Image.svelte";
+
+  const blocks = {
+    text: Text,
+    image: Image,
+    subhead: Subhead
+  };
 </script>
 
-<Mapbox />
-
-<!-- <WIP /> -->
-<!-- <Footer /> -->
+<article>
+  {#each copy.blocks as props, i}
+    <svelte:component this={blocks[props.block] ?? Text} {...props} />
+  {/each}
+</article>

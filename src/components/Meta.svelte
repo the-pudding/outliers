@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-  <title>{title}</title>
+  <title>{title} - The Pudding</title>
   <meta name="description" content={description} />
   <meta name="author" content="The Pudding" />
   <meta name="news_keywords" content={keywords} />
