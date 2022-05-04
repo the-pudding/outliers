@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import { feature } from "topojson-client";
   //   import data from "$data/dev-tracts-simplified-topo.json";
+  import Block from "$components/Block.svelte";
 
   let data;
   const projection = geoAlbers();
@@ -16,11 +17,15 @@
     const land = feature(json, json.objects.land);
     data = path(land);
   });
+
+  export let id;
 </script>
 
-<svg width="960" height="500">
-  <path d={data} class="border" />
-</svg>
+<div {id} class="w-full mb-4 mx-auto flex justify-center">
+  <svg width="960" height="500">
+    <path d={data} class="border" />
+  </svg>
+</div>
 
 <style>
   svg {

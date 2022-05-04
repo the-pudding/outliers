@@ -2,7 +2,7 @@
   import Block from "$components/Block.svelte";
 
   export let id;
-  export let src;
+  export let src = "https://via.placeholder.com/800x300";
   export let alt;
 </script>
 
