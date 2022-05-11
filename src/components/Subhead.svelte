@@ -6,5 +6,5 @@
 </script>
 
 <Block {id} type="subhead">
-  <h2 class="text-xl">{@html text}</h2>
+  <h2 class="font-bold mt-6 mb-8 text-3xl">{@html text}</h2>
 </Block>

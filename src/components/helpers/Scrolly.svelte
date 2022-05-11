@@ -75,6 +75,6 @@
   });
 </script>
 
-<div bind:this={container}>
+<div bind:this={container} class="relative z-50">
   <slot />
 </div>

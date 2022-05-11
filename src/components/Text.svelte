@@ -9,6 +9,6 @@
 
 <Block {id} type="text">
   {#each grafs as graf, i}
-    <p class="mb-4">{@html graf}</p>
+    <p class="mb-5 text-lg">{@html graf}</p>
   {/each}
 </Block>

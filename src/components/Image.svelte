@@ -7,5 +7,5 @@
 </script>
 
 <Block {id} type="image">
-  <img {src} {alt} />
+  <img {src} {alt} class="my-10" />
 </Block>
