@@ -39,6 +39,7 @@
   "subdirectory": "outliers",
   "dependencies": {
     "mapbox-gl": "^2.7.0",
+    "suncalc": "^1.9.0",
     "topojson-client": "^3.1.0"
   }
 }

@@ -165,3 +165,9 @@ import name from "$utils/name.js";
 
 * Any @html tags, e.g., `{@html user}` must be the child of a dom element so they can be properly hydrated.
 * Putting asset paths in CSS doesn't work without some hacks for subdirectory hosted projects
+
+## Data Sources
+
+- [Mapping LA from the L.A. Times](https://maps.latimes.com/about/index.html#the-data)
+- [City of Fremont Open Data Hub](https://fremont-ca-open-data-cofgis.hub.arcgis.com/datasets/044ae5a42d924d9b94dba5c42a539c78_0/explore?location=37.511984%2C-121.959382%2C12.19)
+- [Opporunity Insights]()
