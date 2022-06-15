@@ -34,8 +34,14 @@
       </p>
     </div>
   </Hero>
-  <section id="scrolly">
+  <section id="scrolly" class="relative">
     <div id="map" class="sticky top-0">
+      {#if scrollValue === undefined || scrollValue < 2}
+        <div id="intro" class="bg-black text-white h-screen" />
+      {:else}
+        <!-- TODO: add haze/cloud effect? -->
+        <!-- <div id="map-cover" class="h-screen bg-red-100" /> -->
+      {/if}
       <Mapbox index={scrollValue} />
     </div>
     <div class="spacer" />

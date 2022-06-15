@@ -1,5 +1,6 @@
 <script>
   import copy from "$data/doc.json";
+  import losAngelesNeighborhoods from "$data/la-county-geo.json";
   import { onMount, beforeUpdate } from "svelte";
   import mapbox from "mapbox-gl";
 
@@ -7,7 +8,6 @@
 
   let container;
   let map;
-  let flying = false;
 
   // set mapbox config detials based on slide index
   const mapboxConfig = new Map();
@@ -18,7 +18,7 @@
   });
   mapboxConfig.set("gardena", {
     center: [-118.2998, 33.8818],
-    zoom: 10,
+    zoom: 11,
     pitch: 40
   });
   mapboxConfig.set("sandel", {
@@ -37,15 +37,6 @@
     pitch: 0
   });
 
-  const rotateCamera = (timestamp) => {
-    if (!map) return;
-    // clamp the rotation between 0 -360 degrees
-    // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
-    map.rotateTo((timestamp / 100) % 360, { duration: 0 });
-    // Request the next frame of the animation.
-    requestAnimationFrame(rotateCamera);
-  };
-
   const load = () => {
     map = new mapbox.Map({
       container,
@@ -60,6 +51,38 @@
     map.dragRotate.disable();
     // disable map rotation using touch rotation gesture
     map.touchZoomRotate.disableRotation();
+
+    // add neighborhoods data to map
+    map.on("load", () => {
+      map.addSource("county", {
+        type: "geojson",
+        data: losAngelesNeighborhoods
+      });
+      // add base neighborhood layer
+      map.addLayer({
+        id: "neighborhoods",
+        type: "fill",
+        source: "county", // reference the data source
+        paint: {
+          "fill-opacity": 0,
+          "fill-outline-color": "transparent"
+        },
+        filter: ["==", "$type", "Polygon"]
+      });
+      // add highlight layer
+      map.addLayer({
+        id: "neighborhoods-highlighted",
+        type: "fill",
+        source: "county", // reference the data source
+        paint: {
+          "fill-color": "#D9AE5F",
+          "fill-opacity": 0.5,
+          "fill-outline-color": "transparent"
+        },
+        // empty filter to display: none;
+        filter: ["in", "Name", ""]
+      });
+    });
   };
 
   onMount(() => {
@@ -75,11 +98,22 @@
 
     map.flyTo(mapboxConfig.get(slide.id));
     map.once("moveend", () => {
-      if (slide.id === "sandel") {
+      if (slide.id === "gardena") {
+        // Query the counties layer visible in the map.
+        // Only onscreen features are returned.
+        // Use filter to collect only results
+        // with the same county name.
+        map.setFilter("neighborhoods-highlighted", [
+          "any",
+          ["in", "Name", "Gardena"],
+          ["in", "Name", "West Compton"]
+        ]);
+      } else if (slide.id === "sandel") {
         map.rotateTo(80, { duration: 6500 });
       } else if (slide.id === "playa-del-rey") {
         map.rotateTo(-120, { duration: 6500 });
       } else {
+        map.setFilter("neighborhoods-highlighted", ["in", "Name", ""]);
         map.rotateTo(0, { duration: 2500 });
       }
     });
