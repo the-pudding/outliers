@@ -4,8 +4,13 @@ export default [
 		"filepath": "src/data/doc.json"
 	},
 	{
-		"id": "1te65h_nywgXVAzvV-9E5fmHGblcKvctf_cNZgeam9Tk",
+		"id": "1N7-2bIGOqVXC6kYgETncPtR1YjCBVR8cccugO59hcbk",
 		"gid": "0",
-		"filepath": "src/data/sheet.csv"
+		"filepath": "src/data/migration/1900.csv"
+	},
+	{
+		"id": "1N7-2bIGOqVXC6kYgETncPtR1YjCBVR8cccugO59hcbk",
+		"gid": "1017064763",
+		"filepath": "src/data/migration/1970.csv"
 	}
 ]

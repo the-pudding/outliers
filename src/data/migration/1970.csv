@@ -1,0 +1,545 @@
+state_from,state_to,state_fips_from,state_fips_to,year,count
+Alabama,California,01,06,1970,42400
+Alabama,Nevada,01,32,1970,200
+Alabama,Oregon,01,41,1970,1000
+Alabama,Washington,01,53,1970,2300
+Alabama,Idaho,01,16,1970,100
+Alabama,Utah,01,49,1970,0
+Alabama,Arizona,01,04,1970,900
+Alabama,Montana,01,30,1970,0
+Alabama,Wyoming,01,56,1970,500
+Alabama,Colorado,01,08,1970,1800
+Alabama,New Mexico,01,35,1970,300
+Alabama,North Dakota,01,38,1970,100
+Alabama,South Dakota,01,46,1970,500
+Alabama,Nebraska,01,31,1970,700
+Alabama,Kansas,01,20,1970,1100
+Alabama,Minnesota,01,27,1970,1300
+Alabama,Iowa,01,19,1970,500
+Alabama,Missouri,01,29,1970,7300
+Alabama,Wisconsin,01,55,1970,4100
+Alabama,Illinois,01,17,1970,48100
+Alabama,Michigan,01,26,1970,78900
+Alabama,Indiana,01,18,1970,17300
+Alabama,Ohio,01,39,1970,97800
+Alabama,Pennslyvania,01,42,1970,17500
+Alabama,New York,01,36,1970,54700
+Alabama,New Jersey,01,34,1970,17600
+Alabama,Vermont,01,50,1970,0
+Alabama,New Hampshire,01,33,1970,100
+Alabama,Massachusetts,01,25,1970,5500
+Alabama,Connecticut,01,09,1970,5300
+Alabama,Rhode Island,01,44,1970,500
+Alabama,Maine,01,23,1970,200
+Arkansas,California,05,06,1970,68000
+Arkansas,Nevada,05,32,1970,1100
+Arkansas,Oregon,05,41,1970,1400
+Arkansas,Washington,05,53,1970,2100
+Arkansas,Idaho,05,16,1970,0
+Arkansas,Utah,05,49,1970,200
+Arkansas,Arizona,05,04,1970,2700
+Arkansas,Montana,05,30,1970,0
+Arkansas,Wyoming,05,56,1970,0
+Arkansas,Colorado,05,08,1970,3300
+Arkansas,New Mexico,05,35,1970,100
+Arkansas,North Dakota,05,38,1970,0
+Arkansas,South Dakota,05,46,1970,0
+Arkansas,Nebraska,05,31,1970,2700
+Arkansas,Kansas,05,20,1970,7500
+Arkansas,Minnesota,05,27,1970,900
+Arkansas,Iowa,05,19,1970,1000
+Arkansas,Missouri,05,29,1970,34800
+Arkansas,Wisconsin,05,55,1970,8900
+Arkansas,Illinois,05,17,1970,58200
+Arkansas,Michigan,05,26,1970,34500
+Arkansas,Indiana,05,18,1970,11200
+Arkansas,Ohio,05,39,1970,11700
+Arkansas,Pennslyvania,05,42,1970,1900
+Arkansas,New York,05,36,1970,5600
+Arkansas,New Jersey,05,34,1970,500
+Arkansas,Vermont,05,50,1970,0
+Arkansas,New Hampshire,05,33,1970,0
+Arkansas,Massachusetts,05,25,1970,500
+Arkansas,Connecticut,05,09,1970,300
+Arkansas,Rhode Island,05,44,1970,100
+Arkansas,Maine,05,23,1970,0
+Delaware,California,10,06,1970,600
+Delaware,Nevada,10,32,1970,0
+Delaware,Oregon,10,41,1970,0
+Delaware,Washington,10,53,1970,0
+Delaware,Idaho,10,16,1970,0
+Delaware,Utah,10,49,1970,0
+Delaware,Arizona,10,04,1970,0
+Delaware,Montana,10,30,1970,0
+Delaware,Wyoming,10,56,1970,0
+Delaware,Colorado,10,08,1970,0
+Delaware,New Mexico,10,35,1970,0
+Delaware,North Dakota,10,38,1970,0
+Delaware,South Dakota,10,46,1970,0
+Delaware,Nebraska,10,31,1970,0
+Delaware,Kansas,10,20,1970,0
+Delaware,Minnesota,10,27,1970,0
+Delaware,Iowa,10,19,1970,0
+Delaware,Missouri,10,29,1970,0
+Delaware,Wisconsin,10,55,1970,0
+Delaware,Illinois,10,17,1970,300
+Delaware,Michigan,10,26,1970,300
+Delaware,Indiana,10,18,1970,0
+Delaware,Ohio,10,39,1970,100
+Delaware,Pennslyvania,10,42,1970,2500
+Delaware,New York,10,36,1970,700
+Delaware,New Jersey,10,34,1970,1000
+Delaware,Vermont,10,50,1970,0
+Delaware,New Hampshire,10,33,1970,0
+Delaware,Massachusetts,10,25,1970,500
+Delaware,Connecticut,10,09,1970,300
+Delaware,Rhode Island,10,44,1970,0
+Delaware,Maine,10,23,1970,0
+District of Columbia,California,11,06,1970,3800
+District of Columbia,Nevada,11,32,1970,0
+District of Columbia,Oregon,11,41,1970,100
+District of Columbia,Washington,11,53,1970,500
+District of Columbia,Idaho,11,16,1970,0
+District of Columbia,Utah,11,49,1970,0
+District of Columbia,Arizona,11,04,1970,200
+District of Columbia,Montana,11,30,1970,0
+District of Columbia,Wyoming,11,56,1970,0
+District of Columbia,Colorado,11,08,1970,300
+District of Columbia,New Mexico,11,35,1970,100
+District of Columbia,North Dakota,11,38,1970,0
+District of Columbia,South Dakota,11,46,1970,0
+District of Columbia,Nebraska,11,31,1970,0
+District of Columbia,Kansas,11,20,1970,100
+District of Columbia,Minnesota,11,27,1970,0
+District of Columbia,Iowa,11,19,1970,0
+District of Columbia,Missouri,11,29,1970,0
+District of Columbia,Wisconsin,11,55,1970,100
+District of Columbia,Illinois,11,17,1970,500
+District of Columbia,Michigan,11,26,1970,700
+District of Columbia,Indiana,11,18,1970,200
+District of Columbia,Ohio,11,39,1970,1000
+District of Columbia,Pennslyvania,11,42,1970,2500
+District of Columbia,New York,11,36,1970,5000
+District of Columbia,New Jersey,11,34,1970,2500
+District of Columbia,Vermont,11,50,1970,0
+District of Columbia,New Hampshire,11,33,1970,0
+District of Columbia,Massachusetts,11,25,1970,700
+District of Columbia,Connecticut,11,09,1970,1200
+District of Columbia,Rhode Island,11,44,1970,100
+District of Columbia,Maine,11,23,1970,0
+Florida,California,12,06,1970,10800
+Florida,Nevada,12,32,1970,0
+Florida,Oregon,12,41,1970,100
+Florida,Washington,12,53,1970,900
+Florida,Idaho,12,16,1970,0
+Florida,Utah,12,49,1970,200
+Florida,Arizona,12,04,1970,200
+Florida,Montana,12,30,1970,0
+Florida,Wyoming,12,56,1970,100
+Florida,Colorado,12,08,1970,1500
+Florida,New Mexico,12,35,1970,200
+Florida,North Dakota,12,38,1970,100
+Florida,South Dakota,12,46,1970,100
+Florida,Nebraska,12,31,1970,200
+Florida,Kansas,12,20,1970,300
+Florida,Minnesota,12,27,1970,200
+Florida,Iowa,12,19,1970,100
+Florida,Missouri,12,29,1970,1400
+Florida,Wisconsin,12,55,1970,300
+Florida,Illinois,12,17,1970,5200
+Florida,Michigan,12,26,1970,6000
+Florida,Indiana,12,18,1970,1300
+Florida,Ohio,12,39,1970,6600
+Florida,Pennslyvania,12,42,1970,10700
+Florida,New York,12,36,1970,33900
+Florida,New Jersey,12,34,1970,14300
+Florida,Vermont,12,50,1970,0
+Florida,New Hampshire,12,33,1970,0
+Florida,Massachusetts,12,25,1970,4000
+Florida,Connecticut,12,09,1970,4500
+Florida,Rhode Island,12,44,1970,200
+Florida,Maine,12,23,1970,0
+Georgia,California,13,06,1970,20600
+Georgia,Nevada,13,32,1970,300
+Georgia,Oregon,13,41,1970,400
+Georgia,Washington,13,53,1970,1700
+Georgia,Idaho,13,16,1970,0
+Georgia,Utah,13,49,1970,600
+Georgia,Arizona,13,04,1970,800
+Georgia,Montana,13,30,1970,0
+Georgia,Wyoming,13,56,1970,200
+Georgia,Colorado,13,08,1970,1800
+Georgia,New Mexico,13,35,1970,600
+Georgia,North Dakota,13,38,1970,100
+Georgia,South Dakota,13,46,1970,0
+Georgia,Nebraska,13,31,1970,300
+Georgia,Kansas,13,20,1970,1600
+Georgia,Minnesota,13,27,1970,500
+Georgia,Iowa,13,19,1970,200
+Georgia,Missouri,13,29,1970,2500
+Georgia,Wisconsin,13,55,1970,1700
+Georgia,Illinois,13,17,1970,23700
+Georgia,Michigan,13,26,1970,50800
+Georgia,Indiana,13,18,1970,5500
+Georgia,Ohio,13,39,1970,56200
+Georgia,Pennslyvania,13,42,1970,41900
+Georgia,New York,13,36,1970,72300
+Georgia,New Jersey,13,34,1970,41100
+Georgia,Vermont,13,50,1970,0
+Georgia,New Hampshire,13,33,1970,0
+Georgia,Massachusetts,13,25,1970,7400
+Georgia,Connecticut,13,09,1970,7000
+Georgia,Rhode Island,13,44,1970,500
+Georgia,Maine,13,23,1970,200
+Kentucky,California,21,06,1970,5500
+Kentucky,Nevada,21,32,1970,0
+Kentucky,Oregon,21,41,1970,0
+Kentucky,Washington,21,53,1970,200
+Kentucky,Idaho,21,16,1970,0
+Kentucky,Utah,21,49,1970,200
+Kentucky,Arizona,21,04,1970,200
+Kentucky,Montana,21,30,1970,0
+Kentucky,Wyoming,21,56,1970,0
+Kentucky,Colorado,21,08,1970,800
+Kentucky,New Mexico,21,35,1970,0
+Kentucky,North Dakota,21,38,1970,0
+Kentucky,South Dakota,21,46,1970,0
+Kentucky,Nebraska,21,31,1970,300
+Kentucky,Kansas,21,20,1970,600
+Kentucky,Minnesota,21,27,1970,200
+Kentucky,Iowa,21,19,1970,0
+Kentucky,Missouri,21,29,1970,2300
+Kentucky,Wisconsin,21,55,1970,600
+Kentucky,Illinois,21,17,1970,9600
+Kentucky,Michigan,21,26,1970,12800
+Kentucky,Indiana,21,18,1970,17500
+Kentucky,Ohio,21,39,1970,23400
+Kentucky,Pennslyvania,21,42,1970,1700
+Kentucky,New York,21,36,1970,3800
+Kentucky,New Jersey,21,34,1970,1700
+Kentucky,Vermont,21,50,1970,0
+Kentucky,New Hampshire,21,33,1970,100
+Kentucky,Massachusetts,21,25,1970,200
+Kentucky,Connecticut,21,09,1970,200
+Kentucky,Rhode Island,21,44,1970,100
+Kentucky,Maine,21,23,1970,0
+Louisiana,California,22,06,1970,132800
+Louisiana,Nevada,22,32,1970,3600
+Louisiana,Oregon,22,41,1970,1300
+Louisiana,Washington,22,53,1970,5300
+Louisiana,Idaho,22,16,1970,0
+Louisiana,Utah,22,49,1970,200
+Louisiana,Arizona,22,04,1970,2200
+Louisiana,Montana,22,30,1970,0
+Louisiana,Wyoming,22,56,1970,400
+Louisiana,Colorado,22,08,1970,3500
+Louisiana,New Mexico,22,35,1970,600
+Louisiana,North Dakota,22,38,1970,100
+Louisiana,South Dakota,22,46,1970,100
+Louisiana,Nebraska,22,31,1970,1100
+Louisiana,Kansas,22,20,1970,2900
+Louisiana,Minnesota,22,27,1970,700
+Louisiana,Iowa,22,19,1970,400
+Louisiana,Missouri,22,29,1970,7900
+Louisiana,Wisconsin,22,55,1970,2500
+Louisiana,Illinois,22,17,1970,26100
+Louisiana,Michigan,22,26,1970,20500
+Louisiana,Indiana,22,18,1970,4100
+Louisiana,Ohio,22,39,1970,5400
+Louisiana,Pennslyvania,22,42,1970,3000
+Louisiana,New York,22,36,1970,7900
+Louisiana,New Jersey,22,34,1970,2100
+Louisiana,Vermont,22,50,1970,0
+Louisiana,New Hampshire,22,33,1970,0
+Louisiana,Massachusetts,22,25,1970,700
+Louisiana,Connecticut,22,09,1970,400
+Louisiana,Rhode Island,22,44,1970,400
+Louisiana,Maine,22,23,1970,0
+Maryland,California,24,06,1970,3200
+Maryland,Nevada,24,32,1970,0
+Maryland,Oregon,24,41,1970,100
+Maryland,Washington,24,53,1970,400
+Maryland,Idaho,24,16,1970,0
+Maryland,Utah,24,49,1970,100
+Maryland,Arizona,24,04,1970,600
+Maryland,Montana,24,30,1970,200
+Maryland,Wyoming,24,56,1970,0
+Maryland,Colorado,24,08,1970,900
+Maryland,New Mexico,24,35,1970,0
+Maryland,North Dakota,24,38,1970,0
+Maryland,South Dakota,24,46,1970,0
+Maryland,Nebraska,24,31,1970,0
+Maryland,Kansas,24,20,1970,400
+Maryland,Minnesota,24,27,1970,100
+Maryland,Iowa,24,19,1970,100
+Maryland,Missouri,24,29,1970,500
+Maryland,Wisconsin,24,55,1970,0
+Maryland,Illinois,24,17,1970,1600
+Maryland,Michigan,24,26,1970,1200
+Maryland,Indiana,24,18,1970,400
+Maryland,Ohio,24,39,1970,1700
+Maryland,Pennslyvania,24,42,1970,14800
+Maryland,New York,24,36,1970,9400
+Maryland,New Jersey,24,34,1970,8300
+Maryland,Vermont,24,50,1970,0
+Maryland,New Hampshire,24,33,1970,0
+Maryland,Massachusetts,24,25,1970,1900
+Maryland,Connecticut,24,09,1970,900
+Maryland,Rhode Island,24,44,1970,200
+Maryland,Maine,24,23,1970,0
+Mississippi,California,28,06,1970,64800
+Mississippi,Nevada,28,32,1970,1400
+Mississippi,Oregon,28,41,1970,1400
+Mississippi,Washington,28,53,1970,2700
+Mississippi,Idaho,28,16,1970,300
+Mississippi,Utah,28,49,1970,500
+Mississippi,Arizona,28,04,1970,1100
+Mississippi,Montana,28,30,1970,100
+Mississippi,Wyoming,28,56,1970,0
+Mississippi,Colorado,28,08,1970,1800
+Mississippi,New Mexico,28,35,1970,1100
+Mississippi,North Dakota,28,38,1970,0
+Mississippi,South Dakota,28,46,1970,0
+Mississippi,Nebraska,28,31,1970,1900
+Mississippi,Kansas,28,20,1970,6600
+Mississippi,Minnesota,28,27,1970,1500
+Mississippi,Iowa,28,19,1970,3700
+Mississippi,Missouri,28,29,1970,43000
+Mississippi,Wisconsin,28,55,1970,19600
+Mississippi,Illinois,28,17,1970,206500
+Mississippi,Michigan,28,26,1970,68200
+Mississippi,Indiana,28,18,1970,33800
+Mississippi,Ohio,28,39,1970,34300
+Mississippi,Pennslyvania,28,42,1970,6700
+Mississippi,New York,28,36,1970,15300
+Mississippi,New Jersey,28,34,1970,4600
+Mississippi,Vermont,28,50,1970,0
+Mississippi,New Hampshire,28,33,1970,0
+Mississippi,Massachusetts,28,25,1970,2400
+Mississippi,Connecticut,28,09,1970,1200
+Mississippi,Rhode Island,28,44,1970,0
+Mississippi,Maine,28,23,1970,0
+North Carolina,California,37,06,1970,9700
+North Carolina,Nevada,37,32,1970,100
+North Carolina,Oregon,37,41,1970,100
+North Carolina,Washington,37,53,1970,400
+North Carolina,Idaho,37,16,1970,100
+North Carolina,Utah,37,49,1970,0
+North Carolina,Arizona,37,04,1970,300
+North Carolina,Montana,37,30,1970,0
+North Carolina,Wyoming,37,56,1970,300
+North Carolina,Colorado,37,08,1970,500
+North Carolina,New Mexico,37,35,1970,0
+North Carolina,North Dakota,37,38,1970,300
+North Carolina,South Dakota,37,46,1970,100
+North Carolina,Nebraska,37,31,1970,200
+North Carolina,Kansas,37,20,1970,400
+North Carolina,Minnesota,37,27,1970,0
+North Carolina,Iowa,37,19,1970,200
+North Carolina,Missouri,37,29,1970,1100
+North Carolina,Wisconsin,37,55,1970,300
+North Carolina,Illinois,37,17,1970,4500
+North Carolina,Michigan,37,26,1970,10100
+North Carolina,Indiana,37,18,1970,1900
+North Carolina,Ohio,37,39,1970,10300
+North Carolina,Pennslyvania,37,42,1970,46300
+North Carolina,New York,37,36,1970,124700
+North Carolina,New Jersey,37,34,1970,54400
+North Carolina,Vermont,37,50,1970,100
+North Carolina,New Hampshire,37,33,1970,0
+North Carolina,Massachusetts,37,25,1970,10200
+North Carolina,Connecticut,37,09,1970,14900
+North Carolina,Rhode Island,37,44,1970,1400
+North Carolina,Maine,37,23,1970,100
+Oklahoma,California,40,06,1970,34500
+Oklahoma,Nevada,40,32,1970,300
+Oklahoma,Oregon,40,41,1970,400
+Oklahoma,Washington,40,53,1970,1200
+Oklahoma,Idaho,40,16,1970,0
+Oklahoma,Utah,40,49,1970,0
+Oklahoma,Arizona,40,04,1970,2000
+Oklahoma,Montana,40,30,1970,0
+Oklahoma,Wyoming,40,56,1970,100
+Oklahoma,Colorado,40,08,1970,3300
+Oklahoma,New Mexico,40,35,1970,200
+Oklahoma,North Dakota,40,38,1970,0
+Oklahoma,South Dakota,40,46,1970,0
+Oklahoma,Nebraska,40,31,1970,1300
+Oklahoma,Kansas,40,20,1970,6800
+Oklahoma,Minnesota,40,27,1970,400
+Oklahoma,Iowa,40,19,1970,200
+Oklahoma,Missouri,40,29,1970,6200
+Oklahoma,Wisconsin,40,55,1970,200
+Oklahoma,Illinois,40,17,1970,5000
+Oklahoma,Michigan,40,26,1970,3100
+Oklahoma,Indiana,40,18,1970,600
+Oklahoma,Ohio,40,39,1970,2100
+Oklahoma,Pennslyvania,40,42,1970,300
+Oklahoma,New York,40,36,1970,800
+Oklahoma,New Jersey,40,34,1970,200
+Oklahoma,Vermont,40,50,1970,0
+Oklahoma,New Hampshire,40,33,1970,0
+Oklahoma,Massachusetts,40,25,1970,100
+Oklahoma,Connecticut,40,09,1970,100
+Oklahoma,Rhode Island,40,44,1970,0
+Oklahoma,Maine,40,23,1970,0
+South Carolina,California,45,06,1970,6800
+South Carolina,Nevada,45,32,1970,0
+South Carolina,Oregon,45,41,1970,100
+South Carolina,Washington,45,53,1970,600
+South Carolina,Idaho,45,16,1970,100
+South Carolina,Utah,45,49,1970,200
+South Carolina,Arizona,45,04,1970,400
+South Carolina,Montana,45,30,1970,200
+South Carolina,Wyoming,45,56,1970,0
+South Carolina,Colorado,45,08,1970,900
+South Carolina,New Mexico,45,35,1970,100
+South Carolina,North Dakota,45,38,1970,100
+South Carolina,South Dakota,45,46,1970,0
+South Carolina,Nebraska,45,31,1970,500
+South Carolina,Kansas,45,20,1970,500
+South Carolina,Minnesota,45,27,1970,300
+South Carolina,Iowa,45,19,1970,300
+South Carolina,Missouri,45,29,1970,1100
+South Carolina,Wisconsin,45,55,1970,500
+South Carolina,Illinois,45,17,1970,5200
+South Carolina,Michigan,45,26,1970,17000
+South Carolina,Indiana,45,18,1970,1800
+South Carolina,Ohio,45,39,1970,11700
+South Carolina,Pennslyvania,45,42,1970,52800
+South Carolina,New York,45,36,1970,140000
+South Carolina,New Jersey,45,34,1970,40600
+South Carolina,Vermont,45,50,1970,0
+South Carolina,New Hampshire,45,33,1970,0
+South Carolina,Massachusetts,45,25,1970,7400
+South Carolina,Connecticut,45,09,1970,16500
+South Carolina,Rhode Island,45,44,1970,400
+South Carolina,Maine,45,23,1970,900
+Tennessee,California,47,06,1970,21900
+Tennessee,Nevada,47,32,1970,200
+Tennessee,Oregon,47,41,1970,300
+Tennessee,Washington,47,53,1970,1400
+Tennessee,Idaho,47,16,1970,200
+Tennessee,Utah,47,49,1970,0
+Tennessee,Arizona,47,04,1970,100
+Tennessee,Montana,47,30,1970,100
+Tennessee,Wyoming,47,56,1970,0
+Tennessee,Colorado,47,08,1970,200
+Tennessee,New Mexico,47,35,1970,200
+Tennessee,North Dakota,47,38,1970,200
+Tennessee,South Dakota,47,46,1970,0
+Tennessee,Nebraska,47,31,1970,800
+Tennessee,Kansas,47,20,1970,1000
+Tennessee,Minnesota,47,27,1970,1600
+Tennessee,Iowa,47,19,1970,600
+Tennessee,Missouri,47,29,1970,13600
+Tennessee,Wisconsin,47,55,1970,7500
+Tennessee,Illinois,47,17,1970,50600
+Tennessee,Michigan,47,26,1970,34400
+Tennessee,Indiana,47,18,1970,21800
+Tennessee,Ohio,47,39,1970,33100
+Tennessee,Pennslyvania,47,42,1970,2000
+Tennessee,New York,47,36,1970,8100
+Tennessee,New Jersey,47,34,1970,2100
+Tennessee,Vermont,47,50,1970,0
+Tennessee,New Hampshire,47,33,1970,100
+Tennessee,Massachusetts,47,25,1970,2000
+Tennessee,Connecticut,47,09,1970,300
+Tennessee,Rhode Island,47,44,1970,0
+Tennessee,Maine,47,23,1970,0
+Texas,California,48,06,1970,141400
+Texas,Nevada,48,32,1970,1100
+Texas,Oregon,48,41,1970,3300
+Texas,Washington,48,53,1970,6700
+Texas,Idaho,48,16,1970,300
+Texas,Utah,48,49,1970,300
+Texas,Arizona,48,04,1970,8000
+Texas,Montana,48,30,1970,400
+Texas,Wyoming,48,56,1970,300
+Texas,Colorado,48,08,1970,6700
+Texas,New Mexico,48,35,1970,4900
+Texas,North Dakota,48,38,1970,0
+Texas,South Dakota,48,46,1970,0
+Texas,Nebraska,48,31,1970,800
+Texas,Kansas,48,20,1970,4200
+Texas,Minnesota,48,27,1970,400
+Texas,Iowa,48,19,1970,200
+Texas,Missouri,48,29,1970,6100
+Texas,Wisconsin,48,55,1970,1000
+Texas,Illinois,48,17,1970,7800
+Texas,Michigan,48,26,1970,11900
+Texas,Indiana,48,18,1970,1100
+Texas,Ohio,48,39,1970,4600
+Texas,Pennslyvania,48,42,1970,2400
+Texas,New York,48,36,1970,6300
+Texas,New Jersey,48,34,1970,2500
+Texas,Vermont,48,50,1970,0
+Texas,New Hampshire,48,33,1970,0
+Texas,Massachusetts,48,25,1970,900
+Texas,Connecticut,48,09,1970,400
+Texas,Rhode Island,48,44,1970,200
+Texas,Maine,48,23,1970,200
+Virginia,California,51,06,1970,8700
+Virginia,Nevada,51,32,1970,0
+Virginia,Oregon,51,41,1970,0
+Virginia,Washington,51,53,1970,800
+Virginia,Idaho,51,16,1970,0
+Virginia,Utah,51,49,1970,100
+Virginia,Arizona,51,04,1970,200
+Virginia,Montana,51,30,1970,0
+Virginia,Wyoming,51,56,1970,0
+Virginia,Colorado,51,08,1970,700
+Virginia,New Mexico,51,35,1970,100
+Virginia,North Dakota,51,38,1970,100
+Virginia,South Dakota,51,46,1970,200
+Virginia,Nebraska,51,31,1970,400
+Virginia,Kansas,51,20,1970,400
+Virginia,Minnesota,51,27,1970,300
+Virginia,Iowa,51,19,1970,100
+Virginia,Missouri,51,29,1970,300
+Virginia,Wisconsin,51,55,1970,400
+Virginia,Illinois,51,17,1970,4800
+Virginia,Michigan,51,26,1970,5600
+Virginia,Indiana,51,18,1970,1200
+Virginia,Ohio,51,39,1970,10500
+Virginia,Pennslyvania,51,42,1970,45200
+Virginia,New York,51,36,1970,71300
+Virginia,New Jersey,51,34,1970,36300
+Virginia,Vermont,51,50,1970,0
+Virginia,New Hampshire,51,33,1970,400
+Virginia,Massachusetts,51,25,1970,4900
+Virginia,Connecticut,51,09,1970,6100
+Virginia,Rhode Island,51,44,1970,700
+Virginia,Maine,51,23,1970,0
+West Virginia,California,54,06,1970,1300
+West Virginia,Nevada,54,32,1970,0
+West Virginia,Oregon,54,41,1970,0
+West Virginia,Washington,54,53,1970,500
+West Virginia,Idaho,54,16,1970,0
+West Virginia,Utah,54,49,1970,0
+West Virginia,Arizona,54,04,1970,0
+West Virginia,Montana,54,30,1970,0
+West Virginia,Wyoming,54,56,1970,0
+West Virginia,Colorado,54,08,1970,100
+West Virginia,New Mexico,54,35,1970,0
+West Virginia,North Dakota,54,38,1970,0
+West Virginia,South Dakota,54,46,1970,0
+West Virginia,Nebraska,54,31,1970,0
+West Virginia,Kansas,54,20,1970,0
+West Virginia,Minnesota,54,27,1970,0
+West Virginia,Iowa,54,19,1970,0
+West Virginia,Missouri,54,29,1970,100
+West Virginia,Wisconsin,54,55,1970,300
+West Virginia,Illinois,54,17,1970,1900
+West Virginia,Michigan,54,26,1970,5900
+West Virginia,Indiana,54,18,1970,700
+West Virginia,Ohio,54,39,1970,15600
+West Virginia,Pennslyvania,54,42,1970,4400
+West Virginia,New York,54,36,1970,11400
+West Virginia,New Jersey,54,34,1970,3600
+West Virginia,Vermont,54,50,1970,0
+West Virginia,New Hampshire,54,33,1970,0
+West Virginia,Massachusetts,54,25,1970,300
+West Virginia,Connecticut,54,09,1970,600
+West Virginia,Rhode Island,54,44,1970,0
+West Virginia,Maine,54,23,1970,0

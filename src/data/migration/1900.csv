@@ -1,0 +1,545 @@
+state_from,state_to,state_fips_from,state_fips_to,year,count
+Alabama,California,01,06,1900,101
+Alabama,Nevada,01,32,1900,0
+Alabama,Oregon,01,41,1900,0
+Alabama,Washington,01,53,1900,0
+Alabama,Idaho,01,16,1900,0
+Alabama,Utah,01,49,1900,0
+Alabama,Arizona,01,04,1900,0
+Alabama,Montana,01,30,1900,0
+Alabama,Wyoming,01,56,1900,101
+Alabama,Colorado,01,08,1900,905
+Alabama,New Mexico,01,35,1900,101
+Alabama,North Dakota,01,38,1900,0
+Alabama,South Dakota,01,46,1900,0
+Alabama,Nebraska,01,31,1900,100
+Alabama,Kansas,01,20,1900,605
+Alabama,Minnesota,01,27,1900,0
+Alabama,Iowa,01,19,1900,702
+Alabama,Missouri,01,29,1900,1303
+Alabama,Wisconsin,01,55,1900,0
+Alabama,Illinois,01,17,1900,3220
+Alabama,Michigan,01,26,1900,0
+Alabama,Indiana,01,18,1900,401
+Alabama,Ohio,01,39,1900,500
+Alabama,Pennslyvania,01,42,1900,601
+Alabama,New York,01,36,1900,302
+Alabama,New Jersey,01,34,1900,100
+Alabama,Vermont,01,50,1900,0
+Alabama,New Hampshire,01,33,1900,0
+Alabama,Massachusetts,01,25,1900,0
+Alabama,Connecticut,01,09,1900,0
+Alabama,Rhode Island,01,44,1900,0
+Alabama,Maine,01,23,1900,0
+Arkansas,California,05,06,1900,100
+Arkansas,Nevada,05,32,1900,0
+Arkansas,Oregon,05,41,1900,0
+Arkansas,Washington,05,53,1900,0
+Arkansas,Idaho,05,16,1900,0
+Arkansas,Utah,05,49,1900,0
+Arkansas,Arizona,05,04,1900,100
+Arkansas,Montana,05,30,1900,0
+Arkansas,Wyoming,05,56,1900,0
+Arkansas,Colorado,05,08,1900,200
+Arkansas,New Mexico,05,35,1900,0
+Arkansas,North Dakota,05,38,1900,0
+Arkansas,South Dakota,05,46,1900,0
+Arkansas,Nebraska,05,31,1900,0
+Arkansas,Kansas,05,20,1900,502
+Arkansas,Minnesota,05,27,1900,0
+Arkansas,Iowa,05,19,1900,100
+Arkansas,Missouri,05,29,1900,1706
+Arkansas,Wisconsin,05,55,1900,0
+Arkansas,Illinois,05,17,1900,1006
+Arkansas,Michigan,05,26,1900,0
+Arkansas,Indiana,05,18,1900,500
+Arkansas,Ohio,05,39,1900,0
+Arkansas,Pennslyvania,05,42,1900,0
+Arkansas,New York,05,36,1900,0
+Arkansas,New Jersey,05,34,1900,0
+Arkansas,Vermont,05,50,1900,0
+Arkansas,New Hampshire,05,33,1900,0
+Arkansas,Massachusetts,05,25,1900,100
+Arkansas,Connecticut,05,09,1900,0
+Arkansas,Rhode Island,05,44,1900,0
+Arkansas,Maine,05,23,1900,0
+Delaware,California,10,06,1900,0
+Delaware,Nevada,10,32,1900,0
+Delaware,Oregon,10,41,1900,0
+Delaware,Washington,10,53,1900,0
+Delaware,Idaho,10,16,1900,0
+Delaware,Utah,10,49,1900,0
+Delaware,Arizona,10,04,1900,0
+Delaware,Montana,10,30,1900,0
+Delaware,Wyoming,10,56,1900,0
+Delaware,Colorado,10,08,1900,0
+Delaware,New Mexico,10,35,1900,0
+Delaware,North Dakota,10,38,1900,0
+Delaware,South Dakota,10,46,1900,0
+Delaware,Nebraska,10,31,1900,0
+Delaware,Kansas,10,20,1900,0
+Delaware,Minnesota,10,27,1900,100
+Delaware,Iowa,10,19,1900,0
+Delaware,Missouri,10,29,1900,0
+Delaware,Wisconsin,10,55,1900,0
+Delaware,Illinois,10,17,1900,0
+Delaware,Michigan,10,26,1900,101
+Delaware,Indiana,10,18,1900,0
+Delaware,Ohio,10,39,1900,0
+Delaware,Pennslyvania,10,42,1900,4816
+Delaware,New York,10,36,1900,402
+Delaware,New Jersey,10,34,1900,2807
+Delaware,Vermont,10,50,1900,0
+Delaware,New Hampshire,10,33,1900,0
+Delaware,Massachusetts,10,25,1900,101
+Delaware,Connecticut,10,09,1900,0
+Delaware,Rhode Island,10,44,1900,0
+Delaware,Maine,10,23,1900,0
+District of Columbia,California,11,06,1900,0
+District of Columbia,Nevada,11,32,1900,0
+District of Columbia,Oregon,11,41,1900,0
+District of Columbia,Washington,11,53,1900,0
+District of Columbia,Idaho,11,16,1900,0
+District of Columbia,Utah,11,49,1900,0
+District of Columbia,Arizona,11,04,1900,0
+District of Columbia,Montana,11,30,1900,0
+District of Columbia,Wyoming,11,56,1900,0
+District of Columbia,Colorado,11,08,1900,0
+District of Columbia,New Mexico,11,35,1900,0
+District of Columbia,North Dakota,11,38,1900,100
+District of Columbia,South Dakota,11,46,1900,0
+District of Columbia,Nebraska,11,31,1900,0
+District of Columbia,Kansas,11,20,1900,201
+District of Columbia,Minnesota,11,27,1900,0
+District of Columbia,Iowa,11,19,1900,0
+District of Columbia,Missouri,11,29,1900,0
+District of Columbia,Wisconsin,11,55,1900,0
+District of Columbia,Illinois,11,17,1900,200
+District of Columbia,Michigan,11,26,1900,0
+District of Columbia,Indiana,11,18,1900,0
+District of Columbia,Ohio,11,39,1900,0
+District of Columbia,Pennslyvania,11,42,1900,1710
+District of Columbia,New York,11,36,1900,1905
+District of Columbia,New Jersey,11,34,1900,1003
+District of Columbia,Vermont,11,50,1900,0
+District of Columbia,New Hampshire,11,33,1900,0
+District of Columbia,Massachusetts,11,25,1900,402
+District of Columbia,Connecticut,11,09,1900,0
+District of Columbia,Rhode Island,11,44,1900,300
+District of Columbia,Maine,11,23,1900,100
+Florida,California,12,06,1900,0
+Florida,Nevada,12,32,1900,0
+Florida,Oregon,12,41,1900,0
+Florida,Washington,12,53,1900,0
+Florida,Idaho,12,16,1900,0
+Florida,Utah,12,49,1900,0
+Florida,Arizona,12,04,1900,0
+Florida,Montana,12,30,1900,0
+Florida,Wyoming,12,56,1900,0
+Florida,Colorado,12,08,1900,100
+Florida,New Mexico,12,35,1900,201
+Florida,North Dakota,12,38,1900,0
+Florida,South Dakota,12,46,1900,0
+Florida,Nebraska,12,31,1900,0
+Florida,Kansas,12,20,1900,0
+Florida,Minnesota,12,27,1900,0
+Florida,Iowa,12,19,1900,0
+Florida,Missouri,12,29,1900,100
+Florida,Wisconsin,12,55,1900,0
+Florida,Illinois,12,17,1900,201
+Florida,Michigan,12,26,1900,0
+Florida,Indiana,12,18,1900,0
+Florida,Ohio,12,39,1900,401
+Florida,Pennslyvania,12,42,1900,100
+Florida,New York,12,36,1900,1003
+Florida,New Jersey,12,34,1900,201
+Florida,Vermont,12,50,1900,0
+Florida,New Hampshire,12,33,1900,0
+Florida,Massachusetts,12,25,1900,300
+Florida,Connecticut,12,09,1900,0
+Florida,Rhode Island,12,44,1900,0
+Florida,Maine,12,23,1900,0
+Georgia,California,13,06,1900,100
+Georgia,Nevada,13,32,1900,100
+Georgia,Oregon,13,41,1900,0
+Georgia,Washington,13,53,1900,0
+Georgia,Idaho,13,16,1900,0
+Georgia,Utah,13,49,1900,100
+Georgia,Arizona,13,04,1900,100
+Georgia,Montana,13,30,1900,0
+Georgia,Wyoming,13,56,1900,0
+Georgia,Colorado,13,08,1900,200
+Georgia,New Mexico,13,35,1900,201
+Georgia,North Dakota,13,38,1900,0
+Georgia,South Dakota,13,46,1900,0
+Georgia,Nebraska,13,31,1900,0
+Georgia,Kansas,13,20,1900,503
+Georgia,Minnesota,13,27,1900,100
+Georgia,Iowa,13,19,1900,200
+Georgia,Missouri,13,29,1900,401
+Georgia,Wisconsin,13,55,1900,0
+Georgia,Illinois,13,17,1900,1402
+Georgia,Michigan,13,26,1900,202
+Georgia,Indiana,13,18,1900,200
+Georgia,Ohio,13,39,1900,1502
+Georgia,Pennslyvania,13,42,1900,702
+Georgia,New York,13,36,1900,1204
+Georgia,New Jersey,13,34,1900,402
+Georgia,Vermont,13,50,1900,0
+Georgia,New Hampshire,13,33,1900,0
+Georgia,Massachusetts,13,25,1900,1805
+Georgia,Connecticut,13,09,1900,100
+Georgia,Rhode Island,13,44,1900,0
+Georgia,Maine,13,23,1900,0
+Kentucky,California,21,06,1900,200
+Kentucky,Nevada,21,32,1900,100
+Kentucky,Oregon,21,41,1900,0
+Kentucky,Washington,21,53,1900,101
+Kentucky,Idaho,21,16,1900,100
+Kentucky,Utah,21,49,1900,100
+Kentucky,Arizona,21,04,1900,100
+Kentucky,Montana,21,30,1900,200
+Kentucky,Wyoming,21,56,1900,0
+Kentucky,Colorado,21,08,1900,200
+Kentucky,New Mexico,21,35,1900,200
+Kentucky,North Dakota,21,38,1900,100
+Kentucky,South Dakota,21,46,1900,0
+Kentucky,Nebraska,21,31,1900,302
+Kentucky,Kansas,21,20,1900,7014
+Kentucky,Minnesota,21,27,1900,101
+Kentucky,Iowa,21,19,1900,1001
+Kentucky,Missouri,21,29,1900,7128
+Kentucky,Wisconsin,21,55,1900,0
+Kentucky,Illinois,21,17,1900,10122
+Kentucky,Michigan,21,26,1900,601
+Kentucky,Indiana,21,18,1900,23667
+Kentucky,Ohio,21,39,1900,11327
+Kentucky,Pennslyvania,21,42,1900,402
+Kentucky,New York,21,36,1900,700
+Kentucky,New Jersey,21,34,1900,301
+Kentucky,Vermont,21,50,1900,0
+Kentucky,New Hampshire,21,33,1900,0
+Kentucky,Massachusetts,21,25,1900,0
+Kentucky,Connecticut,21,09,1900,0
+Kentucky,Rhode Island,21,44,1900,0
+Kentucky,Maine,21,23,1900,0
+Louisiana,California,22,06,1900,0
+Louisiana,Nevada,22,32,1900,0
+Louisiana,Oregon,22,41,1900,100
+Louisiana,Washington,22,53,1900,0
+Louisiana,Idaho,22,16,1900,0
+Louisiana,Utah,22,49,1900,100
+Louisiana,Arizona,22,04,1900,0
+Louisiana,Montana,22,30,1900,0
+Louisiana,Wyoming,22,56,1900,0
+Louisiana,Colorado,22,08,1900,0
+Louisiana,New Mexico,22,35,1900,0
+Louisiana,North Dakota,22,38,1900,0
+Louisiana,South Dakota,22,46,1900,0
+Louisiana,Nebraska,22,31,1900,0
+Louisiana,Kansas,22,20,1900,501
+Louisiana,Minnesota,22,27,1900,201
+Louisiana,Iowa,22,19,1900,100
+Louisiana,Missouri,22,29,1900,905
+Louisiana,Wisconsin,22,55,1900,0
+Louisiana,Illinois,22,17,1900,1302
+Louisiana,Michigan,22,26,1900,0
+Louisiana,Indiana,22,18,1900,0
+Louisiana,Ohio,22,39,1900,101
+Louisiana,Pennslyvania,22,42,1900,504
+Louisiana,New York,22,36,1900,201
+Louisiana,New Jersey,22,34,1900,0
+Louisiana,Vermont,22,50,1900,0
+Louisiana,New Hampshire,22,33,1900,0
+Louisiana,Massachusetts,22,25,1900,0
+Louisiana,Connecticut,22,09,1900,0
+Louisiana,Rhode Island,22,44,1900,0
+Louisiana,Maine,22,23,1900,0
+Maryland,California,24,06,1900,100
+Maryland,Nevada,24,32,1900,0
+Maryland,Oregon,24,41,1900,100
+Maryland,Washington,24,53,1900,0
+Maryland,Idaho,24,16,1900,0
+Maryland,Utah,24,49,1900,101
+Maryland,Arizona,24,04,1900,0
+Maryland,Montana,24,30,1900,0
+Maryland,Wyoming,24,56,1900,0
+Maryland,Colorado,24,08,1900,0
+Maryland,New Mexico,24,35,1900,0
+Maryland,North Dakota,24,38,1900,0
+Maryland,South Dakota,24,46,1900,0
+Maryland,Nebraska,24,31,1900,0
+Maryland,Kansas,24,20,1900,101
+Maryland,Minnesota,24,27,1900,100
+Maryland,Iowa,24,19,1900,100
+Maryland,Missouri,24,29,1900,400
+Maryland,Wisconsin,24,55,1900,0
+Maryland,Illinois,24,17,1900,600
+Maryland,Michigan,24,26,1900,101
+Maryland,Indiana,24,18,1900,0
+Maryland,Ohio,24,39,1900,701
+Maryland,Pennslyvania,24,42,1900,18453
+Maryland,New York,24,36,1900,2705
+Maryland,New Jersey,24,34,1900,6727
+Maryland,Vermont,24,50,1900,200
+Maryland,New Hampshire,24,33,1900,0
+Maryland,Massachusetts,24,25,1900,1205
+Maryland,Connecticut,24,09,1900,603
+Maryland,Rhode Island,24,44,1900,1003
+Maryland,Maine,24,23,1900,0
+Mississippi,California,28,06,1900,100
+Mississippi,Nevada,28,32,1900,0
+Mississippi,Oregon,28,41,1900,0
+Mississippi,Washington,28,53,1900,100
+Mississippi,Idaho,28,16,1900,0
+Mississippi,Utah,28,49,1900,0
+Mississippi,Arizona,28,04,1900,0
+Mississippi,Montana,28,30,1900,0
+Mississippi,Wyoming,28,56,1900,0
+Mississippi,Colorado,28,08,1900,300
+Mississippi,New Mexico,28,35,1900,0
+Mississippi,North Dakota,28,38,1900,0
+Mississippi,South Dakota,28,46,1900,0
+Mississippi,Nebraska,28,31,1900,100
+Mississippi,Kansas,28,20,1900,2811
+Mississippi,Minnesota,28,27,1900,101
+Mississippi,Iowa,28,19,1900,100
+Mississippi,Missouri,28,29,1900,4010
+Mississippi,Wisconsin,28,55,1900,101
+Mississippi,Illinois,28,17,1900,5117
+Mississippi,Michigan,28,26,1900,0
+Mississippi,Indiana,28,18,1900,0
+Mississippi,Ohio,28,39,1900,1201
+Mississippi,Pennslyvania,28,42,1900,100
+Mississippi,New York,28,36,1900,201
+Mississippi,New Jersey,28,34,1900,0
+Mississippi,Vermont,28,50,1900,0
+Mississippi,New Hampshire,28,33,1900,0
+Mississippi,Massachusetts,28,25,1900,201
+Mississippi,Connecticut,28,09,1900,0
+Mississippi,Rhode Island,28,44,1900,0
+Mississippi,Maine,28,23,1900,0
+North Carolina,California,37,06,1900,907
+North Carolina,Nevada,37,32,1900,0
+North Carolina,Oregon,37,41,1900,0
+North Carolina,Washington,37,53,1900,0
+North Carolina,Idaho,37,16,1900,0
+North Carolina,Utah,37,49,1900,0
+North Carolina,Arizona,37,04,1900,0
+North Carolina,Montana,37,30,1900,0
+North Carolina,Wyoming,37,56,1900,0
+North Carolina,Colorado,37,08,1900,200
+North Carolina,New Mexico,37,35,1900,0
+North Carolina,North Dakota,37,38,1900,0
+North Carolina,South Dakota,37,46,1900,0
+North Carolina,Nebraska,37,31,1900,0
+North Carolina,Kansas,37,20,1900,500
+North Carolina,Minnesota,37,27,1900,200
+North Carolina,Iowa,37,19,1900,0
+North Carolina,Missouri,37,29,1900,300
+North Carolina,Wisconsin,37,55,1900,101
+North Carolina,Illinois,37,17,1900,603
+North Carolina,Michigan,37,26,1900,702
+North Carolina,Indiana,37,18,1900,1404
+North Carolina,Ohio,37,39,1900,2408
+North Carolina,Pennslyvania,37,42,1900,6011
+North Carolina,New York,37,36,1900,5516
+North Carolina,New Jersey,37,34,1900,4218
+North Carolina,Vermont,37,50,1900,0
+North Carolina,New Hampshire,37,33,1900,0
+North Carolina,Massachusetts,37,25,1900,3006
+North Carolina,Connecticut,37,09,1900,1202
+North Carolina,Rhode Island,37,44,1900,501
+North Carolina,Maine,37,23,1900,0
+Oklahoma,California,40,06,1900,0
+Oklahoma,Nevada,40,32,1900,0
+Oklahoma,Oregon,40,41,1900,0
+Oklahoma,Washington,40,53,1900,0
+Oklahoma,Idaho,40,16,1900,101
+Oklahoma,Utah,40,49,1900,0
+Oklahoma,Arizona,40,04,1900,0
+Oklahoma,Montana,40,30,1900,100
+Oklahoma,Wyoming,40,56,1900,0
+Oklahoma,Colorado,40,08,1900,0
+Oklahoma,New Mexico,40,35,1900,0
+Oklahoma,North Dakota,40,38,1900,0
+Oklahoma,South Dakota,40,46,1900,0
+Oklahoma,Nebraska,40,31,1900,0
+Oklahoma,Kansas,40,20,1900,600
+Oklahoma,Minnesota,40,27,1900,0
+Oklahoma,Iowa,40,19,1900,0
+Oklahoma,Missouri,40,29,1900,0
+Oklahoma,Wisconsin,40,55,1900,0
+Oklahoma,Illinois,40,17,1900,0
+Oklahoma,Michigan,40,26,1900,0
+Oklahoma,Indiana,40,18,1900,0
+Oklahoma,Ohio,40,39,1900,401
+Oklahoma,Pennslyvania,40,42,1900,0
+Oklahoma,New York,40,36,1900,0
+Oklahoma,New Jersey,40,34,1900,0
+Oklahoma,Vermont,40,50,1900,0
+Oklahoma,New Hampshire,40,33,1900,0
+Oklahoma,Massachusetts,40,25,1900,0
+Oklahoma,Connecticut,40,09,1900,0
+Oklahoma,Rhode Island,40,44,1900,0
+Oklahoma,Maine,40,23,1900,0
+South Carolina,California,45,06,1900,101
+South Carolina,Nevada,45,32,1900,0
+South Carolina,Oregon,45,41,1900,0
+South Carolina,Washington,45,53,1900,0
+South Carolina,Idaho,45,16,1900,0
+South Carolina,Utah,45,49,1900,0
+South Carolina,Arizona,45,04,1900,0
+South Carolina,Montana,45,30,1900,0
+South Carolina,Wyoming,45,56,1900,0
+South Carolina,Colorado,45,08,1900,100
+South Carolina,New Mexico,45,35,1900,0
+South Carolina,North Dakota,45,38,1900,0
+South Carolina,South Dakota,45,46,1900,0
+South Carolina,Nebraska,45,31,1900,0
+South Carolina,Kansas,45,20,1900,302
+South Carolina,Minnesota,45,27,1900,0
+South Carolina,Iowa,45,19,1900,0
+South Carolina,Missouri,45,29,1900,1005
+South Carolina,Wisconsin,45,55,1900,0
+South Carolina,Illinois,45,17,1900,403
+South Carolina,Michigan,45,26,1900,0
+South Carolina,Indiana,45,18,1900,100
+South Carolina,Ohio,45,39,1900,402
+South Carolina,Pennslyvania,45,42,1900,701
+South Carolina,New York,45,36,1900,3113
+South Carolina,New Jersey,45,34,1900,501
+South Carolina,Vermont,45,50,1900,0
+South Carolina,New Hampshire,45,33,1900,0
+South Carolina,Massachusetts,45,25,1900,905
+South Carolina,Connecticut,45,09,1900,101
+South Carolina,Rhode Island,45,44,1900,200
+South Carolina,Maine,45,23,1900,0
+Tennessee,California,47,06,1900,400
+Tennessee,Nevada,47,32,1900,0
+Tennessee,Oregon,47,41,1900,100
+Tennessee,Washington,47,53,1900,100
+Tennessee,Idaho,47,16,1900,0
+Tennessee,Utah,47,49,1900,100
+Tennessee,Arizona,47,04,1900,0
+Tennessee,Montana,47,30,1900,0
+Tennessee,Wyoming,47,56,1900,0
+Tennessee,Colorado,47,08,1900,602
+Tennessee,New Mexico,47,35,1900,400
+Tennessee,North Dakota,47,38,1900,0
+Tennessee,South Dakota,47,46,1900,0
+Tennessee,Nebraska,47,31,1900,0
+Tennessee,Kansas,47,20,1900,3903
+Tennessee,Minnesota,47,27,1900,300
+Tennessee,Iowa,47,19,1900,502
+Tennessee,Missouri,47,29,1900,7213
+Tennessee,Wisconsin,47,55,1900,100
+Tennessee,Illinois,47,17,1900,9333
+Tennessee,Michigan,47,26,1900,500
+Tennessee,Indiana,47,18,1900,3714
+Tennessee,Ohio,47,39,1900,2006
+Tennessee,Pennslyvania,47,42,1900,700
+Tennessee,New York,47,36,1900,401
+Tennessee,New Jersey,47,34,1900,200
+Tennessee,Vermont,47,50,1900,0
+Tennessee,New Hampshire,47,33,1900,0
+Tennessee,Massachusetts,47,25,1900,200
+Tennessee,Connecticut,47,09,1900,0
+Tennessee,Rhode Island,47,44,1900,0
+Tennessee,Maine,47,23,1900,0
+Texas,California,48,06,1900,100
+Texas,Nevada,48,32,1900,0
+Texas,Oregon,48,41,1900,100
+Texas,Washington,48,53,1900,0
+Texas,Idaho,48,16,1900,0
+Texas,Utah,48,49,1900,0
+Texas,Arizona,48,04,1900,0
+Texas,Montana,48,30,1900,101
+Texas,Wyoming,48,56,1900,0
+Texas,Colorado,48,08,1900,200
+Texas,New Mexico,48,35,1900,500
+Texas,North Dakota,48,38,1900,0
+Texas,South Dakota,48,46,1900,0
+Texas,Nebraska,48,31,1900,0
+Texas,Kansas,48,20,1900,1302
+Texas,Minnesota,48,27,1900,0
+Texas,Iowa,48,19,1900,0
+Texas,Missouri,48,29,1900,602
+Texas,Wisconsin,48,55,1900,0
+Texas,Illinois,48,17,1900,200
+Texas,Michigan,48,26,1900,0
+Texas,Indiana,48,18,1900,0
+Texas,Ohio,48,39,1900,0
+Texas,Pennslyvania,48,42,1900,101
+Texas,New York,48,36,1900,301
+Texas,New Jersey,48,34,1900,0
+Texas,Vermont,48,50,1900,0
+Texas,New Hampshire,48,33,1900,0
+Texas,Massachusetts,48,25,1900,0
+Texas,Connecticut,48,09,1900,0
+Texas,Rhode Island,48,44,1900,0
+Texas,Maine,48,23,1900,0
+Virginia,California,51,06,1900,200
+Virginia,Nevada,51,32,1900,0
+Virginia,Oregon,51,41,1900,200
+Virginia,Washington,51,53,1900,700
+Virginia,Idaho,51,16,1900,303
+Virginia,Utah,51,49,1900,500
+Virginia,Arizona,51,04,1900,100
+Virginia,Montana,51,30,1900,100
+Virginia,Wyoming,51,56,1900,0
+Virginia,Colorado,51,08,1900,600
+Virginia,New Mexico,51,35,1900,0
+Virginia,North Dakota,51,38,1900,0
+Virginia,South Dakota,51,46,1900,0
+Virginia,Nebraska,51,31,1900,100
+Virginia,Kansas,51,20,1900,1404
+Virginia,Minnesota,51,27,1900,901
+Virginia,Iowa,51,19,1900,1407
+Virginia,Missouri,51,29,1900,3108
+Virginia,Wisconsin,51,55,1900,100
+Virginia,Illinois,51,17,1900,3312
+Virginia,Michigan,51,26,1900,600
+Virginia,Indiana,51,18,1900,702
+Virginia,Ohio,51,39,1900,8421
+Virginia,Pennslyvania,51,42,1900,32789
+Virginia,New York,51,36,1900,25367
+Virginia,New Jersey,51,34,1900,14350
+Virginia,Vermont,51,50,1900,100
+Virginia,New Hampshire,51,33,1900,0
+Virginia,Massachusetts,51,25,1900,6832
+Virginia,Connecticut,51,09,1900,2512
+Virginia,Rhode Island,51,44,1900,2007
+Virginia,Maine,51,23,1900,0
+West Virginia,California,54,06,1900,0
+West Virginia,Nevada,54,32,1900,0
+West Virginia,Oregon,54,41,1900,0
+West Virginia,Washington,54,53,1900,0
+West Virginia,Idaho,54,16,1900,0
+West Virginia,Utah,54,49,1900,0
+West Virginia,Arizona,54,04,1900,0
+West Virginia,Montana,54,30,1900,0
+West Virginia,Wyoming,54,56,1900,0
+West Virginia,Colorado,54,08,1900,0
+West Virginia,New Mexico,54,35,1900,0
+West Virginia,North Dakota,54,38,1900,0
+West Virginia,South Dakota,54,46,1900,0
+West Virginia,Nebraska,54,31,1900,0
+West Virginia,Kansas,54,20,1900,0
+West Virginia,Minnesota,54,27,1900,0
+West Virginia,Iowa,54,19,1900,0
+West Virginia,Missouri,54,29,1900,100
+West Virginia,Wisconsin,54,55,1900,0
+West Virginia,Illinois,54,17,1900,605
+West Virginia,Michigan,54,26,1900,0
+West Virginia,Indiana,54,18,1900,0
+West Virginia,Ohio,54,39,1900,1603
+West Virginia,Pennslyvania,54,42,1900,2516
+West Virginia,New York,54,36,1900,300
+West Virginia,New Jersey,54,34,1900,0
+West Virginia,Vermont,54,50,1900,0
+West Virginia,New Hampshire,54,33,1900,0
+West Virginia,Massachusetts,54,25,1900,101
+West Virginia,Connecticut,54,09,1900,101
+West Virginia,Rhode Island,54,44,1900,0
+West Virginia,Maine,54,23,1900,0
