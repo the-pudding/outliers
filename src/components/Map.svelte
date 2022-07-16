@@ -1,21 +1,31 @@
 <script>
-  import { select } from "d3-selection";
+  import { extent, scaleLinear, scalePow } from "d3";
   import { geoAlbers, geoPath } from "d3-geo";
   import { onMount } from "svelte";
   import { feature } from "topojson-client";
-  import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-  import getCentroid from "@turf/centroid";
   import textures from "textures";
   import * as us from "us";
 
-  import southData from "$data/us-south-topo.json";
+  import migrationData from "$data/great-migration-places-topo.json"
 
   let states = [];
-  let stateCoordinates = [];
+  let cities = []
   let land;
   let svg;
-  let southBoundary;
-  let southCoordinates = [];
+
+  /**
+   * 
+   * @param {object} d
+   * @param {string} key
+   */
+  let get = (d, key) => d.properties[key]
+
+  /**
+   * 
+   * @param {object} d
+   */
+  let generateSpike = (d) => ""
+
   let t = {
     url() {
       return "";
@@ -23,6 +33,17 @@
   };
   const projection = geoAlbers();
   let path = geoPath().projection(projection);
+
+  let transform = (d, key) => {
+    const translate = `translate(${projection(d.geometry.coordinates)})`
+    const value = get(d, key)
+
+    if (value >= 0) {
+      return translate
+    } else {
+      return `${translate} rotate(180)`
+    }
+  }
 
   onMount(async () => {
     /**
@@ -32,52 +53,47 @@
       "https://gist.githubusercontent.com/rveciana/a2a1c21ca1c71cd3ec116cc911e5fce9/raw/79564dfa2c56745ebd62f5655a6cc19d2cffa1ea/us.json"
     );
     const json = await response.json();
-    // country border
+
     land = feature(json, json.objects.land);
-    // southern boundary
-    southBoundary = feature(southData, southData.objects.region);
-    // calculate centroids
-    southCoordinates = projection(getCentroid(southBoundary).geometry.coordinates);
-    // states
-    const _states = feature(json, json.objects.states).features;
-    states = _states
-      .map((state) => {
+    cities = feature(migrationData, migrationData.objects.points).features.filter(d => d.geometry)
+    states = feature(json, json.objects.states).features.map((state) => {
         const properties =
           us.STATES.find((s) => s.fips === `${state.id < 10 ? `0${state.id}` : state.id}`) ?? {};
-        const stateFeature = getCentroid(state);
-        const [southFeature] = southBoundary.features;
-        const is_south = booleanPointInPolygon(stateFeature, southFeature);
-        const centroid = stateFeature.geometry.coordinates;
-
         return {
           ...state,
           properties: {
             ...properties,
-            centroid,
-            is_south
           }
         };
       })
       .filter((d) => d.properties?.name !== undefined);
 
-    stateCoordinates = states
-      .filter((d) => !d.properties.is_south && d.properties.name !== "Florida")
-      .map((state) => {
-        const [x, y] = projection(state.properties.centroid);
-        const name = state.properties?.abbr ?? "";
-        return {
-          x,
-          y,
-          name
-        };
-      });
+      // spike(cities)
+
+    generateSpike = (d, key) => {
+      const MAX_SPIKE_HEIGHT = 80
+      const WIDTH = 7
+
+      const keys = ['black_pop_pct_chg_1910_1940', 'black_pop_pct_chg_1940_1970']
+
+      // Array [ -0.246, 0.436 ]
+      const domain = extent(Array(keys.map(k => cities.map(d => d.properties[k]))).flat(2))
+      // const domain = [-0.25, 0.75]
+      const spikeScale = scalePow()
+        .exponent(2)
+        .domain(domain).range([0, MAX_SPIKE_HEIGHT])
+
+      const length = spikeScale(d.properties[key])
+
+      return `M${-WIDTH / 2},0L0,${-length}L${WIDTH / 2},0`
+    }
 
     /**
      * setup textures
      */
-    t = textures.lines().heavier().size(10).stroke("#D9CEC5");
+    // t = textures.lines().heavier().size(10).stroke("#D9CEC5");
 
-    select(svg).call(t);
+    // select(svg).call(t);
   });
 
   export let id;
@@ -108,63 +124,43 @@
     </defs>
     <g id="geography">
       <!-- shadow -->
-      <path d={path(land)} fill="white" filter="url(#map-shadow)" />
+      <!-- <path d={path(land)} fill="white" filter="url(#map-shadow)" /> -->
+      <!-- <path d={path(land)} fill="transparent" stroke="black" /> -->
       <!-- states -->
       <g>
         {#each states as state}
           <path
             d={path(state)}
-            class={state.properties.is_south ? "stroke-white" : "stroke-slate-100"}
-            fill={"white"}
+            class="stroke-slate-100"
+            fill="lightgray"
+            width={1}
+            height={1}
             stroke-width={2}
           />
         {/each}
       </g>
       <!-- country border -->
-      <path d={path(land)} fill="transparent" stroke="#D9CEC5" />
-      <!-- southern border -->
-      <path
-        d={path(southBoundary)}
-        fill={t.url()}
-        stroke="#D9AE5F"
-        stroke-width="3"
-        stroke-opacity="0.25"
-      />
+      <path d={path(land)} fill="transparent" />
     </g>
-    <g id="labels">
-      <!-- southern label -->
-      <text
-        text-anchor="start"
-        x={`${southCoordinates[0] / 1.25}`}
-        y={`${southCoordinates[1]}`}
-        class="fill-slate-500 label"
-        filter="url(#whiteOutlineEffect)"
-        font-size="14"
-      >
-        Southern states
-      </text>
-
-      <g>
-        {#each stateCoordinates as state}
-          <text
-            text-anchor="middle"
-            x={state.x}
-            y={state.y}
-            class="label fill-slate-400"
-            filter="url(#whiteOutlineEffect)"
-            font-size="10"
-          >
-            {state.name}
-          </text>
-        {/each}
-      </g>
+    <g id="cities"
+      stroke-opacity="0.5"
+      fill-opacity="0.3"
+    >
+      {#each cities as city}
+        <path
+          transform={transform(city, 'black_pop_pct_chg_1910_1940')}
+          d={generateSpike(city, 'black_pop_pct_chg_1910_1940')}
+          stroke={get(city, "black_pop_pct_chg_1910_1940") < 0 ? "hotpink" : "green"}
+          fill={get(city, "black_pop_pct_chg_1910_1940") < 0 ? "hotpink" : "green"}
+        />
+      {/each}
     </g>
   </svg>
 </div>
 
 <style>
-  .label {
+  /* .label {
     font-family: -apple-system, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  }
+  } */
 </style>
