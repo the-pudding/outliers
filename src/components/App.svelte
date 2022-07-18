@@ -19,11 +19,13 @@
     hero: Hero
   };
 
-  export let scrollValue;
+  export let introScrollValue;
+  export let mobilityScrollValue
   export let id;
 </script>
 
 <article>
+  <!-- Display header -->
   <Hero>
     <div class="flex flex-col">
       <Header />
@@ -34,20 +36,18 @@
       </p>
     </div>
   </Hero>
-  <section id="scrolly" class="relative">
+  <!-- Intro -->
+  <section id="intro" class="relative">
     <div id="map" class="sticky top-0">
-      {#if scrollValue === undefined || scrollValue < 2}
+      {#if introScrollValue === undefined || introScrollValue < 2}
         <div id="intro" class="bg-black text-white h-screen" />
-      {:else}
-        <!-- TODO: add haze/cloud effect? -->
-        <!-- <div id="map-cover" class="h-screen bg-red-100" /> -->
       {/if}
-      <Mapbox index={scrollValue} />
+      <Mapbox index={introScrollValue} />
     </div>
     <div class="spacer" />
-    <Scrolly bind:value={scrollValue} bind:id>
+    <Scrolly bind:value={introScrollValue} bind:id>
       {#each copy.slides as slide, i}
-        <div class="step" class:active={scrollValue === i}>
+        <div class="step" class:active={introScrollValue === i}>
           <div
             class="bg-slate-100 mx-auto px-4 py-2 border-2 border-slate-100 rounded md:w-7/12 sm:w-11/12 text-lg"
           >
@@ -62,9 +62,40 @@
     </Scrolly>
     <div class="spacer" />
   </section>
-
+  <!-- text before mobility chart -->
   <section id="text" class="px-4">
     {#each copy.blocks as props, i}
+      <svelte:component
+        this={blocks[props.block] ?? Text}
+        id={props.id ?? `graf-${i}`}
+        {...props}
+      />
+    {/each}
+  </section>
+  <!-- Mobility chart -->
+  <section id="mobility" class="relative">
+    <div id="chart2" class="sticky top-0">
+      <div class="w-80 h-96 bg-amber-400">I'm a chart</div>
+    </div>
+    <Scrolly bind:value={mobilityScrollValue} bind:id>
+      {#each copy.slides2 as slide, i}
+        <div class="step" class:active={mobilityScrollValue === i}>
+          <div
+            class="bg-slate-100 mx-auto px-4 py-2 border-2 border-slate-100 rounded md:w-7/12 sm:w-11/12 text-lg"
+          >
+            <svelte:component
+              this={blocks[slide.block] ?? Text}
+              id={slide.id ?? `slide-${i}`}
+              {...slide}
+            />
+          </div>
+        </div>
+      {/each}
+    </Scrolly>
+  </section>
+  <!-- conclusion text -->
+  <section id="text-2" class="px-4">
+    {#each copy.blocks2 as props, i}
       <svelte:component
         this={blocks[props.block] ?? Text}
         id={props.id ?? `graf-${i}`}

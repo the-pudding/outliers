@@ -8,7 +8,7 @@
 </script>
 
 <Block {id} type="text">
-  {#each grafs as graf, i}
+  {#each grafs as graf}
     <p class="mb-5 text-lg">{@html graf}</p>
   {/each}
 </Block>

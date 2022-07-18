@@ -38,8 +38,7 @@
   "browserslist": "> 0.5%, last 4 versions, not ie <= 11, not ie_mob <= 11",
   "subdirectory": "outliers",
   "dependencies": {
-    "@turf/boolean-within": "^6.5.0",
-    "@turf/centroid": "^6.5.0",
+    "d3-scale-chromatic": "^3.0.0",
     "mapbox-gl": "^2.7.0",
     "suncalc": "^1.9.0",
     "textures": "^1.2.3",

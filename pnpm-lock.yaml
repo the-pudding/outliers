@@ -4,12 +4,11 @@ specifiers:
   '@rollup/plugin-dsv': ^2.0.3
   '@sveltejs/adapter-static': 1.0.0-next.28
   '@sveltejs/kit': 1.0.0-next.265
-  '@turf/boolean-within': ^6.5.0
-  '@turf/centroid': ^6.5.0
   '@types/mapbox-gl': ^2.7.3
   archieml: ^0.5.0
   autoprefixer: ^10.4.7
   d3: ^7.3.0
+  d3-scale-chromatic: ^3.0.0
   feather-icons: ^4.28.0
   lodash.debounce: ^4.0.8
   mapbox-gl: ^2.7.0
@@ -29,8 +28,7 @@ specifiers:
   vite-plugin-svgstring: ^1.0.0
 
 dependencies:
-  '@turf/boolean-within': 6.5.0
-  '@turf/centroid': 6.5.0
+  d3-scale-chromatic: 3.0.0
   mapbox-gl: 2.8.2
   suncalc: 1.9.0
   textures: 1.2.3
@@ -38,7 +36,7 @@ dependencies:
   us: 2.0.0
 
 devDependencies:
-  '@rollup/plugin-dsv': 2.0.3
+  '@rollup/plugin-dsv': 2.0.3_rollup@2.67.2
   '@sveltejs/adapter-static': 1.0.0-next.28
   '@sveltejs/kit': 1.0.0-next.265_svelte@3.46.4
   '@types/mapbox-gl': 2.7.3
@@ -125,10 +123,10 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@rollup/plugin-dsv/2.0.3:
+  /@rollup/plugin-dsv/2.0.3_rollup@2.67.2:
     resolution: {integrity: sha512-x2lqNepgPZUwRgNzEK8oTpoN6Y7NEQQl1PHp4gltXuxeJGlu3oyxVuw5gY5+T/LMUyQ9Nvlw6xu/rOC7v9kxPg==}
     dependencies:
-      '@rollup/pluginutils': 3.1.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.67.2
       '@types/d3-dsv': 1.2.1
       d3-dsv: 1.2.0
       tosource: 1.0.0
@@ -136,7 +134,7 @@ packages:
       - rollup
     dev: true
 
-  /@rollup/pluginutils/3.1.0:
+  /@rollup/pluginutils/3.1.0_rollup@2.67.2:
     resolution: {integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
@@ -145,6 +143,7 @@ packages:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.1
+      rollup: 2.67.2
     dev: true
 
   /@rollup/pluginutils/4.1.2:
@@ -201,60 +200,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@turf/bbox/6.5.0:
-    resolution: {integrity: sha512-RBbLaao5hXTYyyg577iuMtDB8ehxMlUqHEJiMs8jT1GHkFhr6sYre3lmLsPeYEi/ZKj5TP5tt7fkzNdJ4GIVyw==}
-    dependencies:
-      '@turf/helpers': 6.5.0
-      '@turf/meta': 6.5.0
-    dev: false
-
-  /@turf/boolean-point-in-polygon/6.5.0:
-    resolution: {integrity: sha512-DtSuVFB26SI+hj0SjrvXowGTUCHlgevPAIsukssW6BG5MlNSBQAo70wpICBNJL6RjukXg8d2eXaAWuD/CqL00A==}
-    dependencies:
-      '@turf/helpers': 6.5.0
-      '@turf/invariant': 6.5.0
-    dev: false
-
-  /@turf/boolean-point-on-line/6.5.0:
-    resolution: {integrity: sha512-A1BbuQ0LceLHvq7F/P7w3QvfpmZqbmViIUPHdNLvZimFNLo4e6IQunmzbe+8aSStH9QRZm3VOflyvNeXvvpZEQ==}
-    dependencies:
-      '@turf/helpers': 6.5.0
-      '@turf/invariant': 6.5.0
-    dev: false
-
-  /@turf/boolean-within/6.5.0:
-    resolution: {integrity: sha512-YQB3oU18Inx35C/LU930D36RAVe7LDXk1kWsQ8mLmuqYn9YdPsDQTMTkLJMhoQ8EbN7QTdy333xRQ4MYgToteQ==}
-    dependencies:
-      '@turf/bbox': 6.5.0
-      '@turf/boolean-point-in-polygon': 6.5.0
-      '@turf/boolean-point-on-line': 6.5.0
-      '@turf/helpers': 6.5.0
-      '@turf/invariant': 6.5.0
-    dev: false
-
-  /@turf/centroid/6.5.0:
-    resolution: {integrity: sha512-MwE1oq5E3isewPprEClbfU5pXljIK/GUOMbn22UM3IFPDJX0KeoyLNwghszkdmFp/qMGL/M13MMWvU+GNLXP/A==}
-    dependencies:
-      '@turf/helpers': 6.5.0
-      '@turf/meta': 6.5.0
-    dev: false
-
-  /@turf/helpers/6.5.0:
-    resolution: {integrity: sha512-VbI1dV5bLFzohYYdgqwikdMVpe7pJ9X3E+dlr425wa2/sMJqYDhTO++ec38/pcPvPE6oD9WEEeU3Xu3gza+VPw==}
-    dev: false
-
-  /@turf/invariant/6.5.0:
-    resolution: {integrity: sha512-Wv8PRNCtPD31UVbdJE/KVAWKe7l6US+lJItRR/HOEW3eh+U/JwRCSUl/KZ7bmjM/C+zLNoreM2TU6OoLACs4eg==}
-    dependencies:
-      '@turf/helpers': 6.5.0
-    dev: false
-
-  /@turf/meta/6.5.0:
-    resolution: {integrity: sha512-RrArvtsV0vdsCBegoBtOalgdSOfkBrTJ07VkpiCnq/491W67hnMWmDu7e6Ztw0C3WldRYTXkg3SumfdzZxLBHA==}
-    dependencies:
-      '@turf/helpers': 6.5.0
-    dev: false
 
   /@types/d3-dsv/1.2.1:
     resolution: {integrity: sha512-LLmJmjiqp/fTNEdij5bIwUJ6P6TVNk5hKM9/uk5RPO2YNgEu9XvKO0dJ7Iqd3psEdmZN1m7gB1bOsjr4HmO2BA==}
@@ -537,7 +482,6 @@ packages:
   /d3-color/3.0.1:
     resolution: {integrity: sha512-6/SlHkDOBLyQSJ1j1Ghs82OIUXpKWlR0hCsw0XrLSQhuUPuCSmLQ1QPH98vpnQxMUQM2/gfAkUEWsupVpd9JGw==}
     engines: {node: '>=12'}
-    dev: true
 
   /d3-contour/3.0.1:
     resolution: {integrity: sha512-0Oc4D0KyhwhM7ZL0RMnfGycLN7hxHB8CMmwZ3+H26PWAG0ozNuYG5hXSDNgmP1SgJkQMrlG6cP20HoaSbvcJTQ==}
@@ -628,7 +572,6 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       d3-color: 3.0.1
-    dev: true
 
   /d3-path/3.0.1:
     resolution: {integrity: sha512-gq6gZom9AFZby0YLduxT1qmrp4xpBA1YZr19OI717WIdKE2OM5ETq5qrHLb301IgxhLwcuxvGZVLeeWc/k1I6w==}
@@ -656,7 +599,6 @@ packages:
     dependencies:
       d3-color: 3.0.1
       d3-interpolate: 3.0.1
-    dev: true
 
   /d3-scale/4.0.2:
     resolution: {integrity: sha512-GZW464g1SH7ag3Y7hXjf8RoUuAFIqklOAq3MRl4OaWabTFJY9PN/E1YklhXLh+OQ3fM9yS2nOkCoS+WLZ6kvxQ==}
