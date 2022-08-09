@@ -56,9 +56,19 @@
   /**
    * 
    * @param {object} d
+   * @param {string} key
+   * @param {boolean} rotate
    */
-  const translate = (d) => 
-    `translate(${projection(d.geometry.coordinates)})`
+   const translate = (d, key = field, rotate = true) => {
+    const transform = `translate(${projection(d.geometry.coordinates)})`
+    const value = get(d, key)
+    
+    if (value >= 0 || !rotate) {
+      return transform
+    } else {
+      return `${transform} rotate(180)`
+    }
+  }
 
   /**
    * @param {object} d  
@@ -118,35 +128,6 @@
     )
     
     colorScale = scaleDiverging().domain([domain[0], 0, domain[1]]).interpolator(interpolateBrBG)
-    // rampColor = colorScale.interpolator()
-
-    // let tickAdjust = g => g.selectAll(".tick line").attr("y1", 18 + 24 - 50);
-
-    // x = scaleDiverging().domain([domain[0], 0, domain[1]]).range([0, 320])
-    // // const x = colorScale.copy().interpolator(interpolateRound([0, 320]))
-
-    // const ticks = 320 / 64 // 5
-    // // console.info(axisBottom(x))
-
-    // /**
-    //  * Add legend rows
-    // */
-    // select(svgLegend).append("g")
-    // .attr("transform", `translate(0, 32)`)
-    // .call(
-    //   axisBottom(x)
-    //   // .ticks(ticks, "+%")
-    // )
-    // .call(tickAdjust)
-    // .call(g => g.select(".domain").remove())
-
-
-    /**
-     * setup textures
-     */
-    // t = textures.lines().heavier().size(10).stroke("#D9CEC5");
-
-    // select(svg).call(t);
   });
 
   export let header
@@ -222,7 +203,7 @@
       >
         {#each spikes as spike}
           <path
-            transform={translate(spike)}
+            transform={translate(spike, field)}
             d={generateSpike(spike, field)}
             fill={colorScale(spike.properties[field])}
             class="stroke-slate-400"
@@ -232,7 +213,7 @@
       <!-- cities -->
       <g id="cities">
         {#each cities as city}
-          <g transform={translate(city)}>
+          <g transform={translate(city, field, false)}>
             <circle class="stroke-white fill-gray-700" stroke-width={1} r={2} />
             <text class="text-shadow label fill-gray-500" font-size={8} x={5} y={-3}>{city.properties.NAME}</text>
           </g>
