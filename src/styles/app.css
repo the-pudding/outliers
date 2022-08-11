@@ -1,12 +1,12 @@
 @import "variables.css";
-@import "normalize.css";
+/* \@tailwind base acts as a reset/normalize */
+/* \@import "normalize.css"; */
 @import "font.css";
 @import "reset.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 /* colors defined in variables.css */
 :root {
 	/* font */

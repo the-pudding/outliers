@@ -1,4 +1,9 @@
-# Svelte Starter
+# Outliers
+
+- [ArchieML Doc](https://docs.google.com/document/d/1ltX8ukW3zJTNfrRTqGBi-jfeBJmWD0Q9pAtnWCIa6SM/edit)
+- [Draft Google Doc](https://docs.google.com/document/d/1Ehz5S00WHnpiszQDlQiITSRh7d3jNwkZB_Y_OmTkt3I/edit#)
+
+## Svelte Starter
 
 This [starter template](https://github.com/the-pudding/svelte-starter) aims to quickly scaffold a [SvelteKit](https://kit.svelte.dev/) project, designed around data-driven, visual stories at [The Pudding](https://pudding.cool).
 

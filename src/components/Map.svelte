@@ -1,5 +1,15 @@
 <script>
-  import { axisBottom, color, extent, interpolateBrBG, interpolateRound, scaleDiverging, scaleLinear, scalePow, select } from "d3";
+  import {
+    axisBottom,
+    color,
+    extent,
+    interpolateBrBG,
+    interpolateRound,
+    scaleDiverging,
+    scaleLinear,
+    scalePow,
+    select
+  } from "d3";
   import { geoAlbers, geoPath } from "d3-geo";
   import { onMount } from "svelte";
   import { feature } from "topojson-client";
@@ -8,72 +18,74 @@
 
   import Block from "$components/Block.svelte";
 
-  import migrationData from "$data/great-migration-places-topo.json"
+  import migrationData from "$data/great-migration-places-topo.json";
 
   let states = [];
-  let cities = []
-  let spikes = []
+  let cities = [];
+  let spikes = [];
+  let domain = [];
   let land;
   let svg;
-  let svgLegend
-  let rampColor
-  let x
-  
+  let svgLegend;
+  let rampColor;
+  let x;
+
   // black_pop_pct_chg_1910_1940
   // black_pop_pct_chg_1940_1970
-  export let field = 'black_pop_pct_chg_1910_1940'
+  let field = "black_pop_pct_chg_1910_1940";
+
+  const fieldMap = {
+    '1910-1940': 'black_pop_pct_chg_1910_1940',
+    '1940-1970': 'black_pop_pct_chg_1940_1970',
+  }
 
   /**
-   * 
+   *
    * @param {object} d
    * @param {string} key
    */
-  const get = (d, key) => d.properties[key]
+  const get = (d, key) => d.properties[key];
 
   /**
-   * 
+   *
    * @param {object} d
    * @param {string} key
    */
   const generateSpike = (d, key) => {
-      const MAX_SPIKE_HEIGHT = 180
-      const keys = ['black_pop_pct_chg_1910_1940', 'black_pop_pct_chg_1940_1970']
+    const MAX_SPIKE_HEIGHT = 180;
+    const keys = ["black_pop_pct_chg_1910_1940", "black_pop_pct_chg_1940_1970"];
 
-      // Array [ -0.246, 0.436 ]
-      const domain = extent(Array(keys.map(k => spikes.map(d => d.properties[k]))).flat(2))
-      
-      const spikeScale = 
-        scalePow()
-        .exponent(2)
-        .domain(domain).range([0, MAX_SPIKE_HEIGHT])
+    // Array [ -0.246, 0.436 ]
+    const domain = extent(Array(keys.map((k) => spikes.map((d) => d.properties[k]))).flat(2));
 
-      const mountain = (d, mx = 5) => 
-        `M${-mx / 2} 0 Q0 ${-spikeScale(d)} ${mx / 2} 0`;
+    const spikeScale = scalePow().exponent(2).domain(domain).range([0, MAX_SPIKE_HEIGHT]);
 
-      return mountain(d.properties[key])
-    }
+    const mountain = (d, mx = 5) => `M${-mx / 2} 0 Q0 ${-spikeScale(d)} ${mx / 2} 0`;
+
+    return mountain(d.properties[key]);
+  };
 
   /**
-   * 
+   *
    * @param {object} d
    * @param {string} key
    * @param {boolean} rotate
    */
-   const translate = (d, key = field, rotate = true) => {
-    const transform = `translate(${projection(d.geometry.coordinates)})`
-    const value = get(d, key)
-    
+  const translate = (d, key = field, rotate = true) => {
+    const transform = `translate(${projection(d.geometry.coordinates)})`;
+    const value = get(d, key);
+
     if (value >= 0 || !rotate) {
-      return transform
+      return transform;
     } else {
-      return `${transform} rotate(180)`
+      return `${transform} rotate(180)`;
     }
-  }
+  };
 
   /**
-   * @param {object} d  
+   * @param {object} d
    */
-  let colorScale = (d) => ""
+  let colorScale = (d) => "";
 
   let t = {
     url() {
@@ -94,7 +106,6 @@
     }
     return canvas;
   }
-  
 
   onMount(async () => {
     /**
@@ -104,35 +115,44 @@
       "https://gist.githubusercontent.com/rveciana/a2a1c21ca1c71cd3ec116cc911e5fce9/raw/79564dfa2c56745ebd62f5655a6cc19d2cffa1ea/us.json"
     );
 
-    const cityRes = await fetch("https://gist.githubusercontent.com/awoodruff/2844d64b21785fb0a7715afabadedcbf/raw/62f934bb254ea40f340c13d03bf1871bb059442c/citylabels.geojson")
-    const majorCities = await cityRes.json()
+    const cityRes = await fetch(
+      "https://gist.githubusercontent.com/awoodruff/2844d64b21785fb0a7715afabadedcbf/raw/62f934bb254ea40f340c13d03bf1871bb059442c/citylabels.geojson"
+    );
+    const majorCities = await cityRes.json();
     const json = await response.json();
-    
+
     land = feature(json, json.objects.land);
-    cities = majorCities.features
-    spikes = feature(migrationData, migrationData.objects.points).features.filter(d => d.geometry)
-    states = feature(json, json.objects.states).features.map((state) => {
+    cities = majorCities.features;
+    spikes = feature(migrationData, migrationData.objects.points).features.filter(
+      (d) => d.geometry
+    );
+    states = feature(json, json.objects.states)
+      .features.map((state) => {
         const properties =
           us.STATES.find((s) => s.fips === `${state.id < 10 ? `0${state.id}` : state.id}`) ?? {};
         return {
           ...state,
           properties: {
-            ...properties,
+            ...properties
           }
         };
       })
       .filter((d) => d.properties?.name !== undefined);
 
-    const domain = extent(
-      spikes.map(d => d.properties[field])
-    )
-    
-    colorScale = scaleDiverging().domain([domain[0], 0, domain[1]]).interpolator(interpolateBrBG)
+    domain = extent(spikes.map((d) => d.properties[field]));
+
+    colorScale = scaleDiverging().domain([domain[0], 0, domain[1]]).interpolator(interpolateBrBG);
+    rampColor = colorScale.interpolator();
   });
 
-  export let header
-  export let text
-  export let source
+  const handleOnClick = (event)  => {
+    const key = event.target.textContent
+    field = fieldMap[key]
+  }
+
+  export let header;
+  export let text;
+  export let source;
 </script>
 
 <div class="w-full mx-auto flex justify-center my-12">
@@ -140,20 +160,46 @@
     <Block>
       <h3 class="label font-bold text-xl">{@html header}</h3>
       <p class="label text-base mb-4">{@html text}</p>
-      
+
       <div id="legend">
-        <svg bind:this={svgLegend} class="legend" width={320} height={50} viewBox={`0 0 ${320} ${50}`}>
-          <image
-            x={0}
-            y={18}
+        <p class="label text-sm">Percentage change in the Black population</p>
+        <div class="flex items-center">
+          <p class="label text-sm mr-3">{@html domain[0] ?? ""}</p>
+          <svg
+            bind:this={svgLegend}
+            class="legend"
             width={320}
-            height={10}
-            preserveAspectRatio="none"
-            xlink:href={ rampColor ? ramp(rampColor).toDataURL() : undefined}
-          />
-          <!-- <g bind:this={svgLegend} transform={`translate(0, ${26}`} />             -->
-        </svg>
+            height={45}
+            viewBox={`0 0 ${320} ${45}`}
+          >
+            <image
+              x={0}
+              y={18}
+              width={320}
+              height={10}
+              preserveAspectRatio="none"
+              xlink:href={rampColor ? ramp(rampColor).toDataURL() : undefined}
+            />
+            <!-- <g bind:this={svgLegend} transform={`translate(0, ${26}`} /> -->
+          </svg>
+          <p class="label text-sm ml-3">{@html domain[1] ?? ""}</p>
+        </div>
       </div>
+
+      <span class="relative z-0 inline-flex shadow-sm rounded-md">
+        <button
+          on:click={handleOnClick}
+          type="button"
+          class="label relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 active:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+          >1910-1940</button
+        >
+        <button
+          on:click={handleOnClick}
+          type="button"
+          class="-ml-px label relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 active:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+          >1940-1970</button
+        >
+      </span>
     </Block>
 
     <svg bind:this={svg} class="w-full h-auto" width="960" height="500" viewBox="0 0 960 500">
@@ -197,10 +243,7 @@
         <path d={path(land)} fill="transparent" />
       </g>
       <!-- spikes -->
-      <g 
-        id="spikes"
-        stroke-width="0.25"
-      >
+      <g id="spikes" stroke-width="0.25">
         {#each spikes as spike}
           <path
             transform={translate(spike, field)}
@@ -215,7 +258,9 @@
         {#each cities as city}
           <g transform={translate(city, field, false)}>
             <circle class="stroke-white fill-gray-700" stroke-width={1} r={2} />
-            <text class="text-shadow label fill-gray-500" font-size={8} x={5} y={-3}>{city.properties.NAME}</text>
+            <text class="text-shadow label fill-gray-500" font-size={8} x={5} y={-3}
+              >{city.properties.NAME}</text
+            >
           </g>
         {/each}
       </g>
@@ -229,8 +274,7 @@
 
 <style>
   .label {
-    font-family: -apple-system, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: var(--sans);
   }
 
   .text-shadow {

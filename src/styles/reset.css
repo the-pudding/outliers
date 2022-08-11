@@ -35,7 +35,9 @@ video {
   height: auto;
 }
 
-button,
+/* Commenting out button/input styles because they clash with tailwind */
+
+/* button, */
 select,
 textarea,
 input[type="submit"],
@@ -52,7 +54,7 @@ input[type="button"] {
   padding: 0.5em;
 }
 
-button,
+/* button, */
 input[type="button"],
 input[type="checkbox"],
 input[type="radio"],
@@ -69,20 +71,20 @@ select {
   display: inline-block;
 }
 
-button:hover,
+/* button:hover, */
 input[type="button"]:hover,
 input[type="submit"]:hover {
   background: var(--color-form-bg);
 }
 
-button:focus,
+/* button:focus, */
 input:focus,
 select:focus,
 textarea:focus {
   box-shadow: 0 0 0 2px var(--color-focus);
 }
 
-button:disabled,
+/* button:disabled, */
 input:disabled,
 select:disabled,
 textarea:disabled {
