@@ -8,8 +8,11 @@ github:
 	git commit -m "update github pages"
 	git push
 
+DATA_PROJECT_ROOT=~/Code/outliers-data
+DATA_PATH=${DATA_PROJECT_ROOT}/data/processed/california-tracts-topo.json
+OUTPUT_PATH=src/data
 copy-data:
-	cp /Users/michellemcghee/Desktop/code/outliers-data/data/processed/dev-tracts-simplified-topo.json src/data/dev-tracts-simplified-topo.json 
+	cp ${DATA_PATH} ${OUTPUT_PATH}
 	
 # aws-sync:
 # 	aws s3 sync build s3://pudding.cool/year/month/name --delete --cache-control 'max-age=31536000'
