@@ -4,7 +4,11 @@
   import fremontNeighborhoods from "$data/fremont-geo.json";
   import { onMount, beforeUpdate } from "svelte";
   import mapbox from "mapbox-gl";
-  import SunCalc from "suncalc";
+  /**
+   * run `npm i suncalc` to use library
+   * 
+   *  import SunCalc from "suncalc";
+   */
 
   export let index = undefined;
 
@@ -49,13 +53,13 @@
     pitch: 80
   });
 
-  function getSunPosition(date) {
-    const center = map.getCenter();
-    const sunPos = SunCalc.getPosition(date || Date.now(), center.lat, center.lng);
-    const sunAzimuth = 180 + (sunPos.azimuth * 180) / Math.PI;
-    const sunAltitude = 90 - (sunPos.altitude * 180) / Math.PI;
-    return [sunAzimuth, sunAltitude];
-  }
+  // function getSunPosition(date) {
+  //   const center = map.getCenter();
+  //   const sunPos = SunCalc.getPosition(date || Date.now(), center.lat, center.lng);
+  //   const sunAzimuth = 180 + (sunPos.azimuth * 180) / Math.PI;
+  //   const sunAltitude = 90 - (sunPos.altitude * 180) / Math.PI;
+  //   return [sunAzimuth, sunAltitude];
+  // }
 
   const load = () => {
     map = new mapbox.Map({
@@ -96,7 +100,10 @@
           // set up the sky layer for atmospheric scattering
           "sky-type": "atmosphere",
           // explicitly set the position of the sun rather than allowing the sun to be attached to the main light source
-          "sky-atmosphere-sun": getSunPosition(),
+          // generated on Jun 19, 2022 @ 10:00am PT
+          //
+          // getSunPosition(new Date('2020-06-19T10:00:00'))
+          "sky-atmosphere-sun": [ 95.3008113948506, 42.58996735237098 ],
           // set the intensity of the sun as a light source (0-100 with higher values corresponding to brighter skies)
           "sky-atmosphere-sun-intensity": 50
         }
