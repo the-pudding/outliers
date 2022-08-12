@@ -9,6 +9,7 @@
   import Map from "$components/Map.svelte";
   import Scrolly from "$components/helpers/Scrolly.svelte";
   import Header from "$components/Header.svelte";
+  import Mobility from "$components/Mobility.svelte";
 
   const blocks = {
     text: Text,
@@ -75,7 +76,7 @@
   <!-- Mobility chart -->
   <section id="mobility" class="relative">
     <div id="chart2" class="sticky top-0">
-      <div class="w-80 h-96 bg-amber-400">I'm a chart</div>
+      <Mobility />
     </div>
     <Scrolly bind:value={mobilityScrollValue} bind:id>
       {#each copy.slides2 as slide, i}
