@@ -1,19 +1,11 @@
 <script>
-  import {
-    axisBottom,
-    color,
-    extent,
-    interpolateBrBG,
-    interpolateRound,
-    scaleDiverging,
-    scaleLinear,
-    scalePow,
-    select
-  } from "d3";
+  import { extent } from "d3-array"
   import { geoAlbers, geoPath } from "d3-geo";
+  import { interpolateBrBG } from "d3-scale-chromatic"
+  import { scaleDiverging, scalePow } from "d3-scale"
+
   import { onMount } from "svelte";
   import { feature } from "topojson-client";
-  import textures from "textures";
   import * as us from "us";
 
   import Block from "$components/Block.svelte";
