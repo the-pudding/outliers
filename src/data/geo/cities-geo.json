@@ -1,0 +1,29 @@
+{
+"type": "FeatureCollection",
+"name": "citylabels",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "NAME": "Minneapolis" }, "geometry": { "type": "Point", "coordinates": [ -93.25, 44.98 ] } },
+{ "type": "Feature", "properties": { "NAME": "Honolulu" }, "geometry": { "type": "Point", "coordinates": [ -157.86, 21.31 ] } },
+{ "type": "Feature", "properties": { "NAME": "Seattle" }, "geometry": { "type": "Point", "coordinates": [ -122.34, 47.57 ] } },
+{ "type": "Feature", "properties": { "NAME": "Phoenix" }, "geometry": { "type": "Point", "coordinates": [ -112.07, 33.54 ] } },
+{ "type": "Feature", "properties": { "NAME": "San Diego" }, "geometry": { "type": "Point", "coordinates": [ -117.18, 32.82 ] } },
+{ "type": "Feature", "properties": { "NAME": "St. Louis" }, "geometry": { "type": "Point", "coordinates": [ -90.24, 38.64 ] } },
+{ "type": "Feature", "properties": { "NAME": "New Orleans" }, "geometry": { "type": "Point", "coordinates": [ -90.04, 30.0 ] } },
+{ "type": "Feature", "properties": { "NAME": "Dallas" }, "geometry": { "type": "Point", "coordinates": [ -96.84, 32.82 ] } },
+{ "type": "Feature", "properties": { "NAME": "Boston" }, "geometry": { "type": "Point", "coordinates": [ -71.07, 42.33 ] } },
+{ "type": "Feature", "properties": { "NAME": "Tampa" }, "geometry": { "type": "Point", "coordinates": [ -82.46, 27.95 ] } },
+{ "type": "Feature", "properties": { "NAME": "Philadelphia" }, "geometry": { "type": "Point", "coordinates": [ -75.17, 40.0 ] } },
+{ "type": "Feature", "properties": { "NAME": "Detroit" }, "geometry": { "type": "Point", "coordinates": [ -83.08, 42.33 ] } },
+{ "type": "Feature", "properties": { "NAME": "Anchorage" }, "geometry": { "type": "Point", "coordinates": [ -149.9, 61.22 ] } },
+{ "type": "Feature", "properties": { "NAME": "San Francisco" }, "geometry": { "type": "Point", "coordinates": [ -122.42, 37.77 ] } },
+{ "type": "Feature", "properties": { "NAME": "Denver" }, "geometry": { "type": "Point", "coordinates": [ -104.99, 39.74 ] } },
+{ "type": "Feature", "properties": { "NAME": "Houston" }, "geometry": { "type": "Point", "coordinates": [ -95.34, 29.82 ] } },
+{ "type": "Feature", "properties": { "NAME": "Miami" }, "geometry": { "type": "Point", "coordinates": [ -80.23, 25.79 ] } },
+{ "type": "Feature", "properties": { "NAME": "Atlanta" }, "geometry": { "type": "Point", "coordinates": [ -84.4, 33.83 ] } },
+{ "type": "Feature", "properties": { "NAME": "Chicago" }, "geometry": { "type": "Point", "coordinates": [ -87.75, 41.83 ] } },
+{ "type": "Feature", "properties": { "NAME": "Los Angeles" }, "geometry": { "type": "Point", "coordinates": [ -118.18, 33.99 ] } },
+{ "type": "Feature", "properties": { "NAME": "Washington, D.C." }, "geometry": { "type": "Point", "coordinates": [ -77.01, 38.9 ] } },
+{ "type": "Feature", "properties": { "NAME": "New York" }, "geometry": { "type": "Point", "coordinates": [ -73.98, 40.75 ] } }
+]
+}

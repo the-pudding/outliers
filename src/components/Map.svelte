@@ -12,6 +12,9 @@
 
   import migrationData from "$data/great-migration-places-topo.json";
 
+  import usData from "$data/geo/us-topo.json"
+  import citiesData from "$data/geo/cities-geo.json"
+
   let states = [];
   let cities = [];
   let spikes = [];
@@ -22,8 +25,7 @@
   let rampColor;
   let x;
 
-  // black_pop_pct_chg_1910_1940
-  // black_pop_pct_chg_1940_1970
+  // default
   let field = "black_pop_pct_chg_1910_1940";
 
   const fieldMap = {
@@ -45,7 +47,7 @@
    */
   const generateSpike = (d, key) => {
     const MAX_SPIKE_HEIGHT = 180;
-    const keys = ["black_pop_pct_chg_1910_1940", "black_pop_pct_chg_1940_1970"];
+    const keys = Object.values(fieldMap);
 
     // Array [ -0.246, 0.436 ]
     const domain = extent(Array(keys.map((k) => spikes.map((d) => d.properties[k]))).flat(2));
@@ -103,22 +105,13 @@
     /**
      * Data prep
      */
-    const response = await fetch(
-      "https://gist.githubusercontent.com/rveciana/a2a1c21ca1c71cd3ec116cc911e5fce9/raw/79564dfa2c56745ebd62f5655a6cc19d2cffa1ea/us.json"
-    );
 
-    const cityRes = await fetch(
-      "https://gist.githubusercontent.com/awoodruff/2844d64b21785fb0a7715afabadedcbf/raw/62f934bb254ea40f340c13d03bf1871bb059442c/citylabels.geojson"
-    );
-    const majorCities = await cityRes.json();
-    const json = await response.json();
-
-    land = feature(json, json.objects.land);
-    cities = majorCities.features;
+    land = feature(usData, usData.objects.land);
+    cities = citiesData.features;
     spikes = feature(migrationData, migrationData.objects.points).features.filter(
       (d) => d.geometry
     );
-    states = feature(json, json.objects.states)
+    states = feature(usData, usData.objects.states)
       .features.map((state) => {
         const properties =
           us.STATES.find((s) => s.fips === `${state.id < 10 ? `0${state.id}` : state.id}`) ?? {};
