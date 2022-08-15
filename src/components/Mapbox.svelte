@@ -1,7 +1,7 @@
 <script>
   import copy from "$data/doc.json";
-  import losAngelesNeighborhoods from "$data/la-county-geo.json";
-  import fremontNeighborhoods from "$data/fremont-geo.json";
+  import losAngelesNeighborhoods from "$data/geo/la-county-geo.json";
+  import fremontNeighborhoods from "$data/geo/fremont-geo.json";
   import { onMount, beforeUpdate } from "svelte";
   import mapbox from "mapbox-gl";
   /**
