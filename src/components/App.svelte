@@ -8,8 +8,8 @@
   import Hero from "$components/Hero.svelte";
   import Map from "$components/Map.svelte";
   import Scrolly from "$components/helpers/Scrolly.svelte";
-  import Header from "$components/Header.svelte";
   import Mobility from "$components/Mobility.svelte";
+  import Triptych from "./Triptych.svelte";
 
   const blocks = {
     text: Text,
@@ -17,7 +17,8 @@
     subhead: Subhead,
     mapbox: Mapbox,
     map: Map,
-    hero: Hero
+    hero: Hero,
+    triptych: Triptych
   };
 
   export let introScrollValue;
@@ -25,29 +26,31 @@
   export let id;
 </script>
 
-<article>
+<article class="bg-custom">
   <!-- Display header -->
-  <Hero>
-    <div class="flex flex-col">
-      <Header />
-      <h1 class="text-5xl mb-4">{copy.title}</h1>
-      <p class="text-2xl mb-2">{copy.description}</p>
-      <p class="text-base">
-        By <a class="underline" href="https://pudding.cool" title={copy.byline}>{copy.byline}</a>
-      </p>
-    </div>
-  </Hero>
+  <Hero />
   <!-- Intro -->
-  <section id="intro" class="relative">
+  <section class="px-4">
+    {#each copy.intro as props, i}
+      <svelte:component
+        this={blocks[props.block] ?? Text}
+        id={props.id ?? `graf-${i}`}
+        {...props}
+      />
+    {/each}
+  </section>
+  <!-- scrolly -->
+  <section class="relative">
     <div id="map" class="sticky top-0">
       <Mapbox index={introScrollValue} />
+      <!-- <Triptych index={introScrollValue} /> -->
     </div>
     <div class="spacer" />
     <Scrolly bind:value={introScrollValue} bind:id>
       {#each copy.slides as slide, i}
         <div class="step" class:active={introScrollValue === i}>
           <div
-            class="bg-slate-100 mx-auto px-4 py-2 border-2 border-slate-100 rounded md:w-7/12 sm:w-11/12 text-lg"
+            class="bg-slate-100 mx-auto px-4 py-2 border-2 border-slate-100 rounded md:w-7/12 sm:w-11/12 max-w-xl text-lg"
           >
             <svelte:component
               this={blocks[slide.block] ?? Text}
@@ -79,7 +82,7 @@
       {#each copy.slides2 as slide, i}
         <div class="step" class:active={mobilityScrollValue === i}>
           <div
-            class="bg-slate-100 mx-auto px-4 py-2 border-2 border-slate-100 rounded md:w-7/12 sm:w-11/12 text-lg"
+            class="bg-slate-100 mx-auto px-4 py-2 border-2 border-slate-100 rounded md:w-7/12 sm:w-11/12 max-w-xl text-lg"
           >
             <svelte:component
               this={blocks[slide.block] ?? Text}

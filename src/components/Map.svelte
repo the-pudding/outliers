@@ -217,7 +217,7 @@
           {#each states as state}
             <path
               d={path(state)}
-              class="fill-slate-100 stroke-white"
+              class="fill-white stroke-gray-200"
               width={1}
               height={1}
               stroke-width={1}
@@ -231,10 +231,11 @@
       <g id="spikes" stroke-width="0.25">
         {#each spikes as spike}
           <path
+            class=" stroke-gray-400"
             transform={translate(spike, field)}
             d={generateSpike(spike, field)}
             fill={colorScale(spike.properties[field])}
-            class="stroke-slate-400"
+            stroke-width={1}
           />
         {/each}
       </g>
@@ -252,7 +253,7 @@
     </svg>
 
     <Block>
-      <p class="label text-sm text-gray-500">Source: {@html source}</p>
+      <p class="label text-gray-500">Source: {@html source}</p>
     </Block>
   </div>
 </div>

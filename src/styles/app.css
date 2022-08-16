@@ -36,3 +36,7 @@
 	--color-highlight: var(--color-yellow);
 
 }
+
+.bg-custom {
+    background-color: #ede8e3;
+  }
