@@ -1,0 +1,201 @@
+<script>
+  import { scaleLinear } from "d3-scale";
+  import { arc as d3_arc, pointRadial } from "d3-shape";
+  import {
+    interpolateBlues,
+    interpolateGreens,
+    interpolateGreys,
+    interpolateOranges,
+    interpolatePurples
+  } from "d3-scale-chromatic";
+  import { feature } from "topojson-client";
+
+  import mobilityTopoJson from "$data/geo/mobility-topo.json";
+
+  const GARDENA_GEO_ID = "06037541001";
+  const FREMONT_GEO_ID = "06001441924";
+
+  // TODO: simplify by using CSV sted of topojson
+  const tracts = feature(mobilityTopoJson, mobilityTopoJson.objects.tracts);
+  const { properties: gardenaTract } = tracts.features.find(
+    (d) => d.properties.GEOID10 === GARDENA_GEO_ID
+  );
+  const { properties: fremontTract } = tracts.features.find(
+    (d) => d.properties.GEOID10 === FREMONT_GEO_ID
+  );
+
+  const keys = [
+    // id
+    // 'GEOID10',
+    // neighborhood
+    // 'jobs_highpay_5mi_2015',
+    // 'med_hhinc1990',
+    "share_black2010",
+    // 'singleparent_share2000',
+    // outcomes
+    "kir_top20_black_pooled_p75",
+    "kir_black_pooled_p75",
+    //
+    "kir_top20_pooled_pooled_p75",
+    // 'kir_black_pooled_p50',
+    "kir_black_pooled_p25"
+  ];
+
+  const labelMap = {
+    share_black2010: "Black Pop. %",
+    kir_top20_black_pooled_p75: "Likely Black residents to be top 20% of earners",
+    kir_black_pooled_p75: "Likely Percentile Rank for Black residents w/ High-Earning Parents",
+    kir_black_pooled_p25: "Likely Percentile Rank for Black residents w/ Low-Earning Parents",
+    kir_top20_pooled_pooled_p75: "Likely Percential Rank for All residents"
+  };
+
+  const colorMap = {
+    share_black2010: interpolateBlues,
+    kir_top20_black_pooled_p75: interpolateGreens,
+    kir_black_pooled_p75: interpolateGreys,
+    kir_black_pooled_p25: interpolateOranges,
+    kir_top20_pooled_pooled_p75: interpolatePurples
+  };
+
+  const dataset = keys.map((key) => ({
+    key,
+    gardena: gardenaTract[key],
+    fremont: fremontTract[key]
+  }));
+
+  let svg;
+  const WIDTH = 960;
+  const HEIGHT = 600;
+
+  const getColorScale = (key) => colorMap[key];
+  const yScale = scaleLinear().domain([0, 1]).range([0, -Math.PI]);
+  const paddingScale = scaleLinear()
+    .domain([0, dataset.length + 4])
+    .range([120, HEIGHT / 2]);
+
+  // extent size
+  const axisDomain = [0, 0.25, 0.5, 0.75, 1];
+  // range(0, 1, 0.05)
+  const ticks = [0, 0.25, 0.5, 0.75, 1];
+
+  const arc = (d, i, dir, field) =>
+    d3_arc()
+      .innerRadius(paddingScale(i) - 15)
+      .outerRadius(paddingScale(i + 1) - 20)
+      .startAngle(0)
+      .endAngle(dir * yScale(d[field]))();
+
+  const getAxis = (d, direction = "left") => {
+    if (direction === "left") {
+      return pointRadial(yScale(d), 60);
+    } else {
+      return pointRadial(-yScale(d), 60);
+    }
+  };
+
+  // https://stackoverflow.com/a/29318884/868724
+  const parseArc = (path) => path.split("L")[1].split("A")[0];
+
+  const getPath = (d, direction = "left") => {
+    if (direction === "left") {
+      return `
+        M${pointRadial(yScale(d), paddingScale(0) - 40)}
+        L${pointRadial(yScale(d), paddingScale(dataset.length / 2))}
+      `;
+    } else {
+      // right
+      return `
+        M${pointRadial(-yScale(d), paddingScale(0) - 40)}
+        L${pointRadial(-yScale(d), paddingScale(dataset.length / 2))}
+      `;
+    }
+  };
+</script>
+
+<div class="w-full h-screen relative z-0">
+  <svg bind:this={svg} viewBox={[-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT]}>
+    <g transform="translate(0, 50)">
+      <g transform={`translate(${-WIDTH / 3}, ${-HEIGHT / 3})`}>
+        <text class="text-label fill-slate-700">Gardena</text>
+      </g>
+      <g transform={`translate(${WIDTH / 4}, ${-HEIGHT / 3})`}>
+        <text class="text-label fill-slate-700">Fremont</text>
+      </g>
+
+      <!-- left axis -->
+      <g>
+        {#each axisDomain as d}
+          <g>
+            <path class="stroke-slate-400" stroke-width={0.5} d={getPath(d, "left")} />
+            {#if ticks.includes(d)}
+              <text
+                font-size={10}
+                class="text-label fill-slate-500"
+                dx="-0.25em"
+                dy="0.35em"
+                x={getAxis(d, "left")[0]}
+                y={getAxis(d, "left")[1]}
+              >
+                {d}
+              </text>
+            {/if}
+          </g>
+        {/each}
+      </g>
+      <!-- right axis -->
+      <g>
+        {#each axisDomain as d}
+          <g>
+            <path class="stroke-slate-400" stroke-width={0.5} d={getPath(d, "right")} />
+            {#if ticks.includes(d) && d !== 0 && d !== 1}
+              <text
+                font-size={10}
+                class="text-label fill-slate-500"
+                dx="-0.35em"
+                dy="0.35em"
+                x={getAxis(d, "right")[0]}
+                y={getAxis(d, "right")[1]}
+              >
+                {d}
+              </text>
+            {/if}
+          </g>
+        {/each}
+      </g>
+
+      <g>
+        {#each dataset as d, i}
+          <path
+            fill={getColorScale(d.key)(d.gardena)}
+            stroke={getColorScale(d.key)(1)}
+            fill-opacity={0.25}
+            stroke-width={1}
+            d={arc(d, i, 1, "gardena")}
+          />
+
+          <text
+            transform={`translate(${parseArc(arc(d, i, 1, "gardena"))}) rotate(${
+              (yScale(d.gardena) * 180) / Math.PI
+            })`}
+            fill={getColorScale(d.key)(1)}
+            class="text-label text-shadow"
+            font-size={10}
+          >
+            {labelMap[d.key]}
+          </text>
+        {/each}
+      </g>
+      <g>
+        {#each dataset as d, i}
+          <path
+            fill={getColorScale(d.key)(d.gardena)}
+            stroke={getColorScale(d.key)(1)}            
+            fill-opacity={0.25}
+            stroke-width={1}
+            d={arc(d, i, -1, "fremont")}
+          />
+        {/each}
+      </g>
+    </g>
+  </svg>
+</div>

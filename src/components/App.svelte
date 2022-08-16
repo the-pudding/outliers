@@ -10,6 +10,7 @@
   import Scrolly from "$components/helpers/Scrolly.svelte";
   import Mobility from "$components/Mobility.svelte";
   import Triptych from "./Triptych.svelte";
+import RadialChart from "./RadialChart.svelte";
 
   const blocks = {
     text: Text,
@@ -76,7 +77,8 @@
   <!-- Mobility chart -->
   <section id="mobility" class="relative">
     <div id="chart2" class="sticky top-0">
-      <Mobility index={mobilityScrollValue} />
+      <!-- <Mobility index={mobilityScrollValue} /> -->
+      <RadialChart index={mobilityScrollValue} />
     </div>
     <Scrolly bind:value={mobilityScrollValue} bind:id>
       {#each copy.slides2 as slide, i}
