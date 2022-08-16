@@ -40,9 +40,6 @@
   <!-- Intro -->
   <section id="intro" class="relative">
     <div id="map" class="sticky top-0">
-      {#if introScrollValue === undefined || introScrollValue < 2}
-        <div id="intro" class="bg-black text-white h-screen" />
-      {/if}
       <Mapbox index={introScrollValue} />
     </div>
     <div class="spacer" />
@@ -76,7 +73,7 @@
   <!-- Mobility chart -->
   <section id="mobility" class="relative">
     <div id="chart2" class="sticky top-0">
-      <Mobility />
+      <Mobility index={mobilityScrollValue} />
     </div>
     <Scrolly bind:value={mobilityScrollValue} bind:id>
       {#each copy.slides2 as slide, i}

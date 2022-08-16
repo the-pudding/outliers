@@ -12,6 +12,9 @@
   import mobilityTopoJson from "$data/geo/mobility-topo.json"
   // ------------------------
 
+  const GARDENA_GEO_ID = "06037541001"
+  const FREMONT_GEO_ID = "06001441924"
+
   const WIDTH = 500
   const HEIGHT = 960
 
@@ -21,10 +24,10 @@
   const zoomed = ({transform}) => {
     const _g = select(g)
     _g.attr("transform", transform)
-    _g.attr("stroke-width", 1 / transform.k)
+    _g.selectAll("path").attr("stroke-width", 1 / transform.k)
   }
   
-  const zoom = d3_zoom().scaleExtent([1, 8]).on("zoom", zoomed)
+  const zoom = d3_zoom().scaleExtent([1, 14]).on("zoom", zoomed)
 
   const losAngelesHoods = feature(mobilityTopoJson, mobilityTopoJson.objects.la)
 
@@ -35,8 +38,9 @@
   const tracts = feature(mobilityTopoJson, mobilityTopoJson.objects.tracts)
 
   const laTracts = tracts.features.filter(d => d.properties.county === "037")
-  // const bayTracts = tracts.features.filter(d => d.properties.county === "001")
 
+  const gardenaTract = laTracts.find(d => d.properties.GEOID10 === GARDENA_GEO_ID)
+  const fremontTract = laTracts.find(d => d.properties.GEOID10 === FREMONT_GEO_ID)
 
   let projection = geoAlbers()
     .fitSize([WIDTH, WIDTH], featureCollection(laTracts));
@@ -54,16 +58,15 @@
   }
 
   const zoomOnClick = (event) => {
-    const [hood] = hoods
-    const [[x0, y0], [x1, y1]] = path.bounds(hood)
+    const [[x0, y0], [x1, y1]] = path.bounds(gardenaTract)
 
     const scale = Math.min(8, 0.9 / Math.max((x1 - x0) / WIDTH, (y1-y0) / WIDTH))
     const translateX = -(x0 + x1) / 2
     const translateY = -(y0 + y1) / 2
 
     if (svg === undefined) return null
-    select(svg)
-      .transition()
+    const _svg = select(svg)
+    _svg.transition()
       .duration(750)
       .call(
         zoom.transform,
@@ -72,6 +75,10 @@
           .scale(scale)
           .translate(translateX, translateY)
       )
+
+    _svg.select(`[data-geoid="${GARDENA_GEO_ID}"]`)
+      .attr("class", "fill-pink-500 opacity-7")
+    
 
   }
 
@@ -100,33 +107,39 @@
     >
 
   </div>
-  <svg bind:this={svg} class="w-full h-auto" width={HEIGHT} height={WIDTH} viewBox={`0 0 ${WIDTH} ${WIDTH}`}>
-    <g bind:this={g}>
-      <g id="los-angeles">
-        {#each laTracts as tract}
-          <path
-            d={path(tract)}
-            class="fill-slate-200 stroke-white"
-            width={1}
-            height={1}
-            stroke-width={0.5}
-          />
-        {/each}
-      </g>
-      <g id="los-angeles-hoods">
-        {#each hoods as hood}
-        <path
-          d={path(hood)}
-          class="fill-red-600"
-          width={1}
-          height={1}
-          stroke-width={0.5}
-        />
-        {/each}
-      </g>
 
-    </g>
-  </svg>
+  <div class="w-full flex ">
+    <div class="border-red-600 border-2 flex-initial w-1/3">
+      <svg class="" bind:this={svg} viewBox={`0 0 ${WIDTH} ${WIDTH}`}>
+        <g bind:this={g}>
+          <g id="los-angeles">
+            {#each laTracts as tract}
+              <path
+                data-geoid={`${tract.properties.GEOID10}`}
+                d={path(tract)}
+                class="fill-slate-200 stroke-white"
+                stroke-width={0.5}
+              />
+            {/each}
+          </g>
+          <g id="los-angeles-hoods">
+            {#each hoods as hood}
+            <path
+              d={path(hood)}
+              class="fill-red-600 opacity-50"
+              stroke-width={0.5}
+            />
+            {/each}
+          </g>
+    
+        </g>
+      </svg>
+    </div>
+    <div class="border-black border-2 flex-initial w-2/3">
+      Chart stuff?
+    </div>
+  </div>
+
 </div>
 
 <style></style>
