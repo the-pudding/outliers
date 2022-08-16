@@ -4,7 +4,7 @@
     const isDev = process.env.NODE_ENV === "development";
     const placeholder = "https://via.placeholder.com/800x300";
   
-    const rootpath = isDev ? "/" : "/tbd/"
+    const rootpath = isDev ? "/" : "/outliers/"
   
     export let id;
     export let src
