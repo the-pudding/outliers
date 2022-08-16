@@ -10,6 +10,7 @@ specifiers:
   '@types/d3-scale': ^4.0.2
   '@types/d3-scale-chromatic': ^3.0.0
   '@types/d3-selection': ^3.0.3
+  '@types/d3-shape': ^3.1.0
   '@types/d3-zoom': ^3.0.1
   '@types/mapbox-gl': ^2.7.3
   '@types/topojson-client': ^3.1.1
@@ -53,6 +54,7 @@ devDependencies:
   '@types/d3-scale': 4.0.2
   '@types/d3-scale-chromatic': 3.0.0
   '@types/d3-selection': 3.0.3
+  '@types/d3-shape': 3.1.0
   '@types/d3-zoom': 3.0.1
   '@types/mapbox-gl': 2.7.3
   '@types/topojson-client': 3.1.1
@@ -245,6 +247,10 @@ packages:
       '@types/d3-color': 3.1.0
     dev: true
 
+  /@types/d3-path/3.0.0:
+    resolution: {integrity: sha512-0g/A+mZXgFkQxN3HniRDbXMN79K3CdTpLsevj+PXiTcb2hVyvkZUBg37StmgCQkaD84cUJ4uaDAWq7UJOQy2Tg==}
+    dev: true
+
   /@types/d3-scale-chromatic/3.0.0:
     resolution: {integrity: sha512-dsoJGEIShosKVRBZB0Vo3C8nqSDqVGujJU6tPznsBJxNJNwMF8utmS83nvCBKQYPpjCzaaHcrf66iTRpZosLPw==}
     dev: true
@@ -257,6 +263,12 @@ packages:
 
   /@types/d3-selection/3.0.3:
     resolution: {integrity: sha512-Mw5cf6nlW1MlefpD9zrshZ+DAWL4IQ5LnWfRheW6xwsdaWOb6IRRu2H7XPAQcyXEx1D7XQWgdoKR83ui1/HlEA==}
+    dev: true
+
+  /@types/d3-shape/3.1.0:
+    resolution: {integrity: sha512-jYIYxFFA9vrJ8Hd4Se83YI6XF+gzDL1aC5DCsldai4XYYiVNdhtpGbA/GM6iyQ8ayhSp3a148LY34hy7A4TxZA==}
+    dependencies:
+      '@types/d3-path': 3.0.0
     dev: true
 
   /@types/d3-time/3.0.0:

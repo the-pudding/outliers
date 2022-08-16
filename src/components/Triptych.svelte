@@ -17,13 +17,7 @@
       <ImageRaw src="assets/img/gardena2.jpg" />
     </div>
     <Block>
-      <p class="caption text-gray-500 mt-2">{@html text ?? ""}</p>
+      <p class="text-label text-gray-500 mt-2">{@html text ?? ""}</p>
     </Block>
   </div>
 </div>
-
-<style>
-  .caption {
-    font-family: var(--sans);
-  }
-</style>

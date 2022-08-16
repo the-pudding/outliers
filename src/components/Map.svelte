@@ -143,13 +143,13 @@
 <div class="w-full mx-auto flex justify-center my-12">
   <div class="w-full">
     <Block>
-      <h3 class="label font-bold text-xl">{@html header}</h3>
-      <p class="label text-base mb-4">{@html text}</p>
+      <h3 class="text-label font-bold text-xl">{@html header}</h3>
+      <p class="text-label text-base mb-4">{@html text}</p>
 
       <div id="legend">
-        <p class="label text-sm">Percentage change in the Black population</p>
+        <p class="text-label text-sm">Percentage change in the Black population</p>
         <div class="flex items-center">
-          <p class="label text-sm mr-3">{@html domain[0] ?? ""}</p>
+          <p class="text-label text-sm mr-3">{@html domain[0] ?? ""}</p>
           <svg
             bind:this={svgLegend}
             class="legend"
@@ -167,7 +167,7 @@
             />
             <!-- <g bind:this={svgLegend} transform={`translate(0, ${26}`} /> -->
           </svg>
-          <p class="label text-sm ml-3">{@html domain[1] ?? ""}</p>
+          <p class="text-label text-sm ml-3">{@html domain[1] ?? ""}</p>
         </div>
       </div>
 
@@ -175,13 +175,13 @@
         <button
           on:click={handleOnClick}
           type="button"
-          class="label relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 active:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+          class="text-label relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 active:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
           >1910-1940</button
         >
         <button
           on:click={handleOnClick}
           type="button"
-          class="-ml-px label relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 active:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+          class="-ml-px text-label relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 active:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
           >1940-1970</button
         >
       </span>
@@ -244,7 +244,7 @@
         {#each cities as city}
           <g transform={translate(city, field, false)}>
             <circle class="stroke-white fill-gray-700" stroke-width={1} r={2} />
-            <text class="text-shadow label fill-gray-500" font-size={8} x={5} y={-3}
+            <text class="text-shadow text-label fill-gray-500" font-size={8} x={5} y={-3}
               >{city.properties.NAME}</text
             >
           </g>
@@ -253,20 +253,12 @@
     </svg>
 
     <Block>
-      <p class="label text-gray-500">Source: {@html source}</p>
+      <p class="text-label text-gray-500">Source: {@html source}</p>
     </Block>
   </div>
 </div>
 
 <style>
-  .label {
-    font-family: var(--sans);
-  }
-
-  .text-shadow {
-    text-shadow: -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white, 1px 1px 2px white;
-  }
-
   .legend {
     overflow: visible;
     display: block;
