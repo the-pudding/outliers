@@ -5,19 +5,17 @@
   export let text
 </script>
 
-<div class="w-full h-4/5 relative z-0">
-  <div class="max-w-5xl h-4/5 mx-auto my-0 flex flex-col justify-between p-4">
-    <div class="border-2 border-black max-w-2xl">
+  <div class="w-full relative z-0 max-w-5xl h-4/5 mx-auto my-0 flex flex-col justify-between p-4">
+    <div class="border-2 border-black md:max-w-2xl">
       <ImageRaw src="assets/img/madera.jpg" />
     </div>
-    <div class="border-2 border-black max-w-xl self-end -m-96 mr-0">
+    <div class="border-2 border-black md:max-w-xl md:self-end md:-m-96 md:mr-0">
       <ImageRaw src="assets/img/gardena.jpg" />
     </div>
-    <div class="border-2 border-black max-w-xl -ml-12">
+    <div class="border-2 border-black md:max-w-xl md:-ml-12">
       <ImageRaw src="assets/img/gardena2.jpg" />
     </div>
     <Block>
       <p class="text-label text-gray-500 mt-2">{@html text ?? ""}</p>
     </Block>
   </div>
-</div>
