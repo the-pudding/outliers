@@ -147,9 +147,10 @@
       <p class="text-label text-base mb-4">{@html text}</p>
 
       <div id="legend">
-        <p class="text-label text-sm">Percentage change in the Black population</p>
+        <!-- <p class="text-label text-sm">Percentage change in the Black population</p> -->
         <div class="flex items-center">
-          <p class="text-label text-sm mr-3">{@html domain[0] ?? ""}</p>
+          <!-- <p class="text-label text-sm mr-3">{@html domain[0] ?? ""}</p> -->
+          <p class="text-label text-sm mr-3">Lower</p>
           <svg
             bind:this={svgLegend}
             class="legend"
@@ -167,11 +168,12 @@
             />
             <!-- <g bind:this={svgLegend} transform={`translate(0, ${26}`} /> -->
           </svg>
-          <p class="text-label text-sm ml-3">{@html domain[1] ?? ""}</p>
+          <!-- <p class="text-label text-sm ml-3">{@html domain[1] ?? ""}</p> -->
+          <p class="text-label text-sm ml-3">Higher</p>
         </div>
       </div>
 
-      <span class="relative z-0 inline-flex shadow-sm rounded-md">
+      <!-- <span class="relative z-0 inline-flex shadow-sm rounded-md">
         <button
           on:click={handleOnClick}
           type="button"
@@ -184,7 +186,7 @@
           class="-ml-px text-label relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 active:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
           >1940-1970</button
         >
-      </span>
+      </span> -->
     </Block>
 
     <svg bind:this={svg} class="w-full h-auto" width="960" height="500" viewBox="0 0 960 500">

@@ -8,9 +8,8 @@
   import Hero from "$components/Hero.svelte";
   import Map from "$components/Map.svelte";
   import Scrolly from "$components/helpers/Scrolly.svelte";
-  import Mobility from "$components/Mobility.svelte";
-  import Triptych from "./Triptych.svelte";
-import RadialChart from "./RadialChart.svelte";
+  import Triptych from "$components/Triptych.svelte";
+  import RadialChart from "$components/RadialChart.svelte";
 
   const blocks = {
     text: Text,
@@ -27,7 +26,7 @@ import RadialChart from "./RadialChart.svelte";
   export let id;
 </script>
 
-<article class="bg-custom">
+<article>
   <!-- Display header -->
   <Hero />
   <!-- Intro -->
@@ -44,7 +43,6 @@ import RadialChart from "./RadialChart.svelte";
   <section class="relative">
     <div id="map" class="sticky top-0">
       <Mapbox index={introScrollValue} />
-      <!-- <Triptych index={introScrollValue} /> -->
     </div>
     <div class="spacer" />
     <Scrolly bind:value={introScrollValue} bind:id>
@@ -74,10 +72,9 @@ import RadialChart from "./RadialChart.svelte";
       />
     {/each}
   </section>
-  <!-- Mobility chart -->
-  <section id="mobility" class="relative">
-    <div id="chart2" class="sticky top-0">
-      <!-- <Mobility index={mobilityScrollValue} /> -->
+  <!-- Radial bar chart -->
+  <section id="radial-bar" class="relative">
+    <div class="sticky top-0">
       <RadialChart index={mobilityScrollValue} />
     </div>
     <Scrolly bind:value={mobilityScrollValue} bind:id>

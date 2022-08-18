@@ -1,18 +1,16 @@
 <script>
   import Block from "$components/Block.svelte";
-  import loadImage from "$utils/loadImage";
   import ImageRaw from "./ImageRaw.svelte";
-
-  const isDev = process.env.NODE_ENV === "development";
-  const placeholder = "https://via.placeholder.com/800x300";
-
-  const rootpath = isDev ? "/" : "/tbd/"
 
   export let id;
   export let src
   export let alt;
+  export let caption
 </script>
 
 <Block {id} type="image">
-  <ImageRaw {src} {alt} />
+  <figure>
+    <ImageRaw {src} alt={alt ?? caption} />
+    <figcaption class="text-label text-sm text-gray-500">{caption ?? ""}</figcaption>
+  </figure>
 </Block>

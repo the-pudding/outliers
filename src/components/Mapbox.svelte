@@ -177,7 +177,10 @@
     const hasId = Object.prototype.hasOwnProperty.call(slide, "id");
     if (!hasId || index === undefined) return null;
 
-    map.flyTo(mapboxConfig.get(slide.id));
+    map.flyTo({
+      ...mapboxConfig.get(slide.id),
+      speed: 0.75,
+    });
     map.once("moveend", () => {
       if (slide.id === "gardena") {
         // quickly rotate back if coming from previous step
