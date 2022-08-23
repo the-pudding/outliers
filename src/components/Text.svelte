@@ -3,6 +3,7 @@
 
   export let id;
   export let text;
+  export let key = ""
 
   const grafs = text.split("\n");
   
@@ -11,7 +12,7 @@
 
 <Block {id} type="text">
   {#each grafs as graf}
-    <p class:dropcap class="mb-5 text-lg">{@html graf}</p>
+    <p class:dropcap class={`mb-5 text-lg ${key}`}>{@html graf}</p>
   {/each}
 </Block>
 

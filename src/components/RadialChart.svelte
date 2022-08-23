@@ -123,7 +123,7 @@
     // so using dataset.length to make sure we start back at zero
     // when switching to fremont index
     const dataIndex = stepIndex <= dataset.length - 1 ? stepIndex : stepIndex - dataset.length;
-    const stepData = dataset[dataIndex];
+    const stepData = dataset[dataIndex ?? 0];
     const direction = slide.field === "gardena" ? 1 : -1;
     const radialPath = select(
       `#${slide.field}-paths > path[data-key="${slide.field}-${slide.key}"]`

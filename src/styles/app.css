@@ -55,3 +55,30 @@
 .text-shadow {
   text-shadow: -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white, 1px 1px 2px white;
 }
+
+/* Colors style for radial chart */
+.share_black2010 span,
+.kir_top20_black_pooled_p75 span,
+.kir_black_pooled_p75 span,
+.kir_black_pooled_p25 span,
+.kir_top20_pooled_pooled_p75 span {
+	font-weight: bold;
+}
+
+.share_black2010 span {
+	color:  rgb(8, 48, 107);
+}
+
+.kir_black_pooled_p75 span {
+	color: rgb(0, 0, 0);
+}
+
+.kir_top20_black_pooled_p75 span {
+	color: rgb(0, 68, 27);
+}
+.kir_black_pooled_p25 span {
+	color: rgb(127, 39, 4);
+}
+.kir_top20_pooled_pooled_p75 span {
+	color: rgb(63, 0, 125);
+}

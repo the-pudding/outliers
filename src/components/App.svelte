@@ -10,6 +10,7 @@
   import Scrolly from "$components/helpers/Scrolly.svelte";
   import Triptych from "$components/Triptych.svelte";
   import RadialChart from "$components/RadialChart.svelte";
+  import Slide from "$components/Slide.svelte";
 
   const blocks = {
     text: Text,
@@ -18,7 +19,8 @@
     mapbox: Mapbox,
     map: Map,
     hero: Hero,
-    triptych: Triptych
+    triptych: Triptych,
+    slide: Slide
   };
 
   export let introScrollValue;
@@ -42,7 +44,7 @@
   <!-- scrolly -->
   <section class="relative">
     <div id="map" class="sticky top-0">
-      <!-- <Mapbox index={introScrollValue} /> -->
+      <Mapbox index={introScrollValue} />
     </div>
     <div class="spacer" />
     <Scrolly bind:value={introScrollValue} bind:id>
