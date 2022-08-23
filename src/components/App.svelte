@@ -11,6 +11,7 @@
   import Triptych from "$components/Triptych.svelte";
   import RadialChart from "$components/RadialChart.svelte";
   import Slide from "$components/Slide.svelte";
+  import Methodology from "$components/Methodology.svelte";
 
   const blocks = {
     text: Text,
@@ -20,7 +21,8 @@
     map: Map,
     hero: Hero,
     triptych: Triptych,
-    slide: Slide
+    slide: Slide,
+    methodology: Methodology
   };
 
   export let introScrollValue;
