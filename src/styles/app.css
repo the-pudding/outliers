@@ -7,6 +7,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ensure some elements have base styles like anchor tags */
+@layer base {
+	a {
+		@apply text-teal-700 underline hover:text-teal-800;
+	}
+}
+
 /* colors defined in variables.css */
 :root {
 	/* font */

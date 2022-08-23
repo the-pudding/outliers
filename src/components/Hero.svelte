@@ -14,9 +14,9 @@
   <div class="w-full h-full flex justify-center items-center px-4 flex-wrap-reverse">
     <div class="md:w-1/3 p-4">
       <h1 class="text-5xl mb-4 text-white">{copy.title}</h1>
-      <p class="text-lg mb-2 text-white">{copy.description}</p>
+      <p class="text-lg mb-4 text-white">{copy.description}</p>
       <p class="text-base text-white">
-        By <a class="underline" href="https://pudding.cool" title={copy.byline}>{copy.byline}</a>
+        By <a class="text-white" href="https://pudding.cool" title={copy.byline}>{copy.byline}</a>
       </p>
     </div>
   

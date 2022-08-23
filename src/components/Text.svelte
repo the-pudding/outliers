@@ -4,8 +4,8 @@
   export let id;
   export let text;
 
-  export let grafs = text.split("\n");
-
+  const grafs = text.split("\n");
+  
   const dropcap = id === "dropcap"
 </script>
 
