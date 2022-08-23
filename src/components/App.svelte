@@ -42,7 +42,7 @@
   <!-- scrolly -->
   <section class="relative">
     <div id="map" class="sticky top-0">
-      <Mapbox index={introScrollValue} />
+      <!-- <Mapbox index={introScrollValue} /> -->
     </div>
     <div class="spacer" />
     <Scrolly bind:value={introScrollValue} bind:id>
@@ -75,7 +75,7 @@
   <!-- Radial bar chart -->
   <section id="radial-bar" class="relative">
     <div class="sticky top-0">
-      <RadialChart index={mobilityScrollValue} />
+      <RadialChart stepIndex={mobilityScrollValue} />
     </div>
     <Scrolly bind:value={mobilityScrollValue} bind:id>
       {#each copy.slides2 as slide, i}

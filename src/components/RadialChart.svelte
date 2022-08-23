@@ -1,6 +1,8 @@
 <script>
-  import { scaleLinear } from "d3-scale";
-  import { arc as d3_arc, pointRadial } from "d3-shape";
+  import { onMount, beforeUpdate } from "svelte";
+
+  import { feature } from "topojson-client";
+  import { scaleLinear, select, selectAll, arc as d3_arc, pointRadial, interpolate } from "d3";
   import {
     interpolateBlues,
     interpolateGreens,
@@ -8,9 +10,11 @@
     interpolateOranges,
     interpolatePurples
   } from "d3-scale-chromatic";
-  import { feature } from "topojson-client";
 
+  import copy from "$data/doc.json";
   import mobilityTopoJson from "$data/geo/mobility-topo.json";
+
+  // ---
 
   const GARDENA_GEO_ID = "06037541001";
   const FREMONT_GEO_ID = "06001441924";
@@ -63,7 +67,6 @@
     fremont: fremontTract[key]
   }));
 
-  let svg;
   const WIDTH = 960;
   const HEIGHT = 600;
 
@@ -82,8 +85,8 @@
     d3_arc()
       .innerRadius(paddingScale(i) - 15)
       .outerRadius(paddingScale(i + 1) - 20)
-      .startAngle(0)
-      .endAngle(dir * yScale(d[field]))();
+      .startAngle(0);
+  // .endAngle(dir * yScale(d[field]))();
 
   const getAxis = (d, direction = "left") => {
     if (direction === "left") {
@@ -110,10 +113,42 @@
       `;
     }
   };
+
+  // index from step
+  export let stepIndex = undefined;
+
+  beforeUpdate(async () => {
+    const slide = copy.slides2[stepIndex ?? 0];
+    // stepIndex is >5 but dataset is not
+    // so using dataset.length to make sure we start back at zero
+    // when switching to fremont index
+    const dataIndex = stepIndex <= dataset.length - 1 ? stepIndex : stepIndex - dataset.length;
+    const stepData = dataset[dataIndex];
+    const direction = slide.field === "gardena" ? 1 : -1;
+    const radialPath = select(
+      `#${slide.field}-paths > path[data-key="${slide.field}-${slide.key}"]`
+    );
+
+    radialPath
+      .datum(stepData) // bound data to path
+      .transition()
+      .duration(750)
+      .attrTween("d", (d) => {
+        if (d === undefined) return;
+
+        const startAngle = 0;
+        const endAngle = direction * yScale(d[slide.field]);
+        const interpolater = interpolate(startAngle, endAngle);
+
+        return (t) => {
+          return arc(d, dataIndex, direction, slide.field).endAngle(interpolater(t))();
+        };
+      });
+  });
 </script>
 
 <div class="w-full h-screen relative z-0">
-  <svg bind:this={svg} viewBox={[-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT]}>
+  <svg viewBox={[-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT]}>
     <g transform="translate(0, 50)">
       <g transform={`translate(${-WIDTH / 3}, ${-HEIGHT / 3})`}>
         <text class="text-label fill-slate-700">Gardena</text>
@@ -163,9 +198,10 @@
         {/each}
       </g>
 
-      <g>
+      <g id="gardena-paths">
         {#each dataset as d, i}
           <path
+            data-key={`gardena-${d.key}`}
             fill={getColorScale(d.key)(d.gardena)}
             stroke={getColorScale(d.key)(1)}
             fill-opacity={0.25}
@@ -173,7 +209,7 @@
             d={arc(d, i, 1, "gardena")}
           />
 
-          <text
+          <!-- <text
             transform={`translate(${parseArc(arc(d, i, 1, "gardena"))}) rotate(${
               (yScale(d.gardena) * 180) / Math.PI
             })`}
@@ -182,14 +218,15 @@
             font-size={10}
           >
             {labelMap[d.key]}
-          </text>
+          </text> -->
         {/each}
       </g>
-      <g>
+      <g id="fremont-paths">
         {#each dataset as d, i}
           <path
+            data-key={`fremont-${d.key}`}
             fill={getColorScale(d.key)(d.gardena)}
-            stroke={getColorScale(d.key)(1)}            
+            stroke={getColorScale(d.key)(1)}
             fill-opacity={0.25}
             stroke-width={1}
             d={arc(d, i, -1, "fremont")}
