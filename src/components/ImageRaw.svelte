@@ -9,15 +9,18 @@
     export let id;
     export let src
     export let alt;
+    export let className
+    export let width
+    export let height
   </script>
   
-  <div>
+  
     {#await loadImage(`${rootpath}${src}`)}
-      <span />
+      <span class={className} {width} {height} />
     {:then img}
-      <img {id} src={img.src} {alt} />
+      <img class={className} {width} {height} {id} src={img.src} {alt} />
     {:catch}
-      <img {id} src={placeholder} alt="placeholder" />
+      <img class={className} {width} {height} {id} src={placeholder} alt="placeholder" />
     {/await}
-  </div>
+  
   

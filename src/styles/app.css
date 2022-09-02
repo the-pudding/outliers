@@ -42,6 +42,8 @@
 	--color-border: var(--color-gray-300);
 	--color-selection: var(--color-gray-300);
 	--color-highlight: var(--color-yellow);
+
+	--color-hero: #7cb68c;
 }
 
 .bg-custom {

@@ -32,6 +32,6 @@
 
 <style>
   .green {
-    background-color: #7cb68c;
+    background-color: var(--color-hero);
   }
 </style>
