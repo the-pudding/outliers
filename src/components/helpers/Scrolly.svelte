@@ -17,6 +17,7 @@
   export let bottom = 0;
   export let increments = 100;
   export let value = undefined;
+  export let className = ""
 
   const steps = [];
   const threshold = [];
@@ -75,6 +76,6 @@
   });
 </script>
 
-<div bind:this={container} class="relative z-50">
+<div bind:this={container} class={`relative z-50 ${className}`}>
   <slot />
 </div>

@@ -12,6 +12,8 @@
   import RadialChart from "$components/RadialChart.svelte";
   import Slide from "$components/Slide.svelte";
   import Methodology from "$components/Methodology.svelte";
+  import Mobility from "$components/Mobility.svelte";
+  import LeadText from "$components/LeadText.svelte";
 
   const blocks = {
     text: Text,
@@ -22,7 +24,8 @@
     hero: Hero,
     triptych: Triptych,
     slide: Slide,
-    methodology: Methodology
+    methodology: Methodology,
+    leadtext: LeadText,
   };
 
   export let introScrollValue;
@@ -45,24 +48,27 @@
   </section>
   <!-- scrolly -->
   <section class="relative">
-    <div id="map" class="sticky top-0">
-      <Mapbox index={introScrollValue} />
+    <div class="top-0 sticky">
+      <Mobility stepIndex={introScrollValue} />
     </div>
     <div class="spacer" />
     <Scrolly bind:value={introScrollValue} bind:id>
-      {#each copy.slides as slide, i}
-        <div class="step" class:active={introScrollValue === i}>
-          <div
-            class="bg-slate-100 mx-auto px-4 py-2 border-2 border-slate-100 rounded md:w-7/12 sm:w-11/12 max-w-xl text-lg"
-          >
-            <svelte:component
+      <!-- <div class="grid grid-cols-12"> -->
+      {#each copy.outcomes as slide, i}
+        <LeadText 
+        stepIndex={introScrollValue}
+        className={`h-[125vh] ${ introScrollValue === i ? "active" : "" }`}
+        {...slide}
+        />
+        <!-- <div class="step" class:active={introScrollValue === i}> -->
+            <!-- <svelte:component
               this={blocks[slide.block] ?? Text}
               id={slide.id ?? `slide-${i}`}
               {...slide}
-            />
-          </div>
-        </div>
+            /> -->
+        <!-- </div> -->
       {/each}
+    <!-- </div> -->
     </Scrolly>
     <div class="spacer" />
   </section>
