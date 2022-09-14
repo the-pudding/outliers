@@ -67,7 +67,7 @@
     fremont: fremontTract[key]
   }));
 
-  const WIDTH = 960;
+  const WIDTH = 550;
   const HEIGHT = 600;
 
   const getColorScale = (key) => colorMap[key];
@@ -147,92 +147,109 @@
   });
 </script>
 
-<div class="w-full h-screen relative z-0">
-  <svg viewBox={[-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT]}>
-    <g transform="translate(0, 50)">
-      <g transform={`translate(${-WIDTH / 3}, ${-HEIGHT / 3})`}>
-        <text class="text-label fill-slate-700">Gardena</text>
-      </g>
-      <g transform={`translate(${WIDTH / 4}, ${-HEIGHT / 3})`}>
-        <text class="text-label fill-slate-700">Fremont</text>
-      </g>
+<div class="flex items-center justify-center w-full h-screen relative z-0">
+  <div class="grid grid-cols-12 gap-3 max-w-7xl">
+    
+    <div class="col-span-2 text-label text-right flex justify-center items-center">
+      <div>
+        <p class="text-lg font-bold">Gardena</p>
+        <p class="text-sm mb-6">Predicted outcomes</p>
+  
+        <ul class="list-none text-sm">
+          <li class="mb-4">Share of Black kids in neighborhood: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Share of Black kids with high-income earning parents: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Expected income by age 35: <b>$TK</b></li>
+          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
+        </ul>
+      </div>
+    </div>
 
-      <!-- left axis -->
-      <g>
-        {#each axisDomain as d}
+    <div class="col-span-8">
+      <svg viewBox={[-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT]}>
+        <g transform="translate(0, 50)">
+          <!-- left axis -->
           <g>
-            <path class="stroke-slate-400" stroke-width={0.5} d={getPath(d, "left")} />
-            {#if ticks.includes(d)}
-              <text
-                font-size={10}
-                class="text-label fill-slate-500"
-                dx="-0.25em"
-                dy="0.35em"
-                x={getAxis(d, "left")[0]}
-                y={getAxis(d, "left")[1]}
-              >
-                {d}
-              </text>
-            {/if}
+            {#each axisDomain as d}
+              <g>
+                <path class="stroke-slate-400" stroke-width={0.5} d={getPath(d, "left")} />
+                {#if ticks.includes(d)}
+                  <text
+                    font-size={10}
+                    class="fill-slate-500 text-label"
+                    dx="-0.25em"
+                    dy="0.35em"
+                    x={getAxis(d, "left")[0]}
+                    y={getAxis(d, "left")[1]}
+                  >
+                    {d}
+                  </text>
+                {/if}
+              </g>
+            {/each}
           </g>
-        {/each}
-      </g>
-      <!-- right axis -->
-      <g>
-        {#each axisDomain as d}
+          <!-- right axis -->
           <g>
-            <path class="stroke-slate-400" stroke-width={0.5} d={getPath(d, "right")} />
-            {#if ticks.includes(d) && d !== 0 && d !== 1}
-              <text
-                font-size={10}
-                class="text-label fill-slate-500"
-                dx="-0.35em"
-                dy="0.35em"
-                x={getAxis(d, "right")[0]}
-                y={getAxis(d, "right")[1]}
-              >
-                {d}
-              </text>
-            {/if}
+            {#each axisDomain as d}
+              <g>
+                <path class="stroke-slate-400" stroke-width={0.5} d={getPath(d, "right")} />
+                {#if ticks.includes(d) && d !== 0 && d !== 1}
+                  <text
+                    font-size={10}
+                    class="fill-slate-500 text-label"
+                    dx="-0.35em"
+                    dy="0.35em"
+                    x={getAxis(d, "right")[0]}
+                    y={getAxis(d, "right")[1]}
+                  >
+                    {d}
+                  </text>
+                {/if}
+              </g>
+            {/each}
           </g>
-        {/each}
-      </g>
+    
+          <g id="gardena-paths">
+            {#each dataset as d, i}
+              <path
+                data-key={`gardena-${d.key}`}
+                fill={getColorScale(d.key)(d.gardena)}
+                stroke={getColorScale(d.key)(1)}
+                fill-opacity={0.25}
+                stroke-width={1}
+                d={arc(d, i, 1, "gardena")}
+              />
+            {/each}
+          </g>
+          <g id="fremont-paths">
+            {#each dataset as d, i}
+              <path
+                data-key={`fremont-${d.key}`}
+                fill={getColorScale(d.key)(d.gardena)}
+                stroke={getColorScale(d.key)(1)}
+                fill-opacity={0.25}
+                stroke-width={1}
+                d={arc(d, i, -1, "fremont")}
+              />
+            {/each}
+          </g>
+        </g>
+      </svg>
+    </div>
 
-      <g id="gardena-paths">
-        {#each dataset as d, i}
-          <path
-            data-key={`gardena-${d.key}`}
-            fill={getColorScale(d.key)(d.gardena)}
-            stroke={getColorScale(d.key)(1)}
-            fill-opacity={0.25}
-            stroke-width={1}
-            d={arc(d, i, 1, "gardena")}
-          />
-
-          <!-- <text
-            transform={`translate(${parseArc(arc(d, i, 1, "gardena"))}) rotate(${
-              (yScale(d.gardena) * 180) / Math.PI
-            })`}
-            fill={getColorScale(d.key)(1)}
-            class="text-label text-shadow"
-            font-size={10}
-          >
-            {labelMap[d.key]}
-          </text> -->
-        {/each}
-      </g>
-      <g id="fremont-paths">
-        {#each dataset as d, i}
-          <path
-            data-key={`fremont-${d.key}`}
-            fill={getColorScale(d.key)(d.gardena)}
-            stroke={getColorScale(d.key)(1)}
-            fill-opacity={0.25}
-            stroke-width={1}
-            d={arc(d, i, -1, "fremont")}
-          />
-        {/each}
-      </g>
-    </g>
-  </svg>
+    <div class="col-span-2 text-label flex justify-center items-center">
+      <div>
+        <p class="text-lg font-bold">Fremont</p>
+        <p class="text-sm mb-6">Predicted outcomes</p>
+  
+        <ul class="list-none text-sm">
+          <li class="mb-4">Share of Black kids in neighborhood: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Share of Black kids with high-income earning parents: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Expected income by age 35: <b>$TK</b></li>
+          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
