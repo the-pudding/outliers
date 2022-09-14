@@ -141,7 +141,7 @@
 </script>
 
 <div class="w-full mx-auto flex justify-center my-12">
-  <div class="w-full">
+  <div class="w-full max-w-7xl">
     <Block>
       <h3 class="text-label font-bold text-xl">{@html header}</h3>
       <p class="text-label text-base mb-4">{@html text}</p>

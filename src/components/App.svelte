@@ -12,7 +12,7 @@
   import RadialChart from "$components/RadialChart.svelte";
   import Slide from "$components/Slide.svelte";
   import Methodology from "$components/Methodology.svelte";
-  import Mobility from "$components/Mobility.svelte";
+  import LeadImageContainer from "$components/LeadImageContainer.svelte";
   import LeadText from "$components/LeadText.svelte";
 
   const blocks = {
@@ -48,16 +48,14 @@
   </section>
   <!-- scrolly -->
   <section class="relative">
-    <div class="top-0 sticky">
-      <Mobility stepIndex={introScrollValue} />
-    </div>
-    <div class="spacer" />
-    <Scrolly bind:value={introScrollValue} bind:id>
+    <LeadImageContainer stepIndex={introScrollValue} />
+    <!-- <div class="spacer" /> -->
+    <Scrolly bind:value={introScrollValue} bind:id className="flex items-center justify-center flex-col">
       <!-- <div class="grid grid-cols-12"> -->
       {#each copy.outcomes as slide, i}
         <LeadText 
         stepIndex={introScrollValue}
-        className={`h-[125vh] ${ introScrollValue === i ? "active" : "" }`}
+        className={`h-screen ${ introScrollValue === i ? "active" : "" }`}
         {...slide}
         />
         <!-- <div class="step" class:active={introScrollValue === i}> -->
@@ -70,7 +68,7 @@
       {/each}
     <!-- </div> -->
     </Scrolly>
-    <div class="spacer" />
+    <!-- <div class="spacer" /> -->
   </section>
   <!-- text before mobility chart -->
   <section id="text" class="px-4">
@@ -116,9 +114,9 @@
 </article>
 
 <style>
-  .spacer {
+  /* .spacer {
     height: 75vh;
-  }
+  } */
 
   .step {
     height: 125vh;

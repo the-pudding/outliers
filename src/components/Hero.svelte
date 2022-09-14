@@ -11,7 +11,7 @@
     <Header />
   <!-- </div> -->
   
-  <div class="w-full h-full flex justify-center items-center px-4 flex-wrap-reverse">
+  <div class="w-full h-full flex max-w-7xl my-0 mx-auto justify-center items-center px-4 flex-wrap-reverse">
     <div class="md:w-1/3 p-4">
       <h1 class="text-5xl mb-4 text-white">{copy.title}</h1>
       <p class="text-lg mb-4 text-white">{copy.description}</p>
