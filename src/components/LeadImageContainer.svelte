@@ -49,10 +49,12 @@
   >
     {#each Object.keys(positioningClasses) as key, index}
       <div data-index={index} class={`${positioningClasses[key]} transition-opacity duration-500 opacity-0`}>
-        <ImageRaw 
-          className="w-full"
-          src={`assets/img/intro/${key}.jpg`} 
-        />
+        <div class="border-2 border-black">
+          <ImageRaw 
+            className="w-full"
+            src={`assets/img/intro/${key}.jpg`} 
+          />
+        </div>
       </div>      
     {/each}
     </div>
