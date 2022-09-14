@@ -77,9 +77,9 @@
     .range([120, HEIGHT / 2]);
 
   // extent size
-  const axisDomain = [0, 0.25, 0.5, 0.75, 1];
+  const axisDomain = [0, 0.25, 0.5,];
   // range(0, 1, 0.05)
-  const ticks = [0, 0.25, 0.5, 0.75, 1];
+  const ticks = [0, 0.5];
 
   const arc = (d, i, dir, field) =>
     d3_arc()
