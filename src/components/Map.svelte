@@ -1,8 +1,5 @@
 <script>
-  import { extent } from "d3-array"
-  import { geoAlbers, geoPath } from "d3-geo";
-  import { interpolateBrBG } from "d3-scale-chromatic"
-  import { scaleDiverging, scalePow } from "d3-scale"
+  import { extent, geoAlbers, geoPath, interpolateBrBG, scaleDiverging, scalePow } from "d3";
 
   import { onMount } from "svelte";
   import { feature } from "topojson-client";
@@ -12,8 +9,8 @@
 
   import migrationData from "$data/great-migration-places-topo.json";
 
-  import usData from "$data/geo/us-topo.json"
-  import citiesData from "$data/geo/cities-geo.json"
+  import usData from "$data/geo/us-topo.json";
+  import citiesData from "$data/geo/cities-geo.json";
 
   let states = [];
   let cities = [];
@@ -29,9 +26,9 @@
   let field = "black_pop_pct_chg_1910_1940";
 
   const fieldMap = {
-    '1910-1940': 'black_pop_pct_chg_1910_1940',
-    '1940-1970': 'black_pop_pct_chg_1940_1970',
-  }
+    "1910-1940": "black_pop_pct_chg_1910_1940",
+    "1940-1970": "black_pop_pct_chg_1940_1970"
+  };
 
   /**
    *
@@ -130,10 +127,10 @@
     rampColor = colorScale.interpolator();
   });
 
-  const handleOnClick = (event)  => {
-    const key = event.target.textContent
-    field = fieldMap[key]
-  }
+  const handleOnClick = (event) => {
+    const key = event.target.textContent;
+    field = fieldMap[key];
+  };
 
   export let header;
   export let text;
