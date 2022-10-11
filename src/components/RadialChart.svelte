@@ -42,7 +42,7 @@
     //
     "kir_top20_pooled_pooled_p75",
     // 'kir_black_pooled_p50',
-    "kir_black_pooled_p25"
+    // "kir_black_pooled_p25"
   ];
 
   const labelMap = {
@@ -66,6 +66,11 @@
     gardena: gardenaTract[key],
     fremont: fremontTract[key]
   }));
+
+  const getSlideIndex = (field, key) => {
+    const slide = copy.slides2.find(d => d.field === field && d.key === key)
+    return parseInt(slide?.id ?? 0)
+  }
 
   const WIDTH = 550;
   const HEIGHT = 600;
@@ -119,10 +124,8 @@
 
   beforeUpdate(async () => {
     const slide = copy.slides2[stepIndex ?? 0];
-    // stepIndex is >5 but dataset is not
-    // so using dataset.length to make sure we start back at zero
-    // when switching to fremont index
-    const dataIndex = stepIndex <= dataset.length - 1 ? stepIndex : stepIndex - dataset.length;
+    const dataIndex = getSlideIndex(slide.field, slide.key)
+
     const stepData = dataset[dataIndex ?? 0];
     const direction = slide.field === "gardena" ? 1 : -1;
     const radialPath = select(
@@ -149,18 +152,17 @@
 
 <div class="flex items-center justify-center w-full h-screen relative z-0">
   <div class="grid grid-cols-12 gap-3 max-w-7xl">
-    
+
     <div class="col-span-2 text-label text-right flex justify-center items-center">
       <div>
         <p class="text-lg font-bold">Gardena</p>
         <p class="text-sm mb-6">Predicted outcomes</p>
-  
+
         <ul class="list-none text-sm">
           <li class="mb-4">Share of Black kids in neighborhood: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids with high-income earning parents: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Expected income by age 35: <b>$TK</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Share of Black kids stayed in census tract as adults: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Median household income in 1990: <b>$TK</b></li>
+          <li class="mb-4 opacity-25">Median household income in 2015: <b>TK %</b></li>
         </ul>
       </div>
     </div>
@@ -208,28 +210,28 @@
               </g>
             {/each}
           </g>
-    
+
           <g id="gardena-paths">
-            {#each dataset as d, i}
+            {#each dataset as d}
               <path
                 data-key={`gardena-${d.key}`}
                 fill={getColorScale(d.key)(d.gardena)}
                 stroke={getColorScale(d.key)(1)}
                 fill-opacity={0.25}
                 stroke-width={1}
-                d={arc(d, i, 1, "gardena")}
+                d={arc(d, getSlideIndex(d.field, d.key), 1, "gardena")}
               />
             {/each}
           </g>
           <g id="fremont-paths">
-            {#each dataset as d, i}
+            {#each dataset as d}
               <path
                 data-key={`fremont-${d.key}`}
                 fill={getColorScale(d.key)(d.gardena)}
                 stroke={getColorScale(d.key)(1)}
                 fill-opacity={0.25}
                 stroke-width={1}
-                d={arc(d, i, -1, "fremont")}
+                d={arc(d, getSlideIndex(d.field, d.key), -1, "fremont")}
               />
             {/each}
           </g>
@@ -241,13 +243,12 @@
       <div>
         <p class="text-lg font-bold">Fremont</p>
         <p class="text-sm mb-6">Predicted outcomes</p>
-  
+
         <ul class="list-none text-sm">
           <li class="mb-4">Share of Black kids in neighborhood: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids with high-income earning parents: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Expected income by age 35: <b>$TK</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Share of Black kids stayed in census tract as adults: <b>TK %</b></li>
+          <li class="mb-4 opacity-25">Median household income in 1990: <b>$TK</b></li>
+          <li class="mb-4 opacity-25">Median household income in 2015: <b>TK %</b></li>
         </ul>
       </div>
     </div>
