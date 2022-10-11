@@ -1,4 +1,4 @@
-<script>
+4<script>
   import Block from "$components/Block.svelte";
   import ImageRaw from "$components/ImageRaw.svelte";
   
@@ -16,6 +16,15 @@
       <ImageRaw src="assets/img/gardena2.jpg" />
     </div>
     <Block>
-      <p class="text-label text-gray-500 mt-2">{@html text ?? ""}</p>
+      <p class="text-label mt-2">{@html text ?? ""}</p>
     </Block>
   </div>
+
+  <style>
+    .text-label {
+      font-family: var(--dubois);
+      text-transform: uppercase;
+      color: var(--color-off-white);
+      font-size: 14px;
+    }
+  </style>

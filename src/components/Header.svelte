@@ -2,7 +2,7 @@
   import wordmark from "$svg/wordmark.svg";
 </script>
 
-<header class="mb-8">
+<header>
   <div class="wordmark">
     <a href="https://pudding.cool" aria-label="The Pudding">{@html wordmark}</a>
   </div>
@@ -25,6 +25,7 @@
   }
 
   :global(.wordmark svg path) {
-    fill: white;
+    fill: var(--color-off-black);
+    stroke: none;
   }
 </style>

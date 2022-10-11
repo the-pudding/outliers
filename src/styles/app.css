@@ -20,6 +20,8 @@
 	/* font */
 	--sans: "National 2 Web", Helvetica, Arial, sans-serif;
 	--serif: "Tiempos Text Web", Georgia, Times, serif;
+	--dubois: "DuBois Regular", Menlo, Consolas, Monaco, "Courier New", monospace;
+	--dubois-wide: "DuBois Wide", Menlo, Consolas, Monaco, "Courier New", monospace;
 	--mono: Menlo, Consolas, Monaco, "Courier New", monospace;
 
 	/* z-index */
@@ -32,7 +34,7 @@
 	--border-radius: 4px;
 	--font-body: var(--serif);
 	--font-form: var(--sans);
-	--color-bg: #ede8e3;
+	--color-bg: #FFFAF2;
 	--color-fg: var(--color-gray-900);
 	--color-placeholder: var(--color-gray-500);
 	--color-link: var(--color-purple);
@@ -42,12 +44,24 @@
 	--color-border: var(--color-gray-300);
 	--color-selection: var(--color-gray-300);
 	--color-highlight: var(--color-yellow);
+	--color-off-black: var(--color-gray-900);
 
-	--color-hero: #7cb68c;
+	/* presets */
+	--color-db-red: #D8284F;
+	--color-db-pink: #E89994;
+	--color-db-tan: #BF9F88;
+	--color-db-light-tan: #DECBBA;
+	--color-db-brown: #8F6952;
+	--color-db-blue: #5367A2;
+	--color-db-yellow: #EFAE38;
+	--color-db-green: #82A884;
+	--color-db-bg-tan: #FFFAF2;
+
+	--color-hero: #82A884;
 }
 
 .bg-custom {
-	background-color: #ede8e3;
+	background-color: #FFFAF2;
 }
 
 .text-label {
@@ -55,7 +69,14 @@
 }
 
 .text-shadow {
-  text-shadow: -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white, 1px 1px 2px white;
+  text-shadow: -1px -1px 2px #FFFAF2, 1px -1px 2px #FFFAF2, -1px 1px 2px #FFFAF2, 1px 1px 2px #FFFAF2;
+}
+
+h2 {
+	font-family: var(--dubois-wide);
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 40px !important;
 }
 
 /* Colors style for radial chart */
@@ -65,22 +86,34 @@
 .kir_black_pooled_p25 span,
 .kir_top20_pooled_pooled_p75 span {
 	font-weight: bold;
+	font-family: var(--dubois);
+	text-transform: uppercase;
 }
 
-.share_black2010 span {
-	color:  rgb(8, 48, 107);
+.share_black2010 span::before, .kir_top20_black_pooled_p75 span::before, .kir_black_pooled_p75 span::before, .kir_black_pooled_p25 span::before, .kir_top20_pooled_pooled_p75 span::before {
+	display: inline-block;
+	width:1rem;
+	height:1rem;
+	border-radius: 50%;
+	content: '';
+	border: 1px solid var(--color-off-black);
+	position: relative;
+	margin: 0 0.25rem;
+	top: 0.15rem;
 }
 
-.kir_black_pooled_p75 span {
-	color: rgb(0, 0, 0);
+.kir_top20_pooled_pooled_p75 span::before {
+	background-color: var(--color-db-pink);
 }
-
-.kir_top20_black_pooled_p75 span {
-	color: rgb(0, 68, 27);
+.kir_black_pooled_p25 span::before {
+	background-color: var(--color-db-yellow);
 }
-.kir_black_pooled_p25 span {
-	color: rgb(127, 39, 4);
+.kir_black_pooled_p75 span::before {
+	background-color: var(--color-db-brown);
 }
-.kir_top20_pooled_pooled_p75 span {
-	color: rgb(63, 0, 125);
+.kir_top20_black_pooled_p75 span::before {
+	background-color: var(--color-db-green);
+}
+.share_black2010 span::before {
+	background-color: var(--color-db-blue);
 }

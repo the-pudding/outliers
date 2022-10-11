@@ -61,6 +61,15 @@
     kir_top20_pooled_pooled_p75: interpolatePurples
   };
 
+  const colorMap2 = {
+    share_black2010: '#5367A2',
+    kir_top20_black_pooled_p75: '#82A884',
+    kir_black_pooled_p75: '#8F6952',
+    kir_black_pooled_p25: '#EFAE38',
+    kir_top20_pooled_pooled_p75: '#E89994'
+  };
+
+
   const dataset = keys.map((key) => ({
     key,
     gardena: gardenaTract[key],
@@ -150,17 +159,16 @@
 <div class="flex items-center justify-center w-full h-screen relative z-0">
   <div class="grid grid-cols-12 gap-3 max-w-7xl">
     
-    <div class="col-span-2 text-label text-right flex justify-center items-center">
+    <div class="col-span-2 text-label flex justify-center items-center">
       <div>
-        <p class="text-lg font-bold">Gardena</p>
-        <p class="text-sm mb-6">Predicted outcomes</p>
+        <p class="text-lg font-bold dubois-wide-24">Gardena</p>
   
-        <ul class="list-none text-sm">
-          <li class="mb-4">Share of Black kids in neighborhood: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids with high-income earning parents: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Expected income by age 35: <b>$TK</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
+        <ul class="list-none text-sm indent-left">
+          <li class="mb-4 dubois-14 pink-dot-left"><b>TK %</b><br>Share of Black kids in neighborhood</li>
+          <li class="mb-4 dubois-14 opacity-25 yellow-dot-left"><b>TK %</b><br>Share of Black kids with high-income earning parents</li>
+          <li class="mb-4 dubois-14 opacity-25 green-dot-left"><b>TK %</b><br>Expected income by age 35</li>
+          <li class="mb-4 dubois-14 opacity-25 brown-dot-left"><b>TK %</b><br>Share of Black kids in neighborhood</li>
+          <li class="mb-4 dubois-14 opacity-25 blue-dot-left"><b>TK %</b><br>Share of Black kids in neighborhood</li>
         </ul>
       </div>
     </div>
@@ -172,11 +180,11 @@
           <g>
             {#each axisDomain as d}
               <g>
-                <path class="stroke-slate-400" stroke-width={0.5} d={getPath(d, "left")} />
+                <path stroke="#D2B48C" stroke-width={0.5} d={getPath(d, "left")} />
                 {#if ticks.includes(d)}
                   <text
                     font-size={10}
-                    class="fill-slate-500 text-label"
+                    class="text-label dubois"
                     dx="-0.25em"
                     dy="0.35em"
                     x={getAxis(d, "left")[0]}
@@ -192,11 +200,11 @@
           <g>
             {#each axisDomain as d}
               <g>
-                <path class="stroke-slate-400" stroke-width={0.5} d={getPath(d, "right")} />
+                <path stroke="#D2B48C" stroke-width={0.5} d={getPath(d, "right")} />
                 {#if ticks.includes(d) && d !== 0 && d !== 1}
                   <text
                     font-size={10}
-                    class="fill-slate-500 text-label"
+                    class="text-label dubois"
                     dx="-0.35em"
                     dy="0.35em"
                     x={getAxis(d, "right")[0]}
@@ -213,9 +221,8 @@
             {#each dataset as d, i}
               <path
                 data-key={`gardena-${d.key}`}
-                fill={getColorScale(d.key)(d.gardena)}
-                stroke={getColorScale(d.key)(1)}
-                fill-opacity={0.25}
+                fill={colorMap2[d.key]}
+                stroke={'#262626'}
                 stroke-width={1}
                 d={arc(d, i, 1, "gardena")}
               />
@@ -225,9 +232,8 @@
             {#each dataset as d, i}
               <path
                 data-key={`fremont-${d.key}`}
-                fill={getColorScale(d.key)(d.gardena)}
-                stroke={getColorScale(d.key)(1)}
-                fill-opacity={0.25}
+                fill={colorMap2[d.key]}
+                stroke={'#262626'}
                 stroke-width={1}
                 d={arc(d, i, -1, "fremont")}
               />
@@ -237,19 +243,87 @@
       </svg>
     </div>
 
-    <div class="col-span-2 text-label flex justify-center items-center">
+    <div class="col-span-2 text-label text-right flex justify-center items-center">
       <div>
-        <p class="text-lg font-bold">Fremont</p>
-        <p class="text-sm mb-6">Predicted outcomes</p>
+        <p class="text-lg font-bold dubois-wide-24">Fremont</p>
   
-        <ul class="list-none text-sm">
-          <li class="mb-4">Share of Black kids in neighborhood: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids with high-income earning parents: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Expected income by age 35: <b>$TK</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
-          <li class="mb-4 opacity-25">Share of Black kids in neighborhood: <b>TK %</b></li>
+        <ul class="list-none text-sm indent-right">
+          <li class="mb-4 dubois-14 pink-dot-right"><b>TK %</b><br>Share of Black kids in neighborhood</li>
+          <li class="mb-4 dubois-14 opacity-25 yellow-dot-right"><b>TK %</b><br>Share of Black kids with high-income earning parents</li>
+          <li class="mb-4 dubois-14 opacity-25 green-dot-right"><b>TK %</b><br>Expected income by age 35</li>
+          <li class="mb-4 dubois-14 opacity-25 brown-dot-right"><b>TK %</b><br>Share of Black kids in neighborhood</li>
+          <li class="mb-4 dubois-14 opacity-25 blue-dot-right"><b>TK %</b><br>Share of Black kids in neighborhood</li>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .dubois-wide-24 {
+    font-size: 24px;
+    font-family: var(--dubois-wide);
+    text-transform: uppercase;
+    padding: 0 0 1rem 0;
+  }
+
+  .dubois-14 {
+    font-size: 14px;
+    font-family: var(--dubois);
+    text-transform: uppercase;
+  }
+
+  .dubois {
+    font-family: var(--dubois);
+    text-transform: uppercase;
+    fill: var(--color-off-black);
+  }
+
+  .indent-right {
+    padding-right: 1rem;
+  }
+  .indent-left {
+    padding-left: 1rem;
+  }
+
+  .pink-dot-right::before, .yellow-dot-right::before, .brown-dot-right::before, .green-dot-right::before, .blue-dot-right::before {
+      display: inline-block;
+	    width:1rem;
+	    height:1rem;
+      border-radius: 50%;
+	    content: '';
+	    border: 1px solid var(--color-off-black);
+	    position: relative;
+      left: 3rem;
+      top: 0.15rem;
+  }
+
+  .pink-dot-left::before, .yellow-dot-left::before, .brown-dot-left::before, .green-dot-left::before, .blue-dot-left::before {
+      display: inline-block;
+	    width:1rem;
+	    height:1rem;
+      border-radius: 50%;
+	    content: '';
+	    border: 1px solid var(--color-off-black);
+	    position: relative;
+      margin-left: -1rem;
+      left: -0.25rem;
+      top: 0.15rem;
+  }
+
+  .pink-dot-right::before, .pink-dot-left::before {
+      background-color: var(--color-db-pink);
+  }
+  .yellow-dot-right::before, .yellow-dot-left::before {
+      background-color: var(--color-db-yellow);
+  }
+  .brown-dot-right::before, .brown-dot-left::before {
+      background-color: var(--color-db-brown);
+  }
+  .green-dot-right::before, .green-dot-left::before {
+      background-color: var(--color-db-green);
+  }
+  .blue-dot-right::before, .blue-dot-left::before {
+      background-color: var(--color-db-blue);
+  }
+</style>

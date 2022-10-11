@@ -12,6 +12,39 @@
 
 /*
 ********************
+	DuBois
+********************
+*/
+
+@font-face {
+	font-family:  'DuBois Regular';
+	src: url('/assets/fonts/dubois/VTCDuBois-Regular.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family:  'DuBois Regular';
+	src: url('/assets/fonts/dubois/VTCDuBois-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family:  'DuBois Wide';
+	src: url('/assets/fonts/dubois/VTCDuBois-BoldWide.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+/*
+********************
 	National
 ********************
 */

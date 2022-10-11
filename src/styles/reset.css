@@ -2,6 +2,9 @@
 body {
 	background-color: var(--color-bg);
   color: var(--color-fg);
+  background-image: url("/assets/img/bg_texture.png");
+  background-size: 200px;
+  background-repeat: repeat;
 	line-height: 1.4;
 	font-family: var(--font-body);
 	font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 0, 'tnum' 1;
