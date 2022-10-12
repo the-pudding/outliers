@@ -42,7 +42,7 @@
     //
     "kir_top20_pooled_pooled_p75",
     // 'kir_black_pooled_p50',
-    "kir_black_pooled_p25"
+    // "kir_black_pooled_p25"
   ];
 
   const labelMap = {
@@ -75,6 +75,11 @@
     gardena: gardenaTract[key],
     fremont: fremontTract[key]
   }));
+
+  const getSlideIndex = (field, key) => {
+    const slide = copy.slides2.find(d => d.field === field && d.key === key)
+    return parseInt(slide?.id ?? 0)
+  }
 
   const WIDTH = 550;
   const HEIGHT = 600;
@@ -128,10 +133,8 @@
 
   beforeUpdate(async () => {
     const slide = copy.slides2[stepIndex ?? 0];
-    // stepIndex is >5 but dataset is not
-    // so using dataset.length to make sure we start back at zero
-    // when switching to fremont index
-    const dataIndex = stepIndex <= dataset.length - 1 ? stepIndex : stepIndex - dataset.length;
+    const dataIndex = getSlideIndex(slide.field, slide.key)
+
     const stepData = dataset[dataIndex ?? 0];
     const direction = slide.field === "gardena" ? 1 : -1;
     const radialPath = select(
@@ -216,26 +219,26 @@
               </g>
             {/each}
           </g>
-    
+
           <g id="gardena-paths">
-            {#each dataset as d, i}
+            {#each dataset as d}
               <path
                 data-key={`gardena-${d.key}`}
                 fill={colorMap2[d.key]}
                 stroke={'#262626'}
                 stroke-width={1}
-                d={arc(d, i, 1, "gardena")}
+                d={arc(d, getSlideIndex(d.field, d.key), 1, "gardena")}
               />
             {/each}
           </g>
           <g id="fremont-paths">
-            {#each dataset as d, i}
+            {#each dataset as d}
               <path
                 data-key={`fremont-${d.key}`}
                 fill={colorMap2[d.key]}
                 stroke={'#262626'}
                 stroke-width={1}
-                d={arc(d, i, -1, "fremont")}
+                d={arc(d, getSlideIndex(d.field, d.key), -1, "fremont")}
               />
             {/each}
           </g>
