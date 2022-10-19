@@ -22,6 +22,8 @@
   let rampColor;
   let x;
 
+  let db_colors = ["#EFAE38", "#FFFAF2", "#5367A2"];
+
   // default
   let field = "black_pop_pct_chg_1910_1940";
 
@@ -123,7 +125,7 @@
 
     domain = extent(spikes.map((d) => d.properties[field]));
 
-    colorScale = scaleDiverging().domain([domain[0], 0, domain[1]]).interpolator(interpolateBrBG);
+    colorScale = scaleDiverging().domain([domain[0], 0, domain[1]]).range(db_colors);
     rampColor = colorScale.interpolator();
   });
 
@@ -145,19 +147,19 @@
 
       <div id="legend">
         <!-- <p class="text-label text-sm">Percentage change in the Black population</p> -->
-        <div class="flex items-center">
+        <div class="flex items-center justify-center">
           <!-- <p class="text-label text-sm mr-3">{@html domain[0] ?? ""}</p> -->
-          <p class="text-label text-sm mr-3">Lower</p>
+          <p class="text-label text-sm mr-3 dubois-14">Lower</p>
           <svg
             bind:this={svgLegend}
             class="legend"
             width={320}
-            height={45}
-            viewBox={`0 0 ${320} ${45}`}
+            height={10}
+            viewBox={`0 0 ${320} ${10}`}
           >
             <image
               x={0}
-              y={18}
+              y={0}
               width={320}
               height={10}
               preserveAspectRatio="none"
@@ -166,7 +168,7 @@
             <!-- <g bind:this={svgLegend} transform={`translate(0, ${26}`} /> -->
           </svg>
           <!-- <p class="text-label text-sm ml-3">{@html domain[1] ?? ""}</p> -->
-          <p class="text-label text-sm ml-3">Higher</p>
+          <p class="text-label text-sm ml-3 dubois-14">Higher</p>
         </div>
       </div>
 
@@ -216,7 +218,9 @@
           {#each states as state}
             <path
               d={path(state)}
-              class="fill-white stroke-gray-200"
+              fill={"#DECBBA"}
+              fill-opacity={0.15}
+              stroke={"#262626"}
               width={1}
               height={1}
               stroke-width={1}
@@ -230,7 +234,7 @@
       <g id="spikes" stroke-width="0.25">
         {#each spikes as spike}
           <path
-            class=" stroke-gray-400"
+            stroke={"#262626"}
             transform={translate(spike, field)}
             d={generateSpike(spike, field)}
             fill={colorScale(spike.properties[field])}
@@ -242,8 +246,8 @@
       <g id="cities">
         {#each cities as city}
           <g transform={translate(city, field, false)}>
-            <circle class="stroke-white fill-gray-700" stroke-width={1} r={2} />
-            <text class="text-shadow text-label fill-gray-500" font-size={8} x={5} y={-3}
+            <circle class="stroke-white fill-gray-900" stroke-width={1} r={2} />
+            <text class="text-shadow text-label fill-gray-900" font-size={12} x={5} y={-3}
               >{city.properties.NAME}</text
             >
           </g>
@@ -252,7 +256,7 @@
     </svg>
 
     <Block>
-      <p class="text-label text-gray-500">Source: {@html source}</p>
+      <p class="text-label dubois-14">Source: {@html source}</p>
     </Block>
   </div>
 </div>
@@ -261,5 +265,37 @@
   .legend {
     overflow: visible;
     display: block;
+  }
+
+  :global(#legend svg) {
+    outline: 1px solid var(--color-off-black);
+  }
+
+  #legend {
+    max-width: 500px;
+    margin: 2rem auto 0 auto;
+  }
+
+  .text-label {
+    font-family: var(--dubois);
+    text-transform: uppercase;
+  }
+
+  .dubois-14 {
+    font-size: 14px;
+    font-family: var(--dubois);
+    text-transform: uppercase;
+  }
+
+  h3.text-label {
+    text-align: center;
+    font-size: 30px;
+    font-family: var(--dubois-wide);
+    padding: 0 0 1rem 0;
+  }
+
+  .text-base {
+    text-align: center;
+    font-size: 20px;
   }
 </style>

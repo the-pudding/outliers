@@ -89,7 +89,7 @@
       {#each copy.slides2 as slide, i}
         <div class="step" class:active={mobilityScrollValue === i}>
           <div
-            class="bg-slate-100 mx-auto px-4 py-2 border-2 border-slate-100 rounded md:w-7/12 sm:w-11/12 max-w-xl text-lg"
+            class="bg-tan mx-auto md:w-7/12 sm:w-11/12 max-w-xl text-lg"
           >
             <svelte:component
               this={blocks[slide.block] ?? Text}
@@ -120,5 +120,16 @@
 
   .step {
     height: 125vh;
+  }
+
+  #radial-bar {
+    padding: 0 1rem;
+  }
+
+  .bg-tan {
+    background-color: rgba(255, 250, 242, 0.95);
+    padding: 2rem 2rem 1rem 2rem;
+    border: 1px solid var(--color-off-black);
+    box-shadow: 0px 0px 10px rgba(222, 203, 186, 0.5);
   }
 </style>
