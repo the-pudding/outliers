@@ -19,11 +19,11 @@
 
     "madera-mom": "col-start-1 col-span-5 ",
 
-    "gardena-mom-and-me": "col-start-5 col-span-5",
+    "gardena-mom-and-me": "col-start-7 col-span-5",
 
-    "gardena-preschool": "col-start-5 col-span-5",
+    "gardena-preschool": "col-start-7 col-span-5",
 
-    "fremont": "col-start-7 col-span-5",
+    "fremont": "col-start-1 col-span-5",
 
   };
 
