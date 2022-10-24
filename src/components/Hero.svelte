@@ -25,7 +25,7 @@
         .attr("stroke-dashoffset", (d, i) => lineLengths[i])
         .transition()
         //.delay((d, i) => i * 100)
-        .duration(1500)
+        .duration(1000)
         .ease(easeLinear)
         .attr("stroke-dashoffset", 0)
         .on("end", resolve);
@@ -49,8 +49,8 @@
     await popIn(smallUSPaths, "opacity", 1, 250, 0);
     await drawPaths(smallUSPaths);
     await popIn(filledPath, "fill", "#262626", 250, 0);
-    await popIn(cutoutPhoto, "opacity", 1, 230, 0);
-    await popIn(headlineSpan, "top", "-100px", 250, 500);
+    await popIn(cutoutPhoto, "opacity", 1, 250, 0);
+    await popIn(headlineSpan, "top", "-100px", 250, 250);
   }
 
   onMount(() => {
@@ -70,7 +70,7 @@
   <!-- </div> -->
   <div class="overlays">
     <div class="intro-svg">{@html usMap}</div>
-    <div class="intro-cutout"><img src="/assets/img/aaron_cutout.png"></div>
+    <div class="intro-cutout"><img src="/assets/img/aaron_cutout.png" alt="the author as a toddler dressed up in a white shirt, black pants, a black bowtie, and yellow suspenders"></div>
   </div>
   <div class="hed">
     <div><p class="hed-text">On</p></div>
@@ -147,8 +147,10 @@
   }
 
   .intro-block {
+    border-top: 2px solid var(--color-db-red);
     position: relative;
-    padding: 0 1rem;
+    padding: 1rem 1rem 0 1rem;
+    margin-top: -1rem;
   }
 
   .intro-cutout img {

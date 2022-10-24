@@ -188,7 +188,7 @@
       </span> -->
     </Block>
 
-    <svg bind:this={svg} class="w-full h-auto" width="960" height="500" viewBox="0 0 960 500">
+    <svg bind:this={svg} class="w-full h-auto" width="960" height="520" viewBox="0 0 960 520">
       <!-- map drop shadow -->
       <defs>
         <filter id="map-shadow" x="0" y="0" width="100%" height="100%">
@@ -256,7 +256,7 @@
     </svg>
 
     <Block>
-      <p class="text-label dubois-14">Source: {@html source}</p>
+      <p class="text-label dubois-14"><strong>Source:</strong> {@html source}</p>
     </Block>
   </div>
 </div>

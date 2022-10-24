@@ -132,4 +132,8 @@
     border: 1px solid var(--color-off-black);
     box-shadow: 0px 0px 10px rgba(222, 203, 186, 0.5);
   }
+
+  .px-4 {
+    margin-top: 6rem;
+  }
 </style>

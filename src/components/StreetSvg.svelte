@@ -11,7 +11,6 @@
 
   const rootpath = isDev ? "/" : "/outliers/"
   export let step;
-  console.log(step);
 
   let maderaPaths;
   let gardenaPaths;
@@ -36,12 +35,11 @@
   }
 
   function pathOrder(step) {
-    console.log(step)
-    if (step == 1) {
+    if (step == 0) {
       drawPaths(maderaPaths)
-    } else if (step == 4) {
+    } else if (step == 3) {
       drawPaths(gardenaPaths)
-    } else if (step == 7) {
+    } else if (step == 6) {
       drawPaths(fremontPaths)
     }
   }
@@ -55,15 +53,15 @@
   });
   </script>
   
-    <div class:visible="{step >= 1 && step < 3}" id="madera-wrapper">
+    <div class:visible="{step >= 0 && step < 3}" id="madera-wrapper">
       <div class="svg-wrapper">{@html madera}</div>
       <div class="img-wrapper"><img src="/assets/img/madera-streets.png" alt="street grid lines of madera, ca." /></div>
     </div>
-    <div class:visible="{step > 3 && step < 5}" id="gardena-wrapper">
+    <div class:visible="{step > 2 && step < 5}" id="gardena-wrapper">
       <div class="svg-wrapper">{@html gardena}</div>
       <div class="img-wrapper"><img src="/assets/img/gardena-streets.png" alt="street grid lines of gardena, ca." /></div>
     </div>
-    <div class:visible="{step >= 7}" id="fremont-wrapper">
+    <div class:visible="{step >= 6}" id="fremont-wrapper">
       <div class="svg-wrapper">{@html fremont}</div>
       <div class="img-wrapper"><img src="/assets/img/fremont-streets.png" alt="street grid lines of fremont, ca." /></div>
     </div>
@@ -101,7 +99,7 @@
     }
 
     #fremont-wrapper {
-      max-width: 700px;
+      max-width: 750px;
       top: 0;
       right: 0;
     }
