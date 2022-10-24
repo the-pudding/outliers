@@ -37,11 +37,11 @@
 
   function pathOrder(step) {
     console.log(step)
-    if (step == 0) {
+    if (step == 1) {
       drawPaths(maderaPaths)
-    } else if (step == 2) {
-      drawPaths(gardenaPaths)
     } else if (step == 4) {
+      drawPaths(gardenaPaths)
+    } else if (step == 7) {
       drawPaths(fremontPaths)
     }
   }
@@ -55,15 +55,15 @@
   });
   </script>
   
-    <div class:visible="{step <= 1}" id="madera-wrapper">
+    <div class:visible="{step >= 1 && step < 3}" id="madera-wrapper">
       <div class="svg-wrapper">{@html madera}</div>
       <div class="img-wrapper"><img src="/assets/img/madera-streets.png" alt="street grid lines of madera, ca." /></div>
     </div>
-    <div class:visible="{step > 1 && step < 4}" id="gardena-wrapper">
+    <div class:visible="{step > 3 && step < 5}" id="gardena-wrapper">
       <div class="svg-wrapper">{@html gardena}</div>
       <div class="img-wrapper"><img src="/assets/img/gardena-streets.png" alt="street grid lines of gardena, ca." /></div>
     </div>
-    <div class:visible="{step >= 4}" id="fremont-wrapper">
+    <div class:visible="{step >= 7}" id="fremont-wrapper">
       <div class="svg-wrapper">{@html fremont}</div>
       <div class="img-wrapper"><img src="/assets/img/fremont-streets.png" alt="street grid lines of fremont, ca." /></div>
     </div>

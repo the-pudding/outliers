@@ -12,6 +12,7 @@
   let smallUSPaths
   let filledPath;
   let headlineSpan;
+  let introBlockW;
 
   function drawPaths(pathCollection) {
     return new Promise((resolve) => {
@@ -57,7 +58,7 @@
     filledPath = selectAll("#map_x5F_filled");
     largeUSPaths = selectAll("#large_x5F_us path");
     smallUSPaths = selectAll("#small_x5F_us path");
-    headlineSpan = selectAll("h1 span, .intro-text");
+    headlineSpan = selectAll(".hed-text span, .intro-block");
     run();
   });
 
@@ -71,11 +72,19 @@
     <div class="intro-svg">{@html usMap}</div>
     <div class="intro-cutout"><img src="/assets/img/aaron_cutout.png"></div>
   </div>
-  <h1>On <span>Upward</span> Mobility</h1>
-  <div class="intro-text">
-    <p class="mb-4">{copy.description}</p>
-    <p>By <a href="https://pudding.cool" title={copy.byline}>{copy.byline}</a></p>
+  <div class="hed">
+    <div><p class="hed-text">On</p></div>
+    <div class="hed-block">
+      <p class="hed-text"><span bind:clientWidth={introBlockW}>Upward</span></p>
+      <div class="intro-block">
+        <p class="intro-text" style="max-width: {introBlockW}px">{copy.description}</p>
+        <p class="byline">By <a href="https://pudding.cool" title={copy.byline}>{copy.byline}</a></p>
+        <p class="byline sm">With <a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a> and <a href="https://pudding.cool/author/michelle-mcghee/">Michelle McGhee</a></p>
+      </div>
+    </div>
+    <div><p class="hed-text">Mobility</p></div>
   </div>
+  <h1 aria-label="On Upward Mobility">On Upward Mobility</h1>
 </div>
 
 <style>
@@ -90,19 +99,56 @@
     left: 0;
   }
 
-  .intro-text {
-    position: relative;
-    top: 200px;
-    margin: 0 0 5rem 27%;
-    max-width: 22rem;
-    font-family: var(--dubois);
-    text-transform: uppercase;
-    font-size: 18px;
+  .hed {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 6rem 0 0 0;
+    padding: 0 1rem;
   }
 
-  .intro-text a {
+  .hed-block {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+  }
+
+  .hed-text {
+    font-family: var(--dubois-wide);
+    text-transform: uppercase;
+    font-size: 86px;
+    padding: 0 1rem;
+  }
+
+  .hed-text span {
+    display: inline-block;
+  }
+
+  .intro-text, .byline {
+    font-size: 20px;
+    font-family: var(--dubois);
+    text-transform: uppercase;
+    padding: 0 0 2rem 0;
+  }
+
+  .byline {
+    padding: 0;
+    font-size: 16px;
+  }
+
+  .byline a {
     font-weight: 700;
     color: var(--color-off-black) !important;
+  }
+
+  .sm {
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .intro-block {
+    position: relative;
+    padding: 0 1rem;
   }
 
   .intro-cutout img {
@@ -126,12 +172,8 @@
     text-align: center;
     text-transform: uppercase;
     font-size: 86px;
-  }
-
-  h1 span {
-    display: inline-block;
-    position: relative;
-    top: 200px;
-    margin: 0 1rem;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
   }
 </style>

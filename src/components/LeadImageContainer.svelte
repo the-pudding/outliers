@@ -11,16 +11,26 @@
   // })
 
   const positioningClasses = {
-    "madera-ggp": "row-start-1 col-start-6 col-span-6",
-
-    "madera-mom": "row-start-2 col-start-7 col-span-6",
-
-    "gardena-mom-and-me": "row-start-2 col-start-1 col-span-4",
-
-    "gardena-preschool": "row-start-3 col-start-1 col-span-4",
-
-    "fremont": " row-start-3 col-start-6 col-span-6",
-
+    "madera-ggp":  {
+      triggerStep: 0,
+      position: "row-start-1 col-start-6 col-span-6",
+    },
+    "madera-mom": {
+      triggerStep: 2,
+      position:"row-start-2 col-start-7 col-span-6",
+    },
+    "gardena-mom-and-me": {
+      triggerStep: 3,
+      position: "row-start-2 col-start-1 col-span-4",
+    },
+    "gardena-preschool": {
+      triggerStep: 5,
+      position: "row-start-3 col-start-1 col-span-4",
+    },
+    "fremont": {
+      triggerStep: 6,
+      position: "row-start-3 col-start-6 col-span-6",
+    }
   }
 
   beforeUpdate(() => {
@@ -49,7 +59,7 @@
       class="grid grid-cols-12 grid-rows-6 gap-3 w-full h-4/5 max-w-5xl"
     >
       {#each Object.keys(positioningClasses) as key, index}
-        <div data-index={index} class={`${positioningClasses[key]} transition-opacity duration-500 opacity-0`}>
+        <div data-index={positioningClasses[key].triggerStep} class={`${positioningClasses[key].position} transition-opacity duration-500 opacity-0`}>
           <div class="border-2 border-black">
             <ImageRaw 
               className="w-full"

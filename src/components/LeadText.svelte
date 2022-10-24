@@ -17,13 +17,21 @@
   const positioningClasses = {
     "madera-ggp": "col-start-1 col-span-5",
 
+    "madera-farm": "col-start-1 col-span-5",
+
     "madera-mom": "col-start-1 col-span-5 ",
 
     "gardena-mom-and-me": "col-start-7 col-span-5",
+    
+    "gardena-air": "col-start-7 col-span-5",
 
     "gardena-preschool": "col-start-7 col-span-5",
 
     "fremont": "col-start-1 col-span-5",
+
+    "fremont-2": "col-start-1 col-span-5",
+
+    "fremont-income": "col-start-1 col-span-5",
 
   };
 
