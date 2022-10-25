@@ -57,7 +57,7 @@
       <div class="svg-wrapper">{@html madera}</div>
       <div class="img-wrapper"><img src="/assets/img/madera-streets.png" alt="street grid lines of madera, ca." /></div>
     </div>
-    <div class:visible="{step > 2 && step < 5}" id="gardena-wrapper">
+    <div class:visible="{step > 2 && step < 6}" id="gardena-wrapper">
       <div class="svg-wrapper">{@html gardena}</div>
       <div class="img-wrapper"><img src="/assets/img/gardena-streets.png" alt="street grid lines of gardena, ca." /></div>
     </div>
@@ -87,20 +87,40 @@
     }
 
     #madera-wrapper {
-      max-width: 1000px;
+      max-width: 700px;
       bottom: -10%;
       right: 0;
     }
 
     #gardena-wrapper {
-      max-width: 700px;
+      max-width: 575px;
       top: 0;
-      left: 5%;
+      left: 10%;
     }
 
     #fremont-wrapper {
-      max-width: 750px;
+      max-width: 475px;
       top: 0;
       right: 0;
+    }
+
+    @media only screen and (min-width: 900px) {
+      #madera-wrapper {
+        max-width: 1000px;
+        bottom: -10%;
+        right: 0;
+      }
+
+      #gardena-wrapper {
+        max-width: 700px;
+        top: 0;
+        left: 5%;
+      }
+
+      #fremont-wrapper {
+        max-width: 750px;
+        top: 0;
+        right: 0;
+      }
     }
   </style>

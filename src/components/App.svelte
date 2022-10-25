@@ -37,7 +37,7 @@
   <!-- Display header -->
   <Hero />
   <!-- Intro -->
-  <section class="px-4">
+  <section class="intro-section">
     {#each copy.intro as props, i}
       <svelte:component
         this={blocks[props.block] ?? Text}
@@ -50,7 +50,7 @@
   <section class="relative">
     <LeadImageContainer stepIndex={introScrollValue} />
     <!-- <div class="spacer" /> -->
-    <Scrolly bind:value={introScrollValue} bind:id className="flex items-center justify-center flex-col">
+    <Scrolly bind:value={introScrollValue} bind:id className="flex flex-col">
       <!-- <div class="grid grid-cols-12"> -->
       {#each copy.outcomes as slide, i}
         <LeadText 
@@ -118,6 +118,10 @@
     height: 75vh;
   } */
 
+  .relative {
+    width: 100%;
+  }
+
   .step {
     height: 125vh;
   }
@@ -133,7 +137,22 @@
     box-shadow: 0px 0px 10px rgba(222, 203, 186, 0.5);
   }
 
-  .px-4 {
-    margin-top: 6rem;
+  .intro-section {
+    margin-top: 4rem;
+    padding: 0 1rem;
+  }
+
+  @media only screen and (min-width: 550px) {
+    .intro-section {
+      margin-top: 6rem;
+      padding: 0 2rem;
+    }
+  }
+
+  @media only screen and (min-width: 700px) {
+    .intro-section {
+      margin-top: 6rem;
+      padding: 0;
+    }
   }
 </style>
