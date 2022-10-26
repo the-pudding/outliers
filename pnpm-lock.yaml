@@ -4,14 +4,11 @@ specifiers:
   '@rollup/plugin-dsv': ^2.0.3
   '@sveltejs/adapter-static': 1.0.0-next.28
   '@sveltejs/kit': 1.0.0-next.265
-  '@turf/helpers': ^6.5.0
   '@types/d3': ^7.4.0
   '@types/topojson-client': ^3.1.1
   archieml: ^0.5.0
   autoprefixer: ^10.4.7
   d3: ^7.3.0
-  d3-scale-chromatic: ^3.0.0
-  d3-zoom: ^3.0.0
   feather-icons: ^4.28.0
   lodash.debounce: ^4.0.8
   node-fetch: git ^3.2.0
@@ -28,10 +25,7 @@ specifiers:
   vite-plugin-svgstring: ^1.0.0
 
 dependencies:
-  '@turf/helpers': 6.5.0
   d3: 7.3.0
-  d3-scale-chromatic: 3.0.0
-  d3-zoom: 3.0.0
   topojson-client: 3.1.0
   us: 2.0.0
 
@@ -156,10 +150,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@turf/helpers/6.5.0:
-    resolution: {integrity: sha512-VbI1dV5bLFzohYYdgqwikdMVpe7pJ9X3E+dlr425wa2/sMJqYDhTO++ec38/pcPvPE6oD9WEEeU3Xu3gza+VPw==}
-    dev: false
 
   /@types/d3-array/3.0.3:
     resolution: {integrity: sha512-Reoy+pKnvsksN0lQUlcH6dOGjRZ/3WRwXR//m+/8lt1BXeI4xyaUZoqULNjyXXRuh0Mj4LNpkCvhUpQlY3X5xQ==}

@@ -38,10 +38,7 @@
   "browserslist": "> 0.5%, last 4 versions, not ie <= 11, not ie_mob <= 11",
   "subdirectory": "outliers",
   "dependencies": {
-    "@turf/helpers": "^6.5.0",
     "d3": "^7.3.0",
-    "d3-scale-chromatic": "^3.0.0",
-    "d3-zoom": "^3.0.0",
     "topojson-client": "^3.1.0",
     "us": "^2.0.0"
   }
