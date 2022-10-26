@@ -25,32 +25,32 @@
     "madera-ggp":  {
       triggerStep: 1,
       endStep: 3,
-      position: "row-start-5 col-start-7 col-span-6",
-      positionSmall: "row-start-2 col-start-8 col-span-5"
+      position: "row-start-1 col-start-2 col-span-6",
+      positionMobile: "row-start-2 col-start-1 col-span-8"
     },
     "madera-mom": {
       triggerStep: 2,
       endStep: 3,
       position:"row-start-2 col-start-6 col-span-6",
-      positionSmall: "row-start-3 col-start-7 col-span-5"
+      positionMobile: "row-start-3 col-start-3 col-span-8"
     },
     "gardena-mom-and-me": {
       triggerStep: 4,
       endStep: 6,
-      position: "row-start-2 col-start-2 col-span-4",
-      positionSmall: "row-start-2 col-start-2 col-span-4"
+      position: "row-start-1 col-start-2 col-span-5",
+      positionMobile: "row-start-2 col-start-1 col-span-6"
     },
     "gardena-preschool": {
       triggerStep: 5,
       endStep: 6,
-      position: "row-start-3 col-start-3 col-span-4",
-      positionSmall: "row-start-3 col-start-3 col-span-4"
+      position: "row-start-3 col-start-3 col-span-5",
+      positionMobile: "row-start-3 col-start-5 col-span-6"
     },
     "fremont": {
       triggerStep: 7,
       endStep: 9,
-      position: "row-start-3 col-start-7 col-span-6",
-      positionSmall: "row-start-2 col-start-8 col-span-5"
+      position: "row-start-3 col-start-6 col-span-6",
+      positionMobile: "row-start-3 col-start-1 col-span-8"
     }
   }
 
@@ -196,7 +196,7 @@
           </div>
         </div> 
         {:else}
-        <div data-index={positioningClasses[key].triggerStep} data-end={positioningClasses[key].endStep} class={`${positioningClasses[key].positionSmall} transition-opacity duration-500 opacity-0`}>
+        <div data-index={positioningClasses[key].triggerStep} data-end={positioningClasses[key].endStep} class={`${positioningClasses[key].positionMobile} transition-opacity duration-500 opacity-0`}>
           <div class="border-2 border-black">
             <ImageRaw 
               className="w-full"
@@ -226,33 +226,62 @@
   #wrapper {
     z-index: 1000;
     width: 100%;
-    margin: 3rem 3rem 3rem 9rem;
-    border-left: 1px solid var(--color-off-black);
+    padding: 2rem;
+    margin: 0;
   }
   .city-svg-wrapper {
     width: 100%;
     height: 100vh;
+    top: 50%;
+    left: 50%;
     position: absolute;
+    transform: translate(-50%, -50%);
     z-index: 1;
+    margin: 0 auto;
+    max-width: 50rem;
   }
 
   .locator-svg-wrapper {
     position: absolute;
-    left: 2rem;
+    left: 0;
     top: 50%;
     z-index: 1;
-    width: 80px;
-    height: 140px;
-    transform: translate(0, -50%)
+    width: 8rem;
+    height: 8rem;
+    transform: translate(0, -50%);
+    display: none;
+    justify-content: center;
+  }
+
+  :global(.locator-svg-wrapper svg) {
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 700px) {
+    #wrapper {
+      border-left: 1px solid var(--color-off-black);
+      margin: 2rem 2rem 2rem 8rem;
+    }
+    .locator-svg-wrapper {
+      display: flex;
+    }
+    .city-svg-wrapper {
+      margin: 0 0 0 8rem;
+      max-width: 50rem;
+    }
   }
 
   @media only screen and (min-width: 900px) {
     #wrapper {
-      margin: 3rem 3rem 3rem 12rem;
+      margin: 2rem 2rem 2rem 12rem;
+    }
+    .city-svg-wrapper {
+      margin: 0 0 0 12rem;
+      max-width: 50rem;
     }
     .locator-svg-wrapper {
-      width: 120px;
-      height: 180px;
+      width: 12rem;
+      height: 12rem;
     }
   }
 </style>

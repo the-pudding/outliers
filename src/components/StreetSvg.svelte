@@ -87,40 +87,34 @@
     }
 
     #madera-wrapper {
-      max-width: 700px;
-      bottom: -10%;
-      right: 0;
+      width: 100%;
+      top: 0;
+      left: 0;
     }
 
     #gardena-wrapper {
-      max-width: 575px;
+      width: 100%;
       top: 0;
-      left: 10%;
+      left: 0;
     }
 
     #fremont-wrapper {
-      max-width: 475px;
+      width: 100%;
       top: 0;
-      right: 0;
+      left: 0;
     }
 
-    @media only screen and (min-width: 900px) {
+    @media only screen and (min-width: 700px) {
       #madera-wrapper {
-        max-width: 1000px;
-        bottom: -10%;
-        right: 0;
+        width: calc(100% - 8rem);
       }
 
       #gardena-wrapper {
-        max-width: 700px;
-        top: 0;
-        left: 5%;
+        width: calc(100% - 8rem);
       }
 
       #fremont-wrapper {
-        max-width: 750px;
-        top: 0;
-        right: 0;
+        width: calc(100% - 8rem);
       }
     }
   </style>

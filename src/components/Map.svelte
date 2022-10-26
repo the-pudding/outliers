@@ -153,14 +153,14 @@
           <svg
             bind:this={svgLegend}
             class="legend"
-            width={320}
+            width={200}
             height={10}
-            viewBox={`0 0 ${320} ${10}`}
+            viewBox={`0 0 ${200} ${10}`}
           >
             <image
               x={0}
               y={0}
-              width={320}
+              width={200}
               height={10}
               preserveAspectRatio="none"
               xlink:href={rampColor ? ramp(rampColor).toDataURL() : undefined}
@@ -246,8 +246,8 @@
       <g id="cities">
         {#each cities as city}
           <g transform={translate(city, field, false)}>
-            <circle class="stroke-white fill-gray-900" stroke-width={1} r={2} />
-            <text class="text-shadow text-label fill-gray-900" font-size={12} x={5} y={-3}
+            <circle class="fill-gray-900" stroke-width={2} r={4} />
+            <text class="text-label fill-gray-900" x={5} y={-4}
               >{city.properties.NAME}</text
             >
           </g>
@@ -273,12 +273,24 @@
 
   #legend {
     max-width: 500px;
-    margin: 2rem auto 0 auto;
+    margin: 2rem auto;
   }
 
   .text-label {
     font-family: var(--dubois);
     text-transform: uppercase;
+  }
+
+  #cities .text-label {
+    font-size: 12px;
+    font-family: var(--dubois);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: -2px -2px #fffaf2, 2px -2px #fffaf2, -2px 2px #fffaf2, 2px 2px #fffaf2;
+  }
+
+  circle {
+    stroke: #fffaf2;
   }
 
   .dubois-14 {
@@ -289,7 +301,7 @@
 
   h3.text-label {
     text-align: center;
-    font-size: 30px;
+    font-size: 24px;
     font-family: var(--dubois-wide);
     padding: 0 0 1rem 0;
   }

@@ -1,11 +1,33 @@
 <script>
   import Block from "$components/Block.svelte";
   import ImageRaw from "$components/ImageRaw.svelte";
+  import inView from "$actions/inView.js";
+  import { onMount } from "svelte";
+  import { selectAll, easeLinear } from "d3";
+
+  let visiblePhoto = false;
+  let photos;
+
+  function showPhotos() {
+    console.log(photos);
+      photos
+        .transition()
+        .delay((d, i) => i * 250)
+        .duration(500)
+        .ease(easeLinear)
+        .style("opacity", 1)
+  }
+
+  onMount(() => {
+    photos = selectAll(".trip-wrapper .border-2")
+  });
   
   export let text
 </script>
 
-  <div class="trip-wrapper">
+  <div class="trip-wrapper"
+    use:inView
+    on:enter={() => showPhotos()}>
     <div class="w-full relative z-0 max-w-5xl mx-auto my-0 flex flex-col justify-between">
       <div class="border-2 border-black" id="madera-triptych">
         <ImageRaw src="assets/img/madera.jpg" />
@@ -24,14 +46,17 @@
 
   <style>
     .trip-wrapper {
-      height: calc(100vw*0.65);
-      padding: 2rem 2rem 0rem 2rem;
+      height: calc(100vw*1.25);
+      padding: 1rem 1rem 0rem 1rem;
       max-width: 60rem;
       max-height: 60rem;
-      min-height: 50rem;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
+    }
+
+    .trip-wrapper .border-2 {
+      opacity: 0;
     }
 
     .relative {
@@ -53,53 +78,50 @@
     }
 
     #madera-triptych {
-      top: 25%;
-      left: 20%;
+      top: 0;
+      left: 0;
     }
 
     #gardena1-triptych {
-      top: 30%;
+      top: 25%;
       right: 0;
     }
 
     #gardena2-triptych {
       bottom: 0;
-      left: 15%;
+      left: 0;
     }
 
     #madera-triptych, #gardena1-triptych, #gardena2-triptych {
-      width: 45%
+      width: 65%;
     }
 
-    @media only screen and (min-width: 1000px) {
-      #madera-triptych, #gardena1-triptych, #gardena2-triptych {
-        width: 50%
+    @media only screen and (min-width: 700px) {
+      .trip-wrapper {
+        height: calc(100vw*1.25);
+        padding: 2rem 2rem 0rem 2rem;
       }
 
-      #madera-triptych {
-        left: 10%;
-        top: 10%
+      #madera-triptych, #gardena1-triptych, #gardena2-triptych {
+        width: 65%;
       }
 
       #gardena2-triptych {
-        bottom: 5%;
-        left: 5%;
+        left: 2%;
       }
     }
 
-    @media only screen and (min-width: 1300px) {
-      #madera-triptych, #gardena1-triptych, #gardena2-triptych {
-        width: 55%
+    @media only screen and (min-width: 900px) {
+      .trip-wrapper {
+        height: calc(100vw*1.25);
       }
 
-      #madera-triptych {
-        left: 10%;
-        top: 10%
+      #madera-triptych, #gardena1-triptych, #gardena2-triptych {
+        width: 55%;
       }
 
       #gardena2-triptych {
-        bottom: 5%;
-        left: 0;
+        left: 2%;
       }
     }
   </style>

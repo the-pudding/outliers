@@ -17,40 +17,40 @@
 
   const positioningClasses = {
     "madera-ggp": {
-      position: "col-start-2 col-span-5",
-      position900: "col-start-2 col-span-5"
+      position: "col-start-2 col-span-6",
+      positionMobile: "col-start-1 col-span-12"
     },
     "madera-farm": {
-      position: "col-start-2 col-span-5",
-      position900: "col-start-2 col-span-5",
+      position: "col-start-2 col-span-6",
+      positionMobile: "col-start-1 col-span-12"
     },
     "madera-mom": {
-      position: "col-start-2 col-span-5 ",
-      position900: "col-start-2 col-span-5",
+      position: "col-start-2 col-span-6",
+      positionMobile: "col-start-1 col-span-12"
     },
     "gardena-mom-and-me": {
-      position: "col-start-8 col-span-5",
-      position900: "col-start-7 col-span-5",
+      position: "col-start-6 col-span-6",
+      positionMobile: "col-start-1 col-span-12"
     },
     "gardena-air": {
-      position: "col-start-8 col-span-5",
-      position900: "col-start-7 col-span-5",
+      position: "col-start-6 col-span-6",
+      positionMobile: "col-start-1 col-span-12"
     },
     "gardena-preschool": {
-      position: "col-start-8 col-span-5",
-      position900: "col-start-7 col-span-5",
+      position: "col-start-6 col-span-6",
+      positionMobile: "col-start-1 col-span-12"
     },
     "fremont": {
       position: "col-start-2 col-span-5",
-      position900: "col-start-2 col-span-5",
+      positionMobile: "col-start-1 col-span-12"
     },
     "fremont-2": {
       position: "col-start-2 col-span-5",
-      position900: "col-start-2 col-span-5",
+      positionMobile: "col-start-1 col-span-12"
     },
     "fremont-income": {
       position: "col-start-2 col-span-5",
-      position900: "col-start-2 col-span-5",
+      positionMobile: "col-start-1 col-span-12"
     }
   };
 
@@ -72,7 +72,7 @@
     {/each}
   </div>
   {:else}
-  <div class={`${positioningClasses[id].position900} p-4`}>
+  <div class={`${positioningClasses[id].positionMobile} p-4`}>
     {#if subhead}
     <p class={`subhed subhed-${subhead.split(',')[0]} text-label mt-6 mb-2 text-3xl`}>{subhead}</p>
     {/if}
@@ -85,18 +85,29 @@
 
 <style>
   .h-screen {
-    padding-left: 9rem;
+    padding: 1rem;
     width: 100%;
+    grid-auto-rows: minmax(min-content, max-content);
+  }
+
+  .h-screen div {
+    border: 1px solid var(--color-off-black);
+    background-color: rgba(255, 250, 242, 0.95);
+    padding: 2rem 2rem 1rem 2rem;
+    box-shadow: 0px 0px 10px rgb(222 203 186 / 50%);
+    max-width: 25rem;
+    margin: 0 auto;
   }
 
   .text-label {
-    text-shadow: -3px -3px #fffaf2, 3px -3px #fffaf2, -3px 3px #fffaf2, 3px 3px #fffaf2;
+    /* text-shadow: -3px -3px #fffaf2, 3px -3px #fffaf2, -3px 3px #fffaf2, 3px 3px #fffaf2; */
   }
   
   .subhed.text-label {
     font-family: var(--dubois-wide);
     text-transform: uppercase;
     font-size: 24px;
+    margin: 0;
   }
 
   .subhed-Madera::before, .subhed-Gardena::before, .subhed-Fremont::before {
@@ -122,9 +133,9 @@
     background-color: var(--color-db-green);
   }
 
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 700px) {
     .h-screen {
-      padding-left: 12rem;
+      padding: 1rem 1rem 1rem 12rem;
     }
   }
 </style>

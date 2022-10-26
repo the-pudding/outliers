@@ -6,5 +6,12 @@
 </script>
 
 <Block {id} type="subhead">
-  <h2 class="font-bold mt-6 mb-8 text-3xl">{@html text}</h2>
+  <h2 class="font-bold text-3xl">{@html text}</h2>
 </Block>
+
+<style>
+  h2 {
+    margin: 6rem 0 2rem 0;
+    font-size: 3rem;
+  }
+</style>

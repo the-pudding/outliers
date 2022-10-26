@@ -120,6 +120,7 @@
 
   .relative {
     width: 100%;
+    margin: 3rem 0;
   }
 
   .step {
