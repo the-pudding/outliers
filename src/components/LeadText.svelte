@@ -16,15 +16,16 @@
 
   const positioningClasses = {
     "madera-ggp": "col-start-1 col-span-5",
-
+    "madera-farm": "col-start-1 col-span-5",
     "madera-mom": "col-start-1 col-span-5 ",
 
     "gardena-mom-and-me": "col-start-5 col-span-5",
-
+    "gardena-air": "col-start-5 col-span-5",
     "gardena-preschool": "col-start-5 col-span-5",
 
     "fremont": "col-start-7 col-span-5",
-
+    "fremont-2": "col-start-7 col-span-5",
+    "fremont-income": "col-start-7 col-span-5",
   };
 
   // beforeUpdate(() => {
@@ -38,7 +39,7 @@
     <p class={`subhed subhed-${subhead.split(',')[0]} text-label mt-6 mb-2 text-3xl`}>{subhead}</p>
     {/if}
     {#each grafs as graf}
-      <p class="text-label text-lg mb-4">{@html graf}</p>
+      <p class="mb-4 text-lg text-label">{@html graf}</p>
     {/each}
   </div>
 </div>

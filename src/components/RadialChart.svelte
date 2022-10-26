@@ -1,79 +1,68 @@
 <script>
-  import { onMount, beforeUpdate } from "svelte";
+  import { beforeUpdate } from "svelte";
 
-  import { feature } from "topojson-client";
-  import { scaleLinear, select, selectAll, arc as d3_arc, pointRadial, interpolate } from "d3";
-  import {
-    interpolateBlues,
-    interpolateGreens,
-    interpolateGreys,
-    interpolateOranges,
-    interpolatePurples
-  } from "d3-scale-chromatic";
-
+  import { scaleLinear, select,  arc as d3_arc, pointRadial, interpolate } from "d3";
+ 
   import copy from "$data/doc.json";
-  import mobilityTopoJson from "$data/geo/mobility-topo.json";
 
+  
+  // for reference/data check
+  //
+  // ---
+  // const GARDENA_GEO_ID = "06037541001";
+  // const FREMONT_GEO_ID = "06001441924";
   // ---
 
-  const GARDENA_GEO_ID = "06037541001";
-  const FREMONT_GEO_ID = "06001441924";
+  // converting dollars to precents to display on chart
+  const MAX_MED_HH_INC = 120000
 
-  // TODO: simplify by using CSV sted of topojson
-  const tracts = feature(mobilityTopoJson, mobilityTopoJson.objects.tracts);
-  const { properties: gardenaTract } = tracts.features.find(
-    (d) => d.properties.GEOID10 === GARDENA_GEO_ID
-  );
-  const { properties: fremontTract } = tracts.features.find(
-    (d) => d.properties.GEOID10 === FREMONT_GEO_ID
-  );
+  const gardenaTract = {
+    share_black2010: {
+      value: 0.48,
+      label: "48%"
+    },
+    share_black_stayed: {
+      value: 0.42,
+      label: "42%",
+    },
+    medhhinc_1990: {value: 81000 / MAX_MED_HH_INC, label: "$81k"},
+    medhhinc_2016: {value: 40000 / MAX_MED_HH_INC, label: "$40k"},
+  }
+  const fremontTract = {
+    share_black2010: {
+      value: 0.04,
+      label: "4%"
+    },
+    share_black_stayed: {
+      value: 0.49,
+      label: "49%",
+    },
+    medhhinc_1990: {value: 84000 / MAX_MED_HH_INC, label: "$84k"},
+    medhhinc_2016: {value: 120000 / MAX_MED_HH_INC, label: "$120k"},
+  }
 
-  const keys = [
-    // id
-    // 'GEOID10',
-    // neighborhood
-    // 'jobs_highpay_5mi_2015',
-    // 'med_hhinc1990',
-    "share_black2010",
-    // 'singleparent_share2000',
-    // outcomes
-    "kir_top20_black_pooled_p75",
-    "kir_black_pooled_p75",
-    //
-    "kir_top20_pooled_pooled_p75",
-    // 'kir_black_pooled_p50',
-    // "kir_black_pooled_p25"
-  ];
+  const keys = Object.keys(fremontTract);
 
-  const labelMap = {
-    share_black2010: "Black Pop. %",
-    kir_top20_black_pooled_p75: "Likely Black residents to be top 20% of earners",
-    kir_black_pooled_p75: "Likely Percentile Rank for Black residents w/ High-Earning Parents",
-    kir_black_pooled_p25: "Likely Percentile Rank for Black residents w/ Low-Earning Parents",
-    kir_top20_pooled_pooled_p75: "Likely Percential Rank for All residents"
-  };
+  const dotMap = {
+    share_black2010: 'blue',
+    share_black_stayed: 'green',
+    medhhinc_1990: 'brown',
+    medhhinc_2016: 'yellow',
+  }
 
-  const colorMap = {
-    share_black2010: interpolateBlues,
-    kir_top20_black_pooled_p75: interpolateGreens,
-    kir_black_pooled_p75: interpolateGreys,
-    kir_black_pooled_p25: interpolateOranges,
-    kir_top20_pooled_pooled_p75: interpolatePurples
-  };
-
-  const colorMap2 = {
+  const fillMap = {
     share_black2010: '#5367A2',
-    kir_top20_black_pooled_p75: '#82A884',
-    kir_black_pooled_p75: '#8F6952',
-    kir_black_pooled_p25: '#EFAE38',
-    kir_top20_pooled_pooled_p75: '#E89994'
+    share_black_stayed: '#82A884',
+    medhhinc_1990: '#8F6952',
+    medhhinc_2016: '#EFAE38',
+    // kir_top20_pooled_pooled_p75: '#E89994'
   };
 
 
   const dataset = keys.map((key) => ({
     key,
-    gardena: gardenaTract[key],
-    fremont: fremontTract[key]
+    gardena: gardenaTract[key].value,
+    fremont: fremontTract[key].value,
   }));
 
   const getSlideIndex = (field, key) => {
@@ -84,7 +73,6 @@
   const WIDTH = 550;
   const HEIGHT = 600;
 
-  const getColorScale = (key) => colorMap[key];
   const yScale = scaleLinear().domain([0, 1]).range([0, -Math.PI]);
   const paddingScale = scaleLinear()
     .domain([0, dataset.length + 4])
@@ -141,6 +129,14 @@
       `#${slide.field}-paths > path[data-key="${slide.field}-${slide.key}"]`
     );
 
+    const el = document.querySelector(`li[data-key="${slide.field}-${slide.key}"]`)
+
+    if (!el?.classList.contains("!opacity-100")) {
+      el?.classList.add("!opacity-100")
+    } else {
+      el?.classList.remove("!opacity-100")
+    }
+    
     radialPath
       .datum(stepData) // bound data to path
       .transition()
@@ -159,19 +155,17 @@
   });
 </script>
 
-<div class="flex items-center justify-center w-full h-screen relative z-0">
+<div class="relative z-0 flex items-center justify-center w-full h-screen">
   <div class="grid grid-cols-12 gap-3 max-w-7xl">
     
-    <div class="col-span-2 text-label flex justify-center items-center">
+    <div class="flex items-center justify-center col-span-2 text-label">
       <div>
         <p class="text-lg font-bold dubois-wide-24">Gardena</p>
   
-        <ul class="list-none text-sm indent-left">
-          <li class="mb-4 dubois-14 pink-dot-left"><b>TK %</b><br>Share of Black kids in neighborhood</li>
-          <li class="mb-4 dubois-14 opacity-25 yellow-dot-left"><b>TK %</b><br>Share of Black kids with high-income earning parents</li>
-          <li class="mb-4 dubois-14 opacity-25 green-dot-left"><b>TK %</b><br>Expected income by age 35</li>
-          <li class="mb-4 dubois-14 opacity-25 brown-dot-left"><b>TK %</b><br>Share of Black kids in neighborhood</li>
-          <li class="mb-4 dubois-14 opacity-25 blue-dot-left"><b>TK %</b><br>Share of Black kids in neighborhood</li>
+        <ul class="text-sm list-none indent-left">
+          {#each dataset as d}
+            <li data-key={`gardena-${d.key}`} class={`mb-4 opacity-25 dubois-14 dot dot-left dot-${dotMap[d.key]}`}><b>{@html gardenaTract[d.key].label}</b><br>{@html copy.labels[d.key]}</li>  
+          {/each}
         </ul>
       </div>
     </div>
@@ -224,7 +218,7 @@
             {#each dataset as d}
               <path
                 data-key={`gardena-${d.key}`}
-                fill={colorMap2[d.key]}
+                fill={fillMap[d.key]}
                 stroke={'#262626'}
                 stroke-width={1}
                 d={arc(d, getSlideIndex(d.field, d.key), 1, "gardena")}
@@ -235,7 +229,7 @@
             {#each dataset as d}
               <path
                 data-key={`fremont-${d.key}`}
-                fill={colorMap2[d.key]}
+                fill={fillMap[d.key]}
                 stroke={'#262626'}
                 stroke-width={1}
                 d={arc(d, getSlideIndex(d.field, d.key), -1, "fremont")}
@@ -246,16 +240,15 @@
       </svg>
     </div>
 
-    <div class="col-span-2 text-label text-right flex justify-center items-center">
+    <div class="flex items-center justify-center col-span-2 text-right text-label">
       <div>
         <p class="text-lg font-bold dubois-wide-24">Fremont</p>
   
-        <ul class="list-none text-sm indent-right">
-          <li class="mb-4 dubois-14 pink-dot-right"><b>TK %</b><br>Share of Black kids in neighborhood</li>
-          <li class="mb-4 dubois-14 opacity-25 yellow-dot-right"><b>TK %</b><br>Share of Black kids with high-income earning parents</li>
-          <li class="mb-4 dubois-14 opacity-25 green-dot-right"><b>TK %</b><br>Expected income by age 35</li>
-          <li class="mb-4 dubois-14 opacity-25 brown-dot-right"><b>TK %</b><br>Share of Black kids in neighborhood</li>
-          <li class="mb-4 dubois-14 opacity-25 blue-dot-right"><b>TK %</b><br>Share of Black kids in neighborhood</li>
+        <ul class="text-sm list-none indent-right">
+
+          {#each dataset as d}
+            <li data-key={`fremont-${d.key}`} class={`mb-4 opacity-25 dubois-14 dot dot-right dot-${dotMap[d.key]}`}><b>{@html fremontTract[d.key].label}</b><br>{@html copy.labels[d.key]}</li>  
+          {/each}
         </ul>
       </div>
     </div>
@@ -289,44 +282,40 @@
     padding-left: 1rem;
   }
 
-  .pink-dot-right::before, .yellow-dot-right::before, .brown-dot-right::before, .green-dot-right::before, .blue-dot-right::before {
-      display: inline-block;
-	    width:1rem;
-	    height:1rem;
-      border-radius: 50%;
-	    content: '';
-	    border: 1px solid var(--color-off-black);
-	    position: relative;
-      left: 3rem;
-      top: 0.15rem;
+  .dot::before {
+    display: inline-block;
+    width:1rem;
+    height:1rem;
+    border-radius: 50%;
+    content: '';
+    border: 1px solid var(--color-off-black);
+    position: relative;
+  }
+    
+  .dot-right::before {
+    top: 0.15rem;
+    left: 3rem;
   }
 
-  .pink-dot-left::before, .yellow-dot-left::before, .brown-dot-left::before, .green-dot-left::before, .blue-dot-left::before {
-      display: inline-block;
-	    width:1rem;
-	    height:1rem;
-      border-radius: 50%;
-	    content: '';
-	    border: 1px solid var(--color-off-black);
-	    position: relative;
-      margin-left: -1rem;
-      left: -0.25rem;
-      top: 0.15rem;
+  .dot-left::before {
+    top: 0.15rem;
+    left: -0.25rem;
+    margin-left: -1rem;
   }
 
-  .pink-dot-right::before, .pink-dot-left::before {
+  .dot-pink::before {
       background-color: var(--color-db-pink);
   }
-  .yellow-dot-right::before, .yellow-dot-left::before {
+  .dot-yellow::before {
       background-color: var(--color-db-yellow);
   }
-  .brown-dot-right::before, .brown-dot-left::before {
+  .dot-brown::before {
       background-color: var(--color-db-brown);
   }
-  .green-dot-right::before, .green-dot-left::before {
+  .dot-green::before {
       background-color: var(--color-db-green);
   }
-  .blue-dot-right::before, .blue-dot-left::before {
+  .dot-blue::before {
       background-color: var(--color-db-blue);
   }
 </style>

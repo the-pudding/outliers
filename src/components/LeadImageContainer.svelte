@@ -11,15 +11,16 @@
 
   const positioningClasses = {
     "madera-ggp": "row-start-1 col-start-6 col-span-6",
-
+    "madera-farm": "row-start-1 col-start-6 col-span-6",
     "madera-mom": "row-start-2 col-start-7 col-span-6",
 
     "gardena-mom-and-me": "row-start-2 col-start-1 col-span-4",
-
+    "gardena-air": "row-start-2 col-start-1 col-span-4",
     "gardena-preschool": "row-start-3 col-start-1 col-span-4",
 
     "fremont": " row-start-2 col-start-1 col-span-6",
-
+    "fremont-2": " row-start-2 col-start-1 col-span-6",
+    "fremont-income": " row-start-2 col-start-1 col-span-6",
   }
 
   beforeUpdate(() => {
@@ -40,12 +41,12 @@
 
 <!-- class="grid grid-cols-12 grid-rows-2"  -->
 <!-- <div id="grid-photos" class="w-full h-screen relative z-[60] p-4 max-w-5xl my-0 mx-auto"> -->
-  <section class="top-0 sticky h-screen flex items-center justify-center">
+  <section class="sticky top-0 flex items-center justify-center h-screen">
 
   <div 
     bind:this={section} 
     id="wrapper" 
-    class="grid grid-cols-12 grid-rows-6 gap-3 w-full h-4/5 max-w-5xl"
+    class="grid w-full max-w-5xl grid-cols-12 grid-rows-6 gap-3 h-4/5"
   >
     {#each Object.keys(positioningClasses) as key, index}
       <div data-index={index} class={`${positioningClasses[key]} transition-opacity duration-500 opacity-0`}>
