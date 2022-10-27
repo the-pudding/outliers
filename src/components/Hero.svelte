@@ -46,6 +46,7 @@
   }
 
   async function run() {
+    await popIn(largeUSPaths, "opacity", 1, 250, 0);
     await drawPaths(largeUSPaths);
     await popIn(smallUSPaths, "opacity", 1, 250, 0);
     await drawPaths(smallUSPaths);
