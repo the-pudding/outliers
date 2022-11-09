@@ -23,11 +23,11 @@
     triptych: Triptych,
     slide: Slide,
     methodology: Methodology,
-    leadtext: LeadText,
+    leadtext: LeadText
   };
 
   export let introScrollValue;
-  export let mobilityScrollValue
+  export let mobilityScrollValue;
   export let id;
 </script>
 
@@ -45,26 +45,26 @@
     {/each}
   </section>
   <!-- scrolly -->
-  <section class="relative">
+  <section class="relative-custom">
     <LeadImageContainer stepIndex={introScrollValue} />
     <!-- <div class="spacer" /> -->
     <Scrolly bind:value={introScrollValue} bind:id className="flex flex-col">
       <!-- <div class="grid grid-cols-12"> -->
       {#each copy.outcomes as slide, i}
-        <LeadText 
-        stepIndex={introScrollValue}
-        className={`h-screen ${ introScrollValue === i ? "active" : "" }`}
-        {...slide}
+        <LeadText
+          stepIndex={introScrollValue}
+          className={`h-screen ${introScrollValue === i ? "active" : ""}`}
+          {...slide}
         />
         <!-- <div class="step" class:active={introScrollValue === i}> -->
-            <!-- <svelte:component
+        <!-- <svelte:component
               this={blocks[slide.block] ?? Text}
               id={slide.id ?? `slide-${i}`}
               {...slide}
             /> -->
         <!-- </div> -->
       {/each}
-    <!-- </div> -->
+      <!-- </div> -->
     </Scrolly>
     <!-- <div class="spacer" /> -->
   </section>
@@ -79,16 +79,14 @@
     {/each}
   </section>
   <!-- Radial bar chart -->
-  <section id="radial-bar" class="relative">
+  <section class="relative-custom">
     <div class="sticky top-0">
       <RadialChart stepIndex={mobilityScrollValue} />
     </div>
     <Scrolly bind:value={mobilityScrollValue} bind:id>
       {#each copy.slides2 as slide, i}
         <div class="step" class:active={mobilityScrollValue === i}>
-          <div
-            class="bg-tan mx-auto md:w-7/12 sm:w-11/12 max-w-xl text-lg"
-          >
+          <div class="max-w-xl mx-auto text-lg bg-tan md:w-7/12 sm:w-11/12">
             <svelte:component
               this={blocks[slide.block] ?? Text}
               id={slide.id ?? `slide-${i}`}
@@ -116,17 +114,13 @@
     height: 75vh;
   } */
 
-  .relative {
+  .relative-custom {
     width: 100%;
     margin: 3rem 0;
   }
 
   .step {
     height: 125vh;
-  }
-
-  #radial-bar {
-    padding: 0 1rem;
   }
 
   .bg-tan {
