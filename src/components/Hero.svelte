@@ -62,7 +62,6 @@
     largeUSPaths = selectAll("#large_x5F_us path");
     smallUSPaths = selectAll("#small_x5F_us path");
     headlineSpan = selectAll(".hed-block");
-    console.log(w, headlineSpan)
     run();
   });
 
@@ -70,7 +69,7 @@
 
 <svelte:window bind:innerWidth={w}/>
 
-<div class="w-full relative z-50 h-4/5 mb-6">
+<div class="relative z-50 w-full mb-6 h-4/5">
   <!-- <div class="absolute w-full"> -->
     <Header />
   <!-- </div> -->

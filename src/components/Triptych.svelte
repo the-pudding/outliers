@@ -9,7 +9,6 @@
   let photos;
 
   function showPhotos() {
-    console.log(photos);
       photos
         .transition()
         .delay((d, i) => i * 250)
@@ -28,7 +27,7 @@
   <div class="trip-wrapper"
     use:inView
     on:enter={() => showPhotos()}>
-    <div class="w-full relative z-0 max-w-5xl mx-auto my-0 flex flex-col justify-between">
+    <div class="relative z-0 flex flex-col justify-between w-full max-w-5xl mx-auto my-0">
       <div class="border-2 border-black" id="madera-triptych">
         <ImageRaw src="assets/img/madera.jpg" />
       </div>
@@ -40,7 +39,7 @@
       </div>
     </div>
     <Block>
-      <p class="text-label mt-2">{@html text ?? ""}</p>
+      <p class="mt-2 text-label">{@html text ?? ""}</p>
     </Block>
   </div>
 

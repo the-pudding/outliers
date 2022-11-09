@@ -3,7 +3,7 @@
 
   export let id;
   export let text;
-  export let title
+  export let title;
   export let key = "";
 
   const grafs = text.split("\n");
@@ -11,7 +11,7 @@
 
 <Block {id} type="text">
   <section id="methodology">
-    <h3 class="font-bold mb-4 text-xl">{@html title}</h3>
+    <h3 class="mb-4 text-xl font-bold">{@html title}</h3>
     {#each grafs as graf}
       <p class={`mb-5 text-lg ${key}`}>{@html graf}</p>
     {/each}
