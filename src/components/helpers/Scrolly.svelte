@@ -79,3 +79,9 @@
 <div bind:this={container} class={`relative z-50 ${className}`}>
   <slot />
 </div>
+
+<style>
+  .relative {
+    width: 100%;
+  }
+</style>
