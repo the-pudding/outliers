@@ -310,4 +310,12 @@
     text-align: center;
     font-size: 20px;
   }
+
+  :global(a) {
+    color: var(--color-off-black);
+  }
+
+  :global(a:hover) {
+    color: var(--color-db-red);
+  }
 </style>

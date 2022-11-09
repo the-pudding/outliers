@@ -55,15 +55,15 @@
   
     <div class:visible="{step >= 0 && step < 3}" id="madera-wrapper">
       <div class="svg-wrapper">{@html madera}</div>
-      <div class="img-wrapper"><img src="/assets/img/madera-streets.png" alt="street grid lines of madera, ca." /></div>
+      <div class="img-wrapper"><img src="assets/img/madera-streets.png" alt="street grid lines of madera, ca." /></div>
     </div>
     <div class:visible="{step > 2 && step < 6}" id="gardena-wrapper">
       <div class="svg-wrapper">{@html gardena}</div>
-      <div class="img-wrapper"><img src="/assets/img/gardena-streets.png" alt="street grid lines of gardena, ca." /></div>
+      <div class="img-wrapper"><img src="assets/img/gardena-streets.png" alt="street grid lines of gardena, ca." /></div>
     </div>
     <div class:visible="{step >= 6}" id="fremont-wrapper">
       <div class="svg-wrapper">{@html fremont}</div>
-      <div class="img-wrapper"><img src="/assets/img/fremont-streets.png" alt="street grid lines of fremont, ca." /></div>
+      <div class="img-wrapper"><img src="assets/img/fremont-streets.png" alt="street grid lines of fremont, ca." /></div>
     </div>
 
   <style>

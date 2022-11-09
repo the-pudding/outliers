@@ -36,4 +36,12 @@
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
+
+  :global(#methodology a) {
+    color: var(--color-off-black);
+  }
+
+  :global(#methodology a:hover) {
+    color: var(--color-db-red);
+  }
 </style>

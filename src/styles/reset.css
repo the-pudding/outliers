@@ -29,7 +29,11 @@ mark {
 }
 
 a {
-  color: var(--color-link);
+  color: var(--color-off-black);
+}
+
+a:hover {
+  color: var(--color-db-red);
 }
 
 img,

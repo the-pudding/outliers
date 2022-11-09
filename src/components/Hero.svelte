@@ -75,7 +75,7 @@
   <!-- </div> -->
   <div class="overlays">
     <div class="intro-svg">{@html usMap}</div>
-    <div class="intro-cutout"><img src="/assets/img/aaron_cutout.png" alt="the author as a toddler dressed up in a white shirt, black pants, a black bowtie, and yellow suspenders"></div>
+    <div class="intro-cutout"><img src="assets/img/aaron_cutout.png" alt="the author as a toddler dressed up in a white shirt, black pants, a black bowtie, and yellow suspenders"></div>
   </div>
   {#if w < 700}
   <div class="hed">
@@ -108,7 +108,8 @@
     position: relative;
     height: calc(100vw/1.75);
     max-width: 80rem;
-    margin: 0 auto;
+    margin: -3rem auto 0 auto;
+    pointer-events: none;
   }
   .intro-svg, .intro-cutout {
     width: 100%;
@@ -159,7 +160,11 @@
 
   .byline a {
     font-weight: 700;
-    color: var(--color-off-black) !important;
+    color: var(--color-off-black);
+  }
+
+  .byline a:hover {
+    color: var(--color-db-red);
   }
 
   .sm {
