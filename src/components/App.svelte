@@ -4,7 +4,6 @@
   import Text from "$components/Text.svelte";
   import Subhead from "$components/Subhead.svelte";
   import Image from "$components/Image.svelte";
-  import Mapbox from "$components/Mapbox.svelte";
   import Hero from "$components/Hero.svelte";
   import Map from "$components/Map.svelte";
   import Scrolly from "$components/helpers/Scrolly.svelte";
@@ -19,7 +18,6 @@
     text: Text,
     image: Image,
     subhead: Subhead,
-    mapbox: Mapbox,
     map: Map,
     hero: Hero,
     triptych: Triptych,

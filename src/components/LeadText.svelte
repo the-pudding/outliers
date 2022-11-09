@@ -68,7 +68,7 @@
     <p class={`subhed subhed-${subhead.split(',')[0]} text-label mt-6 mb-2 text-3xl`}>{subhead}</p>
     {/if}
     {#each grafs as graf}
-      <p class="text-label text-lg mb-4">{@html graf}</p>
+      <p class="mb-4 text-lg text-label">{@html graf}</p>
     {/each}
   </div>
   {:else}
@@ -77,7 +77,7 @@
     <p class={`subhed subhed-${subhead.split(',')[0]} text-label mt-6 mb-2 text-3xl`}>{subhead}</p>
     {/if}
     {#each grafs as graf}
-      <p class="text-label text-lg mb-4">{@html graf}</p>
+      <p class="mb-4 text-lg text-label">{@html graf}</p>
     {/each}
   </div>
   {/if}

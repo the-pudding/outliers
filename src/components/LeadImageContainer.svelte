@@ -179,11 +179,11 @@
 
 <!-- class="grid grid-cols-12 grid-rows-2"  -->
 <!-- <div id="grid-photos" class="w-full h-screen relative z-[60] p-4 max-w-5xl my-0 mx-auto"> -->
-  <section class="top-0 sticky h-screen flex">
+  <section class="sticky top-0 flex h-screen">
     <div 
       bind:this={section} 
       id="wrapper" 
-      class="grid grid-cols-12 grid-rows-6 gap-3 w-full"
+      class="grid w-full grid-cols-12 grid-rows-6 gap-3"
     >
       {#each Object.keys(positioningClasses) as key, index}
         {#if w > 900}
