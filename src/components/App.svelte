@@ -86,7 +86,7 @@
     <Scrolly bind:value={mobilityScrollValue} bind:id>
       {#each copy.slides2 as slide, i}
         <div class="step" class:active={mobilityScrollValue === i}>
-          <div class="max-w-xl mx-auto text-lg bg-tan md:w-7/12 sm:w-11/12">
+          <div class="mx-auto text-lg max-w-[400px] md:max-w-xl bg-tan">
             <svelte:component
               this={blocks[slide.block] ?? Text}
               id={slide.id ?? `slide-${i}`}
