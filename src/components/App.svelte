@@ -13,6 +13,7 @@
   import Methodology from "$components/Methodology.svelte";
   import LeadImageContainer from "$components/LeadImageContainer.svelte";
   import LeadText from "$components/LeadText.svelte";
+  import Stains from "$components/Stains.svelte";
 
   const blocks = {
     text: Text,
@@ -107,6 +108,7 @@
       />
     {/each}
   </section>
+  <Stains />
 </article>
 
 <style>
