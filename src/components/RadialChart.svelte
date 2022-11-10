@@ -153,7 +153,7 @@
   });
 </script>
 
-<div class="flex items-center justify-center h-screen px-4 mx-auto my-0 max-w-7xl">
+<div class="flex items-center justify-center h-screen px-4 mx-auto my-0 max-w-7xl chart-container">
   <div class="grid items-center max-h-full grid-cols-12 grid-rows-6 gap-3">
     <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full">
       <p class="mb-4 text-2xl font-bold uppercase dubois">Gardena</p>
@@ -215,6 +215,10 @@
 </div>
 
 <style>
+  .chart-container {
+    position: relative;
+    z-index: 999;
+  }
   .dubois {
     font-family: var(--dubois);
   }

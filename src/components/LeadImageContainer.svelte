@@ -4,14 +4,17 @@
   import locator from "$svg/story/ca_locator.svg";
   import { beforeUpdate } from "svelte";
   import { onMount } from "svelte";
-  import { selectAll, easeLinear } from "d3";
+  import { selectAll, select, easeLinear } from "d3";
+  import Stains from "$components/Stains.svelte";
+  import rough from 'roughjs';
   let section
   export let stepIndex
+  export let h;
 
   // beforeUpdate(() => {
   //   console.info("Mobility", stepIndex)
   // })
-
+  let calPath;
   let maderaDot;
   let gardenaDot;
   let fremontDot;
@@ -20,6 +23,7 @@
   let m2gArrow;
   let g2fArrow;
   let w;
+  let rc = rough.svg('svg');
 
   const positioningClasses = {
     "madera-ggp":  {
@@ -54,6 +58,21 @@
     }
   }
 
+  // function roughen(group, color) {
+  //   select(group).each(function() {
+  //     let gParent = this;
+  //     select(group).selectAll('#ca_x5F_outline').each(function() {
+  //       let roughPath = gParent.appendChild( rc.path(select(this).node().getAttribute('d'), {
+  //           stroke: color,
+  //           fillStyle: 'hachure',
+  //           strokeWidth: 0.55,
+  //           roughness: 0.75,
+  //         })
+  //       )
+  //     })
+  //   })
+  // }
+
   function drawPaths(pathCollection) {
     return new Promise((resolve) => {
       const paths = pathCollection;
@@ -73,6 +92,7 @@
   }
 
   onMount(() => {
+    calPath = selectAll("#ca_x5F_outline");
     maderaDot = selectAll("#madera_dot");
     gardenaDot = selectAll("#gardena_dot");
     fremontDot = selectAll("#fremont_dot");
@@ -80,6 +100,8 @@
     g2fLine = selectAll("#g2f_line");
     m2gArrow = selectAll("#m2g_arrow");
     g2fArrow = selectAll("#g2f_arrow");
+
+    // roughen(".locator-svg-wrapper svg", "#282828")
   });
 
   beforeUpdate(() => {
@@ -179,7 +201,7 @@
 
 <!-- class="grid grid-cols-12 grid-rows-2"  -->
 <!-- <div id="grid-photos" class="w-full h-screen relative z-[60] p-4 max-w-5xl my-0 mx-auto"> -->
-  <section class="sticky top-0 flex h-screen">
+  <section class="sticky top-0 flex h-screen" bind:clientHeight={h}>
     <div 
       bind:this={section} 
       id="wrapper" 
@@ -215,6 +237,9 @@
       <div class="locator-svg-wrapper">
         {@html locator}
       </div>
+      {#if h != undefined}
+        <Stains height={h}/>
+      {/if}
   </section>
 <!-- </div> -->
 
