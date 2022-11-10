@@ -23,7 +23,7 @@
   let m2gArrow;
   let g2fArrow;
   let w;
-  let rc = rough.svg('svg');
+  //let rc = rough.svg('svg');
 
   const positioningClasses = {
     "madera-ggp":  {

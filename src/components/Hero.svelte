@@ -17,7 +17,7 @@
   let introBlockW;
   let w;
   let h;
-  let rc = rough.svg('svg');
+  //let rc = rough.svg('svg');
 
   function drawPaths(pathCollection) {
     return new Promise((resolve) => {
