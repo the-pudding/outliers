@@ -6,7 +6,7 @@
   import { onMount } from "svelte";
   import { selectAll, select, easeLinear } from "d3";
   import Stains from "$components/Stains.svelte";
-  import rough from 'roughjs';
+  // import rough from 'roughjs';
   let section
   export let stepIndex
   export let h;

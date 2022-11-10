@@ -3,7 +3,7 @@
   import ImageRaw from "./ImageRaw.svelte";
   import usMap from "$svg/story/intro_map.svg";
   import { selectAll, select, easeLinear } from "d3";
-  import rough from 'roughjs';
+  // import rough from 'roughjs';
   import Stains from "$components/Stains.svelte";
   import { onMount } from "svelte";
 
