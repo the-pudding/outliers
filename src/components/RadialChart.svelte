@@ -1,7 +1,7 @@
 <script>
   import { beforeUpdate } from "svelte";
 
-  import { scaleLinear, select, arc as d3_arc, pointRadial, interpolate } from "d3";
+  import { scaleLinear, select, arc as d3_arc, pointRadial, interpolate, format } from "d3";
 
   import copy from "$data/doc.json";
 
@@ -24,8 +24,14 @@
       value: 0.42,
       label: "42%"
     },
-    medhhinc_1990: { value: 81000 / MAX_MED_HH_INC, label: "$81k" },
-    medhhinc_2016: { value: 40000 / MAX_MED_HH_INC, label: "$40k" }
+    medhhinc_1990: {
+      value: 0.84,
+      label: "$81k (84th percentile)"
+    },
+    medhhinc_2016: {
+      value: 0.28,
+      label: "$40k (28th percentile)"
+    }
   };
   const fremontTract = {
     share_black2010: {
@@ -36,8 +42,14 @@
       value: 0.49,
       label: "49%"
     },
-    medhhinc_1990: { value: 84000 / MAX_MED_HH_INC, label: "$84k" },
-    medhhinc_2016: { value: 120000 / MAX_MED_HH_INC, label: "$120k" }
+    medhhinc_1990: {
+      value: 0.86, // 86th percentile
+      label: "$81k (86th percentile)"
+    },
+    medhhinc_2016: {
+      value: 0.96, // 96th percentile
+      label: "$120k (96th percentile)"
+    }
   };
 
   const keys = Object.keys(fremontTract);
@@ -45,16 +57,15 @@
   const dotMap = {
     share_black2010: "blue",
     share_black_stayed: "green",
-    medhhinc_1990: "brown",
+    medhhinc_1990: "red",
     medhhinc_2016: "yellow"
   };
 
   const fillMap = {
     share_black2010: "#5367A2",
     share_black_stayed: "#82A884",
-    medhhinc_1990: "#8F6952",
+    medhhinc_1990: "#D8284F",
     medhhinc_2016: "#EFAE38"
-    // kir_top20_pooled_pooled_p75: '#E89994'
   };
 
   const dataset = keys.map((key) => ({
@@ -78,7 +89,6 @@
 
   // extent size
   const axisDomain = [0, 0.25, 0.5];
-  // range(0, 1, 0.05)
   const ticks = [0, 0.5];
 
   const arc = (d, i, dir, field) =>
@@ -86,7 +96,6 @@
       .innerRadius(paddingScale(i) - 15)
       .outerRadius(paddingScale(i + 1) - 20)
       .startAngle(0);
-  // .endAngle(dir * yScale(d[field]))();
 
   const getAxis = (d, direction = "left") => {
     if (direction === "left") {
@@ -96,8 +105,7 @@
     }
   };
 
-  // https://stackoverflow.com/a/29318884/868724
-  const parseArc = (path) => path.split("L")[1].split("A")[0];
+  const formatAxis = (d) => format(".0%")(d);
 
   const getPath = (d, direction = "left") => {
     if (direction === "left") {
@@ -172,6 +180,46 @@
     <div class="col-span-12 row-span-3 row-start-1 lg:col-span-8 lg:row-span-full">
       <svg class="w-full h-full" viewBox={[-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT]}>
         <g transform="translate(0, 50)">
+          <!-- left axis -->
+          <g>
+            {#each axisDomain as d}
+              <g>
+                <path class="stroke-gray-600" stroke-width={0.5} d={getPath(d, "left")} />
+                {#if ticks.includes(d)}
+                  <text
+                    font-size={10}
+                    class="uppercase text-label dubois fill-gray-600"
+                    dx="-0.25em"
+                    dy="0.35em"
+                    x={getAxis(d, "left")[0]}
+                    y={getAxis(d, "left")[1]}
+                  >
+                    {formatAxis(d)}
+                  </text>
+                {/if}
+              </g>
+            {/each}
+          </g>
+          <!-- right axis -->
+          <g>
+            {#each axisDomain as d}
+              <g>
+                <path class="stroke-gray-600" stroke-width={0.5} d={getPath(d, "right")} />
+                {#if ticks.includes(d) && d !== 0 && d !== 1}
+                  <text
+                    font-size={10}
+                    class="uppercase text-label dubois fill-gray-600"
+                    dx="-0.35em"
+                    dy="0.35em"
+                    x={getAxis(d, "right")[0]}
+                    y={getAxis(d, "right")[1]}
+                  >
+                    {formatAxis(d)}
+                  </text>
+                {/if}
+              </g>
+            {/each}
+          </g>
           <g id="gardena-paths">
             {#each dataset as d}
               <path
@@ -218,14 +266,11 @@
   .dubois {
     font-family: var(--dubois);
   }
-  .dot-pink {
-    background-color: var(--color-db-pink);
-  }
   .dot-yellow {
     background-color: var(--color-db-yellow);
   }
-  .dot-brown {
-    background-color: var(--color-db-brown);
+  .dot-red {
+    background-color: var(--color-db-red);
   }
   .dot-green {
     background-color: var(--color-db-green);
