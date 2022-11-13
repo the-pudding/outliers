@@ -12,9 +12,6 @@
   // const FREMONT_GEO_ID = "06001441924";
   // ---
 
-  // converting dollars to precents to display on chart
-  const MAX_MED_HH_INC = 120000;
-
   const gardenaTract = {
     share_black2010: {
       value: 0.48,
@@ -91,10 +88,10 @@
   const axisDomain = [0, 0.25, 0.5];
   const ticks = [0, 0.5];
 
-  const arc = (d, i, dir, field) =>
+  const arc = (index) =>
     d3_arc()
-      .innerRadius(paddingScale(i) - 15)
-      .outerRadius(paddingScale(i + 1) - 20)
+      .innerRadius(paddingScale(index) - 15)
+      .outerRadius(paddingScale(index + 1) - 20)
       .startAngle(0);
 
   const getAxis = (d, direction = "left") => {
@@ -123,24 +120,27 @@
   };
 
   // index from step
-  export let stepIndex = undefined;
+  export let stepIndex;
+  export let stepDirection;
 
   beforeUpdate(async () => {
     const slide = copy.slides2[stepIndex ?? 0];
-    const dataIndex = getSlideIndex(slide.field, slide.key);
+    const slideIndex = getSlideIndex(slide.field, slide.key);
 
-    const stepData = dataset[dataIndex ?? 0];
-    const direction = slide.field === "gardena" ? 1 : -1;
+    const stepData = dataset[slideIndex ?? 0];
+    const angleOffset = slide.field === "gardena" ? 1 : -1;
     const radialPath = select(
       `#${slide.field}-paths > path[data-key="${slide.field}-${slide.key}"]`
     );
 
     const el = document.querySelector(`li[data-key="${slide.field}-${slide.key}"]`);
 
-    if (!el?.classList.contains("!opacity-100")) {
+    if (stepDirection === "down") {
       el?.classList.add("!opacity-100");
-    } else {
+    } else if (stepDirection === "up") {
       el?.classList.remove("!opacity-100");
+    } else {
+      // do nothing
     }
 
     radialPath
@@ -151,11 +151,18 @@
         if (d === undefined) return;
 
         const startAngle = 0;
-        const endAngle = direction * yScale(d[slide.field]);
+        const endAngle = angleOffset * yScale(d[slide.field]);
         const interpolater = interpolate(startAngle, endAngle);
 
         return (t) => {
-          return arc(d, dataIndex, direction, slide.field).endAngle(interpolater(t))();
+          // where t = range(0, 1)
+          if (stepDirection === "down") {
+            // animate from zero to 1
+            return arc(slideIndex).endAngle(interpolater(t))();
+          } else {
+            // animate from 1 to zero
+            return arc(slideIndex).endAngle(interpolater(1 - t))();
+          }
         };
       });
   });
@@ -166,8 +173,8 @@
     <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full">
       <p class="mb-4 text-2xl font-bold uppercase dubois">Gardena</p>
       <ul class="flex flex-col gap-4 text-sm uppercase list-none dubois">
-        {#each dataset as d}
-          <li data-key={`gardena-${d.key}`} class="flex flex-col opacity-25">
+        {#each dataset as d, i}
+          <li data-index={i} data-key={`gardena-${d.key}`} class="flex flex-col opacity-25">
             <div class="flex items-center self-start gap-1">
               <div class={`w-4 h-4 border border-black rounded-full dot-${dotMap[d.key]}`} />
               <p class="font-bold">{@html gardenaTract[d.key].label}</p>
@@ -225,7 +232,7 @@
               <path
                 data-key={`gardena-${d.key}`}
                 fill={fillMap[d.key]}
-                stroke={"#262626"}
+                class="stroke-gray-900"
                 stroke-width={1}
                 d={arc(d, getSlideIndex(d.field, d.key), 1, "gardena")}
               />
@@ -236,7 +243,7 @@
               <path
                 data-key={`fremont-${d.key}`}
                 fill={fillMap[d.key]}
-                stroke={"#262626"}
+                class="stroke-gray-900"
                 stroke-width={1}
                 d={arc(d, getSlideIndex(d.field, d.key), -1, "fremont")}
               />
@@ -248,8 +255,8 @@
     <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full">
       <p class="mb-4 text-2xl font-bold text-right uppercase dubois">Fremont</p>
       <ul class="flex flex-col gap-4 text-sm text-right uppercase list-none dubois">
-        {#each dataset as d}
-          <li data-key={`fremont-${d.key}`} class="flex flex-col opacity-25">
+        {#each dataset as d, i}
+          <li data-index={i} data-key={`fremont-${d.key}`} class="flex flex-col opacity-25">
             <div class="flex items-center self-end gap-1">
               <p class="font-bold">{@html fremontTract[d.key].label}</p>
               <div class={`w-4 h-4 border border-black rounded-full dot-${dotMap[d.key]}`} />

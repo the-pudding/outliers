@@ -1,6 +1,5 @@
 <script>
-// import { beforeUpdate } from "svelte";
-
+  // import { beforeUpdate } from "svelte";
 
   // import Block from "$components/Block.svelte";
 
@@ -40,7 +39,7 @@
       position: "col-start-6 col-span-6",
       positionMobile: "col-start-1 col-span-12"
     },
-    "fremont": {
+    fremont: {
       position: "col-start-2 col-span-5",
       positionMobile: "col-start-1 col-span-12"
     },
@@ -59,27 +58,31 @@
   // })
 </script>
 
-<svelte:window bind:innerWidth={w}/>
+<svelte:window bind:innerWidth={w} />
 
 <div class={`${className} grid grid-cols-12 gap-3 w-full max-w-5xl`}>
   {#if w > 900}
-  <div class={`${positioningClasses[id].position} p-4`}>
-    {#if subhead}
-    <p class={`subhed subhed-${subhead.split(',')[0]} text-label mt-6 mb-2 text-3xl`}>{subhead}</p>
-    {/if}
-    {#each grafs as graf}
-      <p class="mb-4 text-lg text-label">{@html graf}</p>
-    {/each}
-  </div>
+    <div class={`${positioningClasses[id].position} p-4`}>
+      {#if subhead}
+        <p class={`subhed subhed-${subhead.split(",")[0]} text-label mt-6 mb-2 text-3xl`}>
+          {subhead}
+        </p>
+      {/if}
+      {#each grafs as graf}
+        <p class="mb-4 text-lg text-label">{@html graf}</p>
+      {/each}
+    </div>
   {:else}
-  <div class={`${positioningClasses[id].positionMobile} p-4`}>
-    {#if subhead}
-    <p class={`subhed subhed-${subhead.split(',')[0]} text-label mt-6 mb-2 text-3xl`}>{subhead}</p>
-    {/if}
-    {#each grafs as graf}
-      <p class="mb-4 text-lg text-label">{@html graf}</p>
-    {/each}
-  </div>
+    <div class={`${positioningClasses[id].positionMobile} p-4`}>
+      {#if subhead}
+        <p class={`subhed subhed-${subhead.split(",")[0]} text-label mt-6 mb-2 text-3xl`}>
+          {subhead}
+        </p>
+      {/if}
+      {#each grafs as graf}
+        <p class="mb-4 text-lg text-label">{@html graf}</p>
+      {/each}
+    </div>
   {/if}
 </div>
 
@@ -99,10 +102,6 @@
     margin: 0 auto;
   }
 
-  .text-label {
-    /* text-shadow: -3px -3px #fffaf2, 3px -3px #fffaf2, -3px 3px #fffaf2, 3px 3px #fffaf2; */
-  }
-  
   .subhed.text-label {
     font-family: var(--dubois-wide);
     text-transform: uppercase;
@@ -110,17 +109,19 @@
     margin: 0;
   }
 
-  .subhed-Madera::before, .subhed-Gardena::before, .subhed-Fremont::before {
-      display: inline-block;
-	    width:1rem;
-	    height:1rem;
-      border-radius: 50%;
-	    content: '';
-	    border: 1px solid var(--color-off-black);
-	    position: relative;
-      margin-right: 0.25rem;
-      left: 0rem;
-      top: 0rem;
+  .subhed-Madera::before,
+  .subhed-Gardena::before,
+  .subhed-Fremont::before {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    content: "";
+    border: 1px solid var(--color-off-black);
+    position: relative;
+    margin-right: 0.25rem;
+    left: 0rem;
+    top: 0rem;
   }
 
   .subhed-Madera::before {
