@@ -17,6 +17,7 @@ specifiers:
   prettier-plugin-svelte: ^2.6.0
   rollup-plugin-svg: ^2.0.0
   roughjs: ^4.5.2
+  scrollama: ^3.2.0
   style-dictionary: ^3.1.1
   svelte: ^3.46.4
   svelte-preprocess: ^4.10.3
@@ -28,6 +29,7 @@ specifiers:
 dependencies:
   d3: 7.3.0
   roughjs: 4.5.2
+  scrollama: 3.2.0
   topojson-client: 3.1.0
   us: 2.0.0
 
@@ -1718,6 +1720,10 @@ packages:
       mkdirp: 0.5.5
       rimraf: 2.7.1
     dev: true
+
+  /scrollama/3.2.0:
+    resolution: {integrity: sha512-PIPwB1kYBnbw/ezvPBJa5dCN5qEwokfpAkI3BmpZWAwcVID4nDf1qH6WV16A2fQaJmsKx0un5S/zhxN+PQeKDQ==}
+    dev: false
 
   /sentence-case/3.0.4:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}

@@ -8,12 +8,12 @@
   import Map from "$components/Map.svelte";
   import Scrolly from "$components/helpers/Scrolly.svelte";
   import Triptych from "$components/Triptych.svelte";
-  import RadialChart from "$components/RadialChart.svelte";
   import Slide from "$components/Slide.svelte";
   import Methodology from "$components/Methodology.svelte";
   import LeadImageContainer from "$components/LeadImageContainer.svelte";
   import LeadText from "$components/LeadText.svelte";
   import Stains from "$components/Stains.svelte";
+  import ScrollyContainer from "$components/upward-mobility/ScrollyContainer.svelte";
 
   const blocks = {
     text: Text,
@@ -33,7 +33,6 @@
   let radialH;
 
   export let introScrollValue;
-  export let mobilityScrollValue;
   export let id;
 </script>
 
@@ -95,26 +94,8 @@
     {/if}
   </section>
   <!-- Radial bar chart -->
-  <section class="relative-custom" bind:clientHeight={radialH}>
-    <div class="sticky top-0">
-      <RadialChart stepIndex={mobilityScrollValue} />
-      {#if radialH != undefined}
-        <Stains height={radialH}/>
-      {/if}
-    </div>
-    <Scrolly bind:value={mobilityScrollValue} bind:id>
-      {#each copy.slides2 as slide, i}
-        <div class="step" class:active={mobilityScrollValue === i}>
-          <div class="mx-auto text-lg max-w-[400px] md:max-w-xl bg-tan">
-            <svelte:component
-              this={blocks[slide.block] ?? Text}
-              id={slide.id ?? `slide-${i}`}
-              {...slide}
-            />
-          </div>
-        </div>
-      {/each}
-    </Scrolly>
+  <section class="relative-custom">
+    <ScrollyContainer />
   </section>
   <!-- conclusion text -->
   <section id="text-2" class="px-4" bind:clientHeight={outroH}>
@@ -146,17 +127,6 @@
   .relative-custom {
     width: 100%;
     margin: 3rem 0;
-  }
-
-  .step {
-    height: 125vh;
-  }
-
-  .bg-tan {
-    background-color: rgba(255, 250, 242, 0.95);
-    padding: 2rem 2rem 1rem 2rem;
-    border: 1px solid var(--color-off-black);
-    box-shadow: 0px 0px 10px rgba(222, 203, 186, 0.5);
   }
 
   .intro-section {
