@@ -13,5 +13,6 @@
   h2 {
     margin: 6rem 0 2rem 0;
     font-size: 3rem;
+    line-height: 1;
   }
 </style>

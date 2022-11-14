@@ -4,11 +4,13 @@
 
   import Slide from "$components/Slide.svelte";
   import RadialChart from "$components/upward-mobility/RadialChart.svelte";
+  import Stains from "$components/Stains.svelte";
 
   import copy from "$data/doc.json";
 
   let activeIndex;
   let activeStepDirection;
+  let radialH;
 
   const handleStepEnter = (response) => {
     activeIndex = response.index;
@@ -28,8 +30,11 @@
 </script>
 
 <div>
-  <div class="sticky z-0 -top-1">
+  <div class="sticky z-0 -top-1" bind:clientHeight={radialH}>
     <RadialChart stepIndex={activeIndex} stepDirection={activeStepDirection} />
+    {#if radialH != undefined}
+      <Stains height={radialH}/>
+    {/if}
   </div>
   <div>
     {#each copy.slides2 as slide, i}
@@ -52,5 +57,9 @@
     padding: 2rem 2rem 1rem 2rem;
     border: 1px solid var(--color-off-black);
     box-shadow: 0px 0px 10px rgba(222, 203, 186, 0.5);
+  }
+
+  .relative {
+    margin: 0 1rem;
   }
 </style>

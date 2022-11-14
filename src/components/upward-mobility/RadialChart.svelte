@@ -1,7 +1,7 @@
 <script>
   import { beforeUpdate } from "svelte";
 
-  import { scaleLinear, select, arc as d3_arc, pointRadial, interpolate, format } from "d3";
+  import { scaleLinear, select, selectAll, arc as d3_arc, pointRadial, interpolate, format } from "d3";
 
   import copy from "$data/doc.json";
 
@@ -126,6 +126,7 @@
   beforeUpdate(async () => {
     const slide = copy.slides2[stepIndex ?? 0];
     const slideIndex = getSlideIndex(slide.field, slide.key);
+    console.log(stepIndex, slideIndex)
 
     const stepData = dataset[slideIndex ?? 0];
     const angleOffset = slide.field === "gardena" ? 1 : -1;
@@ -141,6 +142,16 @@
       el?.classList.remove("!opacity-100");
     } else {
       // do nothing
+    }
+
+    const lastPaths = selectAll(`path[data-key="gardena-medhhinc_2016"], path[data-key="fremont-medhhinc_2016"]`)
+
+    function checkOpacity() {
+      if (stepData.key !== "medhhinc_2016" && stepDirection === "up"){
+        lastPaths.style("opacity", 0)
+      } else {
+        lastPaths.style("opacity", 1)
+      }
     }
 
     radialPath
@@ -164,13 +175,14 @@
             return arc(slideIndex).endAngle(interpolater(1 - t))();
           }
         };
-      });
+      })
+      .on("end", checkOpacity);
   });
 </script>
 
 <div class="flex items-center justify-center h-screen px-4 mx-auto my-0 max-w-7xl chart-container">
   <div class="grid items-center max-h-full grid-cols-12 grid-rows-6 gap-3">
-    <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full">
+    <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full right-pad">
       <p class="mb-4 text-2xl font-bold uppercase dubois">Gardena</p>
       <ul class="flex flex-col gap-4 text-sm uppercase list-none dubois">
         {#each dataset as d, i}
@@ -191,11 +203,10 @@
           <g>
             {#each axisDomain as d}
               <g>
-                <path class="stroke-gray-600" stroke-width={0.5} d={getPath(d, "left")} />
+                <path class="axis-stroke" stroke-width={0.5} d={getPath(d, "left")} />
                 {#if ticks.includes(d)}
                   <text
-                    font-size={10}
-                    class="uppercase text-label dubois fill-gray-600"
+                    class="uppercase text-label dubois axis-text"
                     dx="-0.25em"
                     dy="0.35em"
                     x={getAxis(d, "left")[0]}
@@ -211,12 +222,11 @@
           <g>
             {#each axisDomain as d}
               <g>
-                <path class="stroke-gray-600" stroke-width={0.5} d={getPath(d, "right")} />
+                <path class="axis-stroke" stroke-width={0.5} d={getPath(d, "right")} />
                 {#if ticks.includes(d) && d !== 0 && d !== 1}
                   <text
-                    font-size={10}
-                    class="uppercase text-label dubois fill-gray-600"
-                    dx="-0.35em"
+                    class="uppercase text-label dubois axis-text"
+                    dx="-1em"
                     dy="0.35em"
                     x={getAxis(d, "right")[0]}
                     y={getAxis(d, "right")[1]}
@@ -252,7 +262,7 @@
         </g>
       </svg>
     </div>
-    <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full">
+    <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full left-pad">
       <p class="mb-4 text-2xl font-bold text-right uppercase dubois">Fremont</p>
       <ul class="flex flex-col gap-4 text-sm text-right uppercase list-none dubois">
         {#each dataset as d, i}
@@ -273,6 +283,21 @@
   .chart-container {
     position: relative;
     z-index: 999;
+    height: 80vh;
+  }
+  .left-pad {
+    padding-left: 1rem;
+  }
+  .right-pad { 
+    padding-right: 1rem;
+  }
+  .axis-stroke {
+    stroke: var(--color-off-black);
+    stroke-width: 1px;
+  }
+  .axis-text {
+    fill: var(--color-off-black);
+    font-size: 1.15rem;
   }
   .dubois {
     font-family: var(--dubois);
@@ -288,5 +313,23 @@
   }
   .dot-blue {
     background-color: var(--color-db-blue);
+  }
+
+  @media only screen and (min-width: 400px) {
+    .axis-text {
+      font-size: 1rem;
+    }
+  }
+
+  @media only screen and (min-width: 500px) {
+    .axis-text {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media only screen and (min-width: 700px) {
+    .axis-text {
+      font-size: 0.6rem;
+    }
   }
 </style>

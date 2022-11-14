@@ -12,15 +12,17 @@
 <Block {id} type="text">
   <section id="methodology">
     <h3 class="mb-4 text-xl font-bold">{@html title}</h3>
-    {#each grafs as graf}
-      <p class={`mb-5 text-lg ${key}`}>{@html graf}</p>
-    {/each}
+    <ul>
+      {#each grafs as graf}
+        <li class={`mb-5 text-lg ${key}`}>{@html graf}</li>
+      {/each}
+    </ul>
   </section>
 </Block>
 
 <style>
   #methodology {
-    margin: 3rem 0 0 0;
+    margin: 3rem 0 8rem 0;
     border-top: 1px solid var(--color-off-black);
     padding: 1rem 0 0 0;
   }
@@ -31,7 +33,12 @@
     text-transform: uppercase;
   }
 
-  p {
+  ul{
+    list-style: square;
+    padding-left: 1rem;
+  }
+
+  li {
     font-family: var(--sans);
     font-size: 1.125rem;
     line-height: 1.75rem;
