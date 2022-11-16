@@ -177,7 +177,7 @@
           <li
             data-index={i}
             data-key={`gardena-${d.key}`}
-            class="flex flex-col transition-opacity duration-300 opacity-25"
+            class="flex flex-col transition-opacity duration-700 opacity-25"
           >
             <div class="flex items-center self-start gap-1">
               <div class={`w-4 h-4 border border-black rounded-full dot-${dotMap[d.key]}`} />
@@ -262,7 +262,7 @@
           <li
             data-index={i}
             data-key={`fremont-${d.key}`}
-            class="flex flex-col transition-opacity duration-300 opacity-25"
+            class="flex flex-col transition-opacity duration-700 opacity-25"
           >
             <div class="flex items-center self-end gap-1">
               <p class="font-bold">{@html fremontTract[d.key].label}</p>
