@@ -12,6 +12,7 @@
   import Methodology from "$components/Methodology.svelte";
   import LeadImageContainer from "$components/LeadImageContainer.svelte";
   import LeadText from "$components/LeadText.svelte";
+  import Stains from "$components/Stains.svelte";
   import ScrollyContainer from "$components/upward-mobility/ScrollyContainer.svelte";
 
   const blocks = {
@@ -26,6 +27,11 @@
     leadtext: LeadText
   };
 
+  let introH;
+  let preMapH;
+  let outroH;
+  let radialH;
+
   export let introScrollValue;
   export let id;
 </script>
@@ -34,14 +40,19 @@
   <!-- Display header -->
   <Hero />
   <!-- Intro -->
-  <section class="intro-section">
-    {#each copy.intro as props, i}
-      <svelte:component
-        this={blocks[props.block] ?? Text}
-        id={props.id ?? `graf-${i}`}
-        {...props}
-      />
-    {/each}
+  <section class="intro-section" bind:clientHeight={introH}>
+    <div class="text-wrapper">
+      {#each copy.intro as props, i}
+        <svelte:component
+          this={blocks[props.block] ?? Text}
+          id={props.id ?? `graf-${i}`}
+          {...props}
+        />
+      {/each}
+    </div>
+    {#if introH != undefined}
+      <Stains height={introH}/>
+    {/if}
   </section>
   <!-- scrolly -->
   <section class="relative-custom">
@@ -68,32 +79,51 @@
     <!-- <div class="spacer" /> -->
   </section>
   <!-- text before mobility chart -->
-  <section id="text" class="px-4">
-    {#each copy.blocks as props, i}
-      <svelte:component
-        this={blocks[props.block] ?? Text}
-        id={props.id ?? `graf-${i}`}
-        {...props}
-      />
-    {/each}
+  <section id="text" class="px-4" bind:clientHeight={preMapH}>
+    <div class="text-wrapper">
+      {#each copy.blocks as props, i}
+        <svelte:component
+          this={blocks[props.block] ?? Text}
+          id={props.id ?? `graf-${i}`}
+          {...props}
+        />
+      {/each}
+    </div>
+    {#if preMapH != undefined}
+      <Stains height={preMapH}/>
+    {/if}
   </section>
   <!-- Radial bar chart -->
   <section class="relative-custom">
     <ScrollyContainer />
   </section>
   <!-- conclusion text -->
-  <section id="text-2" class="px-4">
-    {#each copy.blocks2 as props, i}
-      <svelte:component
-        this={blocks[props.block] ?? Text}
-        id={props.id ?? `graf-${i}`}
-        {...props}
-      />
-    {/each}
+  <section id="text-2" class="px-4" bind:clientHeight={outroH}>
+    <div class="text-wrapper">
+      {#each copy.blocks2 as props, i}
+        <svelte:component
+          this={blocks[props.block] ?? Text}
+          id={props.id ?? `graf-${i}`}
+          {...props}
+        />
+      {/each}
+    </div>
+    {#if outroH != undefined}
+      <Stains height={outroH}/>
+    {/if}
   </section>
 </article>
 
 <style>
+  /* .spacer {
+    height: 75vh;
+  } */
+
+  .text-wrapper {
+    position: relative;
+    z-index: 999;
+  }
+
   .relative-custom {
     width: 100%;
     margin: 3rem 0;

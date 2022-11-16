@@ -245,7 +245,7 @@
       <!-- cities -->
       <g id="cities">
         {#each cities as city}
-          <g transform={translate(city, field, false)}>
+          <g id="{(city.properties.NAME).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()/\s]/g,"")}-group" transform={translate(city, field, false)}>
             <circle class="fill-gray-900" stroke-width={2} r={4} />
             <text class="text-label fill-gray-900" x={5} y={-4}
               >{city.properties.NAME}</text
@@ -282,7 +282,7 @@
   }
 
   #cities .text-label {
-    font-size: 12px;
+    font-size: 24px;
     font-family: var(--dubois);
     text-transform: uppercase;
     font-weight: 700;
@@ -309,5 +309,49 @@
   .text-base {
     text-align: center;
     font-size: 20px;
+  }
+
+  :global(a) {
+    color: var(--color-off-black);
+  }
+
+  :global(a:hover) {
+    color: var(--color-db-red);
+  }
+
+  #Philadelphia-group, #SanDiego-group, #Detroit-group, #NewOrleans-group {
+      opacity: 0;
+    }
+
+  @media only screen and (min-width: 500px) {
+    #cities .text-label {
+      font-size: 18px;
+    }
+
+    #Detroit-group, #NewOrleans-group {
+      opacity: 1;
+    }
+  }
+
+  @media only screen and (min-width: 700px) {
+    #cities .text-label {
+      font-size: 14px;
+    }
+
+    #Philadelphia-group, #SanDiego-group, #Detroit-group, #NewOrleans-group {
+      opacity: 1;
+    }
+  }
+
+  @media only screen and (min-width: 800px) {
+    #cities .text-label {
+      font-size: 12px;
+    }
+  }
+
+  @media only screen and (min-width: 1000px) {
+    #cities .text-label {
+      font-size: 10px;
+    }
   }
 </style>
