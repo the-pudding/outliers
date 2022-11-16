@@ -22,7 +22,6 @@
     scroller
       .setup({
         step: `div .step`,
-        debug: true,
         offset: 0.5
       })
       .onStepEnter(handleStepEnter);

@@ -1,15 +1,7 @@
 <script>
   import { beforeUpdate } from "svelte";
 
-  import {
-    scaleLinear,
-    select,
-    selectAll,
-    arc as d3_arc,
-    pointRadial,
-    interpolate,
-    format
-  } from "d3";
+  import { scaleLinear, select, arc as d3_arc, pointRadial, interpolate, format } from "d3";
 
   import copy from "$data/doc.json";
 
@@ -151,18 +143,6 @@
       // do nothing
     }
 
-    const lastPaths = selectAll(
-      `path[data-key="gardena-medhhinc_2016"], path[data-key="fremont-medhhinc_2016"]`
-    );
-
-    function checkOpacity() {
-      if (stepData.key !== "medhhinc_2016" && stepDirection === "up") {
-        lastPaths.style("opacity", 0);
-      } else {
-        lastPaths.style("opacity", 1);
-      }
-    }
-
     radialPath
       .datum(stepData) // bound data to path
       .transition()
@@ -184,8 +164,7 @@
             return arc(slideIndex).endAngle(interpolater(1 - t))();
           }
         };
-      })
-      .on("end", checkOpacity);
+      });
   });
 </script>
 
@@ -213,7 +192,7 @@
       <svg class="w-full h-full" viewBox={[-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT]}>
         <g transform="translate(0, 50)">
           <!-- left axis -->
-          <g>
+          <g transform="translate(0, -25)">
             {#each axisDomain as d}
               <g>
                 <path class="axis-stroke" stroke-width={0.5} d={getPath(d, "left")} />
@@ -232,7 +211,7 @@
             {/each}
           </g>
           <!-- right axis -->
-          <g>
+          <g transform="translate(0, -25)">
             {#each axisDomain as d}
               <g>
                 <path class="axis-stroke" stroke-width={0.5} d={getPath(d, "right")} />
@@ -250,6 +229,7 @@
               </g>
             {/each}
           </g>
+
           <g id="gardena-paths">
             {#each dataset as d}
               <path
