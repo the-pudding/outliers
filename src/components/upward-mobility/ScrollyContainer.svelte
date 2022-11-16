@@ -22,7 +22,7 @@
     scroller
       .setup({
         step: `div .step`,
-        // debug: true,
+        debug: true,
         offset: 0.5
       })
       .onStepEnter(handleStepEnter);
@@ -33,7 +33,7 @@
   <div class="sticky z-0 -top-1" bind:clientHeight={radialH}>
     <RadialChart stepIndex={activeIndex} stepDirection={activeStepDirection} />
     {#if radialH != undefined}
-      <Stains height={radialH}/>
+      <Stains height={radialH} />
     {/if}
   </div>
   <div>

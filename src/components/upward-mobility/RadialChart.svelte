@@ -1,7 +1,15 @@
 <script>
   import { beforeUpdate } from "svelte";
 
-  import { scaleLinear, select, selectAll, arc as d3_arc, pointRadial, interpolate, format } from "d3";
+  import {
+    scaleLinear,
+    select,
+    selectAll,
+    arc as d3_arc,
+    pointRadial,
+    interpolate,
+    format
+  } from "d3";
 
   import copy from "$data/doc.json";
 
@@ -126,7 +134,6 @@
   beforeUpdate(async () => {
     const slide = copy.slides2[stepIndex ?? 0];
     const slideIndex = getSlideIndex(slide.field, slide.key);
-    console.log(stepIndex, slideIndex)
 
     const stepData = dataset[slideIndex ?? 0];
     const angleOffset = slide.field === "gardena" ? 1 : -1;
@@ -144,13 +151,15 @@
       // do nothing
     }
 
-    const lastPaths = selectAll(`path[data-key="gardena-medhhinc_2016"], path[data-key="fremont-medhhinc_2016"]`)
+    const lastPaths = selectAll(
+      `path[data-key="gardena-medhhinc_2016"], path[data-key="fremont-medhhinc_2016"]`
+    );
 
     function checkOpacity() {
-      if (stepData.key !== "medhhinc_2016" && stepDirection === "up"){
-        lastPaths.style("opacity", 0)
+      if (stepData.key !== "medhhinc_2016" && stepDirection === "up") {
+        lastPaths.style("opacity", 0);
       } else {
-        lastPaths.style("opacity", 1)
+        lastPaths.style("opacity", 1);
       }
     }
 
@@ -186,7 +195,11 @@
       <p class="mb-4 text-2xl font-bold uppercase dubois">Gardena</p>
       <ul class="flex flex-col gap-4 text-sm uppercase list-none dubois">
         {#each dataset as d, i}
-          <li data-index={i} data-key={`gardena-${d.key}`} class="flex flex-col opacity-25">
+          <li
+            data-index={i}
+            data-key={`gardena-${d.key}`}
+            class="flex flex-col transition-opacity duration-300 opacity-25"
+          >
             <div class="flex items-center self-start gap-1">
               <div class={`w-4 h-4 border border-black rounded-full dot-${dotMap[d.key]}`} />
               <p class="font-bold">{@html gardenaTract[d.key].label}</p>
@@ -266,7 +279,11 @@
       <p class="mb-4 text-2xl font-bold text-right uppercase dubois">Fremont</p>
       <ul class="flex flex-col gap-4 text-sm text-right uppercase list-none dubois">
         {#each dataset as d, i}
-          <li data-index={i} data-key={`fremont-${d.key}`} class="flex flex-col opacity-25">
+          <li
+            data-index={i}
+            data-key={`fremont-${d.key}`}
+            class="flex flex-col transition-opacity duration-300 opacity-25"
+          >
             <div class="flex items-center self-end gap-1">
               <p class="font-bold">{@html fremontTract[d.key].label}</p>
               <div class={`w-4 h-4 border border-black rounded-full dot-${dotMap[d.key]}`} />
@@ -288,7 +305,7 @@
   .left-pad {
     padding-left: 1rem;
   }
-  .right-pad { 
+  .right-pad {
     padding-right: 1rem;
   }
   .axis-stroke {
