@@ -22,6 +22,7 @@
     scroller
       .setup({
         step: `div .step`,
+        // debug: true,
         offset: 0.5
       })
       .onStepEnter(handleStepEnter);
@@ -36,6 +37,7 @@
     {/if}
   </div>
   <div>
+    <div class="h-[75vh]" />
     {#each copy.slides2 as slide, i}
       <div class="relative z-50 step" class:active={activeIndex === i}>
         <div class="mx-auto text-lg max-w-[400px] md:max-w-xl bg-tan">
@@ -43,6 +45,7 @@
         </div>
       </div>
     {/each}
+    <div class="h-[75vh]" />
   </div>
 </div>
 
