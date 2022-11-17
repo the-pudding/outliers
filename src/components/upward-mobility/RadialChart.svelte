@@ -1,7 +1,16 @@
 <script>
   import { beforeUpdate } from "svelte";
 
-  import { scaleLinear, select, arc as d3_arc, pointRadial, interpolate, format } from "d3";
+  import {
+    scaleLinear,
+    select,
+    selectAll,
+    arc as d3_arc,
+    active as d3_active,
+    pointRadial,
+    interpolate,
+    format
+  } from "d3";
 
   import copy from "$data/doc.json";
 
@@ -125,11 +134,11 @@
 
   beforeUpdate(async () => {
     const slide = copy.slides2[stepIndex ?? 0];
-    const slideIndex = getSlideIndex(slide.field, slide.key);
+    const currIndex = getSlideIndex(slide.field, slide.key);
 
-    const stepData = dataset[slideIndex ?? 0];
+    const stepData = dataset[currIndex ?? 0];
     const angleOffset = slide.field === "gardena" ? 1 : -1;
-    const radialPath = select(
+    const currentPath = select(
       `#${slide.field}-paths > path[data-key="${slide.field}-${slide.key}"]`
     );
 
@@ -143,7 +152,7 @@
       // do nothing
     }
 
-    radialPath
+    currentPath
       .datum(stepData) // bound data to path
       .transition()
       .duration(750)
@@ -158,10 +167,10 @@
           // where t = range(0, 1)
           if (stepDirection === "down") {
             // animate from zero to 1
-            return arc(slideIndex).endAngle(interpolater(t))();
+            return arc(currIndex).endAngle(interpolater(t))();
           } else {
             // animate from 1 to zero
-            return arc(slideIndex).endAngle(interpolater(1 - t))();
+            return arc(currIndex).endAngle(interpolater(1 - t))();
           }
         };
       });
@@ -173,9 +182,8 @@
     <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full right-pad">
       <p class="mb-4 text-2xl font-bold uppercase dubois">Gardena</p>
       <ul class="flex flex-col gap-4 text-sm uppercase list-none dubois">
-        {#each dataset as d, i}
+        {#each dataset as d}
           <li
-            data-index={i}
             data-key={`gardena-${d.key}`}
             class="flex flex-col transition-opacity duration-700 opacity-25"
           >
@@ -231,8 +239,9 @@
           </g>
 
           <g id="gardena-paths">
-            {#each dataset as d}
+            {#each dataset as d, index}
               <path
+                data-index={index}
                 data-key={`gardena-${d.key}`}
                 fill={fillMap[d.key]}
                 class="stroke-gray-900"
@@ -242,8 +251,9 @@
             {/each}
           </g>
           <g id="fremont-paths">
-            {#each dataset as d}
+            {#each dataset as d, index}
               <path
+                data-index={index}
                 data-key={`fremont-${d.key}`}
                 fill={fillMap[d.key]}
                 class="stroke-gray-900"
