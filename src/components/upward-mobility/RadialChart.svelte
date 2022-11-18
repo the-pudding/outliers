@@ -133,10 +133,13 @@
   export let stepDirection;
 
   beforeUpdate(async () => {
-    const slide = copy.slides2[stepIndex ?? 0];
+    if (stepIndex == undefined) {
+      return;
+    }
+    const slide = copy.slides2[stepIndex];
     const currIndex = getSlideIndex(slide.field, slide.key);
 
-    const stepData = dataset[currIndex ?? 0];
+    const stepData = dataset[currIndex];
     const angleOffset = slide.field === "gardena" ? 1 : -1;
     const currentPath = select(
       `#${slide.field}-paths > path[data-key="${slide.field}-${slide.key}"]`
@@ -156,6 +159,7 @@
       .datum(stepData) // bound data to path
       .transition()
       .duration(750)
+      .attr("data-direction", stepDirection)
       .attrTween("d", (d) => {
         if (d === undefined) return;
 
@@ -173,6 +177,58 @@
             return arc(currIndex).endAngle(interpolater(1 - t))();
           }
         };
+      })
+      .on("end", () => {
+        if (stepDirection === "up") {
+          // grab the opposite section
+          const altField = slide.field === "gardena" ? "fremont" : slide.field;
+          const nextIndex = currIndex + 1;
+          const altPath = select(`#${altField}-paths > path[data-key="${altField}-${slide.key}"]`);
+          const nextPath = select(`#${slide.field}-paths > path[data-index="${nextIndex}"]`);
+
+          if (altPath.node() && altPath.node().dataset.direction === "down") {
+            const altOffset = altField === "gardena" ? 1 : -1;
+
+            altPath
+              .transition()
+              .duration(750)
+              .attr("data-direction", stepDirection)
+              .attrTween("d", (d) => {
+                if (d === undefined) return;
+                const startAngle = 0;
+                const endAngle = altOffset * yScale(d[altField]);
+                const interpolater = interpolate(startAngle, endAngle);
+
+                return (t) => {
+                  // animate from 1 to zero
+                  return arc(currIndex).endAngle(interpolater(1 - t))();
+                };
+              });
+          } else if (nextPath.node() && nextPath.node().dataset.direction === "down") {
+            const nextDataset = nextPath.node().dataset;
+            const nextField = nextDataset.path;
+            const nextOffset = nextField === "gardena" ? 1 : -1;
+
+            nextPath
+              .transition()
+              .duration(750)
+              .attr("data-direction", stepDirection)
+              .attrTween("d", (d) => {
+                if (d === undefined) return;
+                console.info(d);
+                const startAngle = 0;
+                const endAngle = nextOffset * yScale(d[nextField]);
+                const interpolater = interpolate(startAngle, endAngle);
+
+                return (t) => {
+                  // animate from 1 to zero
+                  return arc(nextIndex).endAngle(interpolater(1 - t))();
+                };
+              });
+          } else {
+            console.info("???");
+          }
+        }
       });
   });
 </script>
@@ -242,6 +298,8 @@
             {#each dataset as d, index}
               <path
                 data-index={index}
+                data-path="gardena"
+                data-field={d.key}
                 data-key={`gardena-${d.key}`}
                 fill={fillMap[d.key]}
                 class="stroke-gray-900"
@@ -254,6 +312,8 @@
             {#each dataset as d, index}
               <path
                 data-index={index}
+                data-path="fremont"
+                data-field={d.key}
                 data-key={`fremont-${d.key}`}
                 fill={fillMap[d.key]}
                 class="stroke-gray-900"
