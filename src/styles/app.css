@@ -80,16 +80,15 @@ h2 {
 
 /* Colors style for radial chart */
 .share_black2010 span,
-.kir_top20_black_pooled_p75 span,
-.kir_black_pooled_p75 span,
-.kir_black_pooled_p25 span,
-.kir_top20_pooled_pooled_p75 span {
+.share_black_stayed span,
+.medhhinc_1990 span,
+.medhhinc_2016 span {
 	font-weight: bold;
 	font-family: var(--dubois);
 	text-transform: uppercase;
 }
 
-.share_black2010 span::before, .kir_top20_black_pooled_p75 span::before, .kir_black_pooled_p75 span::before, .kir_black_pooled_p25 span::before, .kir_top20_pooled_pooled_p75 span::before {
+.share_black2010 span::before, .share_black_stayed span::before, .medhhinc_1990 span::before, .medhhinc_2016 span::before {
 	display: inline-block;
 	width:1rem;
 	height:1rem;
@@ -101,16 +100,14 @@ h2 {
 	top: 0.15rem;
 }
 
-.kir_top20_pooled_pooled_p75 span::before {
+.medhhinc_1990 span::before {
 	background-color: var(--color-db-pink);
 }
-.kir_black_pooled_p25 span::before {
+.medhhinc_2016 span::before {
 	background-color: var(--color-db-yellow);
 }
-.kir_black_pooled_p75 span::before {
-	background-color: var(--color-db-brown);
-}
-.kir_top20_black_pooled_p75 span::before {
+
+.share_black_stayed span::before {
 	background-color: var(--color-db-green);
 }
 .share_black2010 span::before {
