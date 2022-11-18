@@ -1,16 +1,7 @@
 <script>
   import { beforeUpdate } from "svelte";
 
-  import {
-    scaleLinear,
-    select,
-    selectAll,
-    arc as d3_arc,
-    active as d3_active,
-    pointRadial,
-    interpolate,
-    format
-  } from "d3";
+  import { scaleLinear, select, arc as d3_arc, pointRadial, interpolate, format } from "d3";
 
   import copy from "$data/doc.json";
 
@@ -145,91 +136,98 @@
       `#${slide.field}-paths > path[data-key="${slide.field}-${slide.key}"]`
     );
 
-    const el = document.querySelector(`li[data-key="${slide.field}-${slide.key}"]`);
+    // animate paths based on direction
+    const handleTween = (selection, { datum, direction, offset, field, index, onEnd }) => {
+      if (selection.node() == null) return;
 
-    if (stepDirection === "down") {
-      el?.classList.add("!opacity-100");
-    } else if (stepDirection === "up") {
-      el?.classList.remove("!opacity-100");
-    } else {
-      // do nothing
-    }
+      // toggle the li elements next to chart
+      const key = selection.node().dataset.field;
+      const el = document.querySelector(`li[data-key="${field}-${key}"]`);
 
-    currentPath
-      .datum(stepData) // bound data to path
-      .transition()
-      .duration(750)
-      .attr("data-direction", stepDirection)
-      .attrTween("d", (d) => {
-        if (d === undefined) return;
+      if (stepDirection === "down") {
+        el?.classList.add("!opacity-100");
+      } else {
+        el?.classList.remove("!opacity-100");
+      }
 
-        const startAngle = 0;
-        const endAngle = angleOffset * yScale(d[slide.field]);
-        const interpolater = interpolate(startAngle, endAngle);
+      // only apply datum on the first mount,
+      // afterward, d3 will have the data bound to the DOM element
+      const path = datum ? selection.datum(datum) : selection;
+      path
+        .transition()
+        .duration(750)
+        .attr("data-direction", direction)
+        .attrTween("d", (d) => {
+          if (d === undefined) return;
 
-        return (t) => {
-          // where t = range(0, 1)
-          if (stepDirection === "down") {
-            // animate from zero to 1
-            return arc(currIndex).endAngle(interpolater(t))();
-          } else {
-            // animate from 1 to zero
-            return arc(currIndex).endAngle(interpolater(1 - t))();
-          }
-        };
-      })
-      .on("end", () => {
-        if (stepDirection === "up") {
-          // grab the opposite section
-          const altField = slide.field === "gardena" ? "fremont" : slide.field;
-          const nextIndex = currIndex + 1;
-          const altPath = select(`#${altField}-paths > path[data-key="${altField}-${slide.key}"]`);
-          const nextPath = select(`#${slide.field}-paths > path[data-index="${nextIndex}"]`);
+          const startAngle = 0;
+          const endAngle = offset * yScale(d[field]);
+          const interpolater = interpolate(startAngle, endAngle);
 
-          if (altPath.node() && altPath.node().dataset.direction === "down") {
-            const altOffset = altField === "gardena" ? 1 : -1;
+          return (t) => {
+            // where t = range(0, 1)
+            if (direction === "down") {
+              // animate from zero to 1
+              return arc(index).endAngle(interpolater(t))();
+            } else {
+              // animate from 1 to zero
+              return arc(index).endAngle(interpolater(1 - t))();
+            }
+          };
+        })
+        .on("end", onEnd);
+    };
 
-            altPath
-              .transition()
-              .duration(750)
-              .attr("data-direction", stepDirection)
-              .attrTween("d", (d) => {
-                if (d === undefined) return;
-                const startAngle = 0;
-                const endAngle = altOffset * yScale(d[altField]);
-                const interpolater = interpolate(startAngle, endAngle);
+    // cleanup animation step based on fields
+    const handleOnEnd = () => {
+      const isUp = stepDirection === "up";
+      // first check if the sibling equivalent path is still displayed
+      // if so, transition it back
+      const siblingField = slide.field === "gardena" ? "fremont" : slide.field;
+      const siblingOffset = siblingField === "gardena" ? 1 : -1;
+      const siblingPath = select(
+        `#${siblingField}-paths > path[data-key="${siblingField}-${slide.key}"]`
+      );
 
-                return (t) => {
-                  // animate from 1 to zero
-                  return arc(currIndex).endAngle(interpolater(1 - t))();
-                };
-              });
-          } else if (nextPath.node() && nextPath.node().dataset.direction === "down") {
-            const nextDataset = nextPath.node().dataset;
-            const nextField = nextDataset.path;
-            const nextOffset = nextField === "gardena" ? 1 : -1;
+      if (isUp && siblingPath.node() && siblingPath.node().dataset.direction === "down") {
+        siblingPath.call(handleTween, {
+          direction: stepDirection,
+          offset: siblingOffset,
+          field: siblingField,
+          index: currIndex
+        });
+      }
+      // next, check if the next sequential path is still displayed
+      // if so, transition it back
+      const nextIndex = currIndex + 1;
+      const nextPath = select(`#${slide.field}-paths > path[data-index="${nextIndex}"]`);
 
-            nextPath
-              .transition()
-              .duration(750)
-              .attr("data-direction", stepDirection)
-              .attrTween("d", (d) => {
-                if (d === undefined) return;
-                console.info(d);
-                const startAngle = 0;
-                const endAngle = nextOffset * yScale(d[nextField]);
-                const interpolater = interpolate(startAngle, endAngle);
+      // nextPath will be null on final step
+      if (nextPath.node() == null) return;
 
-                return (t) => {
-                  // animate from 1 to zero
-                  return arc(nextIndex).endAngle(interpolater(1 - t))();
-                };
-              });
-          } else {
-            console.info("???");
-          }
-        }
-      });
+      const nextDataset = nextPath.node().dataset;
+      const nextField = nextDataset.path;
+      const nextOffset = nextField === "gardena" ? 1 : -1;
+
+      if (isUp && nextPath.node() && nextPath.node().dataset.direction === "down") {
+        nextPath.call(handleTween, {
+          direction: stepDirection,
+          offset: nextOffset,
+          field: nextField,
+          index: nextIndex
+        });
+      }
+    };
+
+    // Kickoff animation loop
+    currentPath.call(handleTween, {
+      datum: stepData,
+      direction: stepDirection,
+      offset: angleOffset,
+      field: slide.field,
+      index: currIndex,
+      onEnd: handleOnEnd
+    });
   });
 </script>
 
