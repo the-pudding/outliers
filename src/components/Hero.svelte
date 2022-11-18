@@ -11,7 +11,7 @@
 
   let cutoutPhoto;
   let largeUSPaths;
-  let smallUSPaths
+  let smallUSPaths;
   let filledPath;
   let headlineSpan;
   let introBlockW;
@@ -34,9 +34,9 @@
         .ease(easeLinear)
         .attr("stroke-dashoffset", 0)
         .on("end", resolve);
-    })
+    });
   }
-  
+
   function popIn(item, property, val, delay, dur) {
     return new Promise((resolve) => {
       item
@@ -46,7 +46,7 @@
         .ease(easeLinear)
         .style(property, val)
         .on("end", resolve);
-    })
+    });
   }
 
   // function roughen(group, color, fill) {
@@ -86,7 +86,6 @@
     await popIn(cutoutPhoto, "opacity", 1, 250, 0);
     await popIn(headlineSpan, "top", "-100px", 250, 250);
   }
-  
 
   onMount(() => {
     cutoutPhoto = selectAll(".intro-cutout img");
@@ -96,47 +95,64 @@
     headlineSpan = selectAll(".hed-block");
     run();
   });
-
 </script>
 
-<svelte:window bind:innerWidth={w}/>
+<svelte:window bind:innerWidth={w} />
 
 <div class="relative z-50 w-full mb-6 h-4/5" bind:clientHeight={h}>
   <div class="intro-wrapper">
     <!-- <div class="absolute w-full"> -->
-      <Header />
-      <!-- </div> -->
-      <div class="overlays">
-        <div class="intro-svg">{@html usMap}</div>
-        <div class="intro-cutout"><img src="assets/img/aaron_cutout.png" alt="the author as a toddler dressed up in a white shirt, black pants, a black bowtie, and yellow suspenders"></div>
+    <Header />
+    <!-- </div> -->
+    <div class="overlays">
+      <div class="intro-svg">{@html usMap}</div>
+      <div class="intro-cutout">
+        <img
+          src="assets/img/aaron_cutout.png"
+          alt="the author as a toddler dressed up in a white shirt, black pants, a black bowtie, and yellow suspenders"
+        />
       </div>
-      {#if w < 700}
+    </div>
+    {#if w < 700}
       <div class="hed">
         <p class="hed-text">On Upward Mobility</p>
-          <div class="intro-block">
-            <p class="intro-text">{copy.description}</p>
-            <p class="byline">By <a href="https://pudding.cool" title={copy.byline}>{copy.byline}</a></p>
-            <p class="byline sm">With <a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a> and <a href="https://pudding.cool/author/michelle-mcghee/">Michelle McGhee</a></p>
-          </div>
+        <div class="intro-block">
+          <p class="intro-text">{copy.description}</p>
+          <p class="byline">
+            By <a href="https://pudding.cool" title={copy.byline}>{copy.byline}</a>
+          </p>
+          <p class="byline sm">
+            With <a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a> and
+            <a href="https://pudding.cool/author/michelle-mcghee/">Michelle McGhee</a>
+          </p>
+        </div>
       </div>
-      {:else} 
+    {:else}
       <div class="hed">
         <div><p class="hed-text">On</p></div>
         <div class="hed-block">
           <p class="hed-text"><span bind:clientWidth={introBlockW}>Upward</span></p>
           <div class="intro-block">
             <p class="intro-text" style="max-width: {introBlockW}px">{copy.description}</p>
-            <p class="byline">By <a href="https://pudding.cool" title={copy.byline}>{copy.byline}</a></p>
-            <p class="byline sm">With <a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a> and <a href="https://pudding.cool/author/michelle-mcghee/">Michelle McGhee</a></p>
+            <p class="mb-1 byline">
+              By <a href={copy.bylineUrl} title={copy.byline}>{copy.byline}</a>
+            </p>
+            <p class="mb-1 byline sm">
+              With <a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a> and
+              <a href="https://pudding.cool/author/michelle-mcghee/">Michelle McGhee</a>
+            </p>
+            <p class="byline sm">
+              Editing by <a href="https://pudding.cool/author/rob-smith/">Rob Smith</a>
+            </p>
           </div>
         </div>
         <div><p class="hed-text">Mobility</p></div>
       </div>
-      {/if}
-      <h1 aria-label="On Upward Mobility">On Upward Mobility</h1>
+    {/if}
+    <h1 aria-label="On Upward Mobility">On Upward Mobility</h1>
   </div>
   {#if h != undefined}
-    <Stains height={h}/>
+    <Stains height={h} />
   {/if}
 </div>
 
@@ -147,12 +163,13 @@
   }
   .overlays {
     position: relative;
-    height: calc(100vw/1.75);
+    height: calc(100vw / 1.75);
     max-width: 80rem;
     margin: -3rem auto 0 auto;
     pointer-events: none;
   }
-  .intro-svg, .intro-cutout {
+  .intro-svg,
+  .intro-cutout {
     width: 100%;
     position: absolute;
     top: 0;
@@ -191,7 +208,8 @@
     display: inline-block;
   }
 
-  .intro-text, .byline {
+  .intro-text,
+  .byline {
     font-size: 16px;
     font-family: var(--dubois);
     text-transform: uppercase;
