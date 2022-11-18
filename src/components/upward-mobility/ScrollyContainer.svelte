@@ -10,18 +10,12 @@
 
   let stepIndex;
   let stepDirection;
-  // let exitIndex;
-  // let exitDirection;
   let radialH;
 
   const handleStepEnter = (response) => {
     stepIndex = response.index;
     stepDirection = response.direction;
   };
-  // const handleStepExit = (response) => {
-  //   exitIndex = response.index;
-  //   exitDirection = response.direction;
-  // };
 
   onMount(() => {
     const scroller = scrollama();
@@ -32,7 +26,6 @@
         offset: 0.5
       })
       .onStepEnter(handleStepEnter);
-    // .onStepExit(handleStepExit);
   });
 </script>
 
