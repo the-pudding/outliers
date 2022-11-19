@@ -7,14 +7,20 @@
   import Stains from "$components/Stains.svelte";
 
   import copy from "$data/doc.json";
+  import { activeStep, activeProgress } from "./stores";
 
   let stepIndex;
   let stepDirection;
   let radialH;
 
-  const handleStepEnter = (response) => {
-    stepIndex = response.index;
-    stepDirection = response.direction;
+  const handleStepEnter = ({ index, direction }) => {
+    activeStep.set({ direction, state: "enter" });
+    stepIndex = index;
+    stepDirection = direction;
+  };
+
+  const handleStepExit = ({ direction }) => {
+    activeStep.set({ direction, state: "exit" });
   };
 
   onMount(() => {
@@ -23,9 +29,12 @@
       .setup({
         step: `div .step`,
         // debug: true,
+        progress: true,
         offset: 0.5
       })
-      .onStepEnter(handleStepEnter);
+      .onStepEnter(handleStepEnter)
+      .onStepProgress(({ progress }) => activeProgress.set(progress))
+      .onStepExit(handleStepExit);
   });
 </script>
 
