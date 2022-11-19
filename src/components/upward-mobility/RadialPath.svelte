@@ -1,5 +1,5 @@
 <script>
-  import { scaleLinear, select, arc as d3_arc, pointRadial, interpolate, format } from "d3";
+  import { arc as d3_arc } from "d3";
   import { beforeUpdate } from "svelte";
   import { tweened } from "svelte/motion";
 
@@ -21,15 +21,15 @@
   const key = `${field}-${index}`;
 
   const dir = field === "gardena" ? 1 : -1;
+  const endAngle = dir * yScale(d[field]);
 
   const arc = d3_arc()
     .innerRadius(paddingScale(index) - 15)
     .outerRadius(paddingScale(index + 1) - 20)
     .startAngle(0)
-    .endAngle(dir * yScale(d[field]));
+    .endAngle(endAngle);
 
   let isActive = false;
-  let pathD;
 
   beforeUpdate(() => {
     isActive = $activeKeySet.includes(key);

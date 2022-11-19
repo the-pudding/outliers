@@ -19,6 +19,8 @@
     stepDirection = direction;
   };
 
+  const handleStepProgress = ({ progress }) => activeProgress.set(progress);
+
   const handleStepExit = ({ direction }) => {
     activeStep.set({ direction, state: "exit" });
   };
@@ -33,7 +35,7 @@
         offset: 0.5
       })
       .onStepEnter(handleStepEnter)
-      .onStepProgress(({ progress }) => activeProgress.set(progress))
+      .onStepProgress(handleStepProgress)
       .onStepExit(handleStepExit);
   });
 </script>
