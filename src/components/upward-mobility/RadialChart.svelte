@@ -1,7 +1,17 @@
 <script>
   import { beforeUpdate } from "svelte";
 
-  import { scaleLinear, select, arc as d3_arc, pointRadial, interpolate, format } from "d3";
+  import RadialPath from "./RadialPath.svelte";
+
+  import { scaleLinear, pointRadial, format } from "d3";
+  import {
+    activeKey,
+    activeDirection,
+    initialKeySet,
+    activeKeySet,
+    activeStep,
+    activeProgress
+  } from "./stores";
 
   import copy from "$data/doc.json";
 
@@ -58,23 +68,11 @@
     medhhinc_2016: "yellow"
   };
 
-  const fillMap = {
-    share_black2010: "#5367A2",
-    share_black_stayed: "#82A884",
-    medhhinc_1990: "#D8284F",
-    medhhinc_2016: "#EFAE38"
-  };
-
   const dataset = keys.map((key) => ({
     key,
     gardena: gardenaTract[key].value,
     fremont: fremontTract[key].value
   }));
-
-  const getSlideIndex = (field, key) => {
-    const slide = copy.slides2.find((d) => d.field === field && d.key === key);
-    return parseInt(slide?.id ?? 0);
-  };
 
   const WIDTH = 550;
   const HEIGHT = 600;
@@ -87,12 +85,6 @@
   // extent size
   const axisDomain = [0, 0.25, 0.5];
   const ticks = [0, 0.5];
-
-  const arc = (index) =>
-    d3_arc()
-      .innerRadius(paddingScale(index) - 15)
-      .outerRadius(paddingScale(index + 1) - 20)
-      .startAngle(0);
 
   const getAxis = (d, direction = "left") => {
     if (direction === "left") {
@@ -119,115 +111,34 @@
     }
   };
 
-  // index from step
   export let stepIndex;
   export let stepDirection;
 
-  beforeUpdate(async () => {
-    if (stepIndex == undefined) {
-      return;
-    }
+  beforeUpdate(() => {
+    if (stepIndex == undefined) return;
+
     const slide = copy.slides2[stepIndex];
-    const currIndex = getSlideIndex(slide.field, slide.key);
 
-    const stepData = dataset[currIndex];
-    const angleOffset = slide.field === "gardena" ? 1 : -1;
-    const currentPath = select(
-      `#${slide.field}-paths > path[data-key="${slide.field}-${slide.key}"]`
-    );
+    activeDirection.set(stepDirection);
 
-    // animate paths based on direction
-    const handleTween = (selection, { datum, direction, offset, field, index, onEnd }) => {
-      if (selection.node() == null) return;
+    activeKey.set(`${slide.field}-${slide.id}`);
 
-      // toggle the li elements next to chart
-      const key = selection.node().dataset.field;
-      const el = document.querySelector(`li[data-key="${field}-${key}"]`);
+    // set up to N
+    const index = $initialKeySet.indexOf($activeKey);
+    activeKeySet.set($initialKeySet.filter((_, i) => i <= index));
 
-      if (stepDirection === "down") {
-        el?.classList.add("!opacity-100");
-      } else {
-        el?.classList.remove("!opacity-100");
-      }
-
-      // only apply datum on the first mount,
-      // afterward, d3 will have the data bound to the DOM element
-      const path = datum ? selection.datum(datum) : selection;
-      path
-        .transition()
-        .duration(750)
-        .attr("data-direction", direction)
-        .attrTween("d", (d) => {
-          if (d === undefined) return;
-
-          const startAngle = 0;
-          const endAngle = offset * yScale(d[field]);
-          const interpolater = interpolate(startAngle, endAngle);
-
-          return (t) => {
-            // where t = range(0, 1)
-            if (direction === "down") {
-              // animate from zero to 1
-              return arc(index).endAngle(interpolater(t))();
-            } else {
-              // animate from 1 to zero
-              return arc(index).endAngle(interpolater(1 - t))();
-            }
-          };
-        })
-        .on("end", onEnd);
-    };
-
-    // cleanup animation step based on fields
-    const handleOnEnd = () => {
-      const isUp = stepDirection === "up";
-      // first check if the sibling equivalent path is still displayed
-      // if so, transition it back
-      const siblingField = slide.field === "gardena" ? "fremont" : slide.field;
-      const siblingOffset = siblingField === "gardena" ? 1 : -1;
-      const siblingPath = select(
-        `#${siblingField}-paths > path[data-key="${siblingField}-${slide.key}"]`
-      );
-
-      if (isUp && siblingPath.node() && siblingPath.node().dataset.direction === "down") {
-        siblingPath.call(handleTween, {
-          direction: stepDirection,
-          offset: siblingOffset,
-          field: siblingField,
-          index: currIndex
-        });
-      }
-      // next, check if the next sequential path is still displayed
-      // if so, transition it back
-      const nextIndex = currIndex + 1;
-      const nextPath = select(`#${slide.field}-paths > path[data-index="${nextIndex}"]`);
-
-      // nextPath will be null on final step
-      if (nextPath.node() == null) return;
-
-      const nextDataset = nextPath.node().dataset;
-      const nextField = nextDataset.path;
-      const nextOffset = nextField === "gardena" ? 1 : -1;
-
-      if (isUp && nextPath.node() && nextPath.node().dataset.direction === "down") {
-        nextPath.call(handleTween, {
-          direction: stepDirection,
-          offset: nextOffset,
-          field: nextField,
-          index: nextIndex
-        });
-      }
-    };
-
-    // Kickoff animation loop
-    currentPath.call(handleTween, {
-      datum: stepData,
-      direction: stepDirection,
-      offset: angleOffset,
-      field: slide.field,
-      index: currIndex,
-      onEnd: handleOnEnd
-    });
+    // if we end near the end of the view with only the gardena
+    // path visible, set all the keys to an empty array
+    if (
+      $activeStep.direction === "up" &&
+      $activeStep.state === "exit" &&
+      $activeKeySet.length === 1 &&
+      $activeKey === $initialKeySet[0] &&
+      $activeProgress === 0
+    ) {
+      // exiting the chart, unspin the last path
+      activeKeySet.set([]);
+    }
   });
 </script>
 
@@ -236,10 +147,14 @@
     <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full right-pad">
       <p class="mb-4 text-2xl font-bold uppercase dubois">Gardena</p>
       <ul class="flex flex-col gap-4 text-sm uppercase list-none dubois">
-        {#each dataset as d}
+        {#each dataset as d, i}
           <li
-            data-key={`gardena-${d.key}`}
-            class="flex flex-col transition-opacity duration-700 opacity-25"
+            data-index={i}
+            data-field="gardena"
+            data-key={d.key}
+            class={`flex flex-col transition-opacity duration-700 ${
+              $activeKeySet.includes(`gardena-${i}`) ? "opacity-100" : "opacity-25"
+            }`}
           >
             <div class="flex items-center self-start gap-1">
               <div class={`w-4 h-4 border border-black rounded-full dot-${dotMap[d.key]}`} />
@@ -294,30 +209,12 @@
 
           <g id="gardena-paths">
             {#each dataset as d, index}
-              <path
-                data-index={index}
-                data-path="gardena"
-                data-field={d.key}
-                data-key={`gardena-${d.key}`}
-                fill={fillMap[d.key]}
-                class="stroke-gray-900"
-                stroke-width={1}
-                d={arc(d, getSlideIndex(d.field, d.key), 1, "gardena")}
-              />
+              <RadialPath {d} {index} {paddingScale} {yScale} field="gardena" />
             {/each}
           </g>
           <g id="fremont-paths">
             {#each dataset as d, index}
-              <path
-                data-index={index}
-                data-path="fremont"
-                data-field={d.key}
-                data-key={`fremont-${d.key}`}
-                fill={fillMap[d.key]}
-                class="stroke-gray-900"
-                stroke-width={1}
-                d={arc(d, getSlideIndex(d.field, d.key), -1, "fremont")}
-              />
+              <RadialPath {d} {index} {paddingScale} {yScale} field="fremont" />
             {/each}
           </g>
         </g>
@@ -329,8 +226,11 @@
         {#each dataset as d, i}
           <li
             data-index={i}
-            data-key={`fremont-${d.key}`}
-            class="flex flex-col transition-opacity duration-700 opacity-25"
+            data-field="fremont"
+            data-key={d.key}
+            class={`flex flex-col transition-opacity duration-700 ${
+              $activeKeySet.includes(`fremont-${i}`) ? "opacity-100" : "opacity-25"
+            }`}
           >
             <div class="flex items-center self-end gap-1">
               <p class="font-bold">{@html fremontTract[d.key].label}</p>
