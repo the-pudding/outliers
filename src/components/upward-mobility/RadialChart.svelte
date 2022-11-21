@@ -142,7 +142,9 @@
   });
 </script>
 
-<div class="flex items-center justify-center h-screen px-4 mx-auto my-0 max-w-7xl chart-container">
+<div
+  class="flex items-center justify-center h-[80vh] md:h-screen px-4 mx-auto my-0 max-w-7xl relative z-[999]"
+>
   <div class="grid items-center max-h-full grid-cols-12 grid-rows-6 gap-3">
     <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full right-pad">
       <p class="mb-4 text-2xl font-bold uppercase dubois">Gardena</p>
@@ -160,13 +162,16 @@
               <div class={`w-4 h-4 border border-black rounded-full dot-${dotMap[d.key]}`} />
               <p class="font-bold">{@html gardenaTract[d.key].label}</p>
             </div>
-            <p>{@html copy.labels[d.key]}</p>
+            <p class="inline-block p-1 rounded-sm lg:p-0 description">{@html copy.labels[d.key]}</p>
           </li>
         {/each}
       </ul>
     </div>
     <div class="col-span-12 row-span-3 row-start-1 lg:col-span-8 lg:row-span-full">
-      <svg class="w-full h-full" viewBox={[-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT]}>
+      <svg
+        class="w-full h-full mt-0 sm:mt-10 lg:mt-0"
+        viewBox={[-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT]}
+      >
         <g transform="translate(0, 50)">
           <!-- left axis -->
           <g transform="translate(0, -25)">
@@ -236,7 +241,11 @@
               <p class="font-bold">{@html fremontTract[d.key].label}</p>
               <div class={`w-4 h-4 border border-black rounded-full dot-${dotMap[d.key]}`} />
             </div>
-            <p>{@html copy.labels[d.key]}</p>
+            <div>
+              <p class="inline-block p-1 rounded-sm lg:p-0 description">
+                {@html copy.labels[d.key]}
+              </p>
+            </div>
           </li>
         {/each}
       </ul>
@@ -245,11 +254,10 @@
 </div>
 
 <style>
-  .chart-container {
-    position: relative;
-    z-index: 999;
-    height: 80vh;
+  .description {
+    background-color: rgba(255, 250, 242, 0.95);
   }
+
   .left-pad {
     padding-left: 1rem;
   }
