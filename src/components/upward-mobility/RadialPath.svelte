@@ -1,6 +1,7 @@
 <script>
   import { arc as d3_arc, interpolate } from "d3";
   import { beforeUpdate } from "svelte";
+  import { sineIn } from "svelte/easing";
 
   import { activeKeySet } from "./stores";
 
@@ -26,16 +27,21 @@
   const arc = d3_arc()
     .innerRadius(paddingScale(index) - 15)
     .outerRadius(paddingScale(index + 1) - 20)
-    .startAngle(startAngle);
-  // .endAngle(endAngle);
+    .startAngle(startAngle)
+    .endAngle(endAngle);
 
-  const pathD = arc.endAngle(endAngle)(d);
+  const pathD = arc(d);
 
   const interpolater = interpolate(startAngle, endAngle);
-  const curve = (node, { delay = 0, duration = 400 }) => ({
+  const curve = (_, { delay = 0, duration = 450 }) => ({
     delay,
     duration,
-    css: (t) => `d: path("${arc.endAngle(interpolater(t))(d)}")`
+    css: (t) => {
+      const interpolated = interpolater(sineIn(t));
+      const drawPath = arc.endAngle(interpolated);
+
+      return `d: path("${drawPath(d)}")`;
+    }
   });
 
   let isActive = false;
