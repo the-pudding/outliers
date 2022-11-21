@@ -1,9 +1,9 @@
 <script>
   import { arc as d3_arc } from "d3";
   import { beforeUpdate } from "svelte";
-  import { tweened } from "svelte/motion";
+  import { fade } from "svelte/transition";
 
-  import { activeKey, activeDirection, initialKeySet, activeKeySet, activeStep } from "./stores";
+  import { activeKeySet } from "./stores";
 
   const fillMap = {
     share_black2010: "#5367A2",
@@ -29,20 +29,23 @@
     .startAngle(0)
     .endAngle(endAngle);
 
+  const pathD = arc(d);
+
   let isActive = false;
 
-  beforeUpdate(() => {
+  beforeUpdate(async () => {
     isActive = $activeKeySet.includes(key);
   });
 </script>
 
 {#if isActive}
   <path
+    transition:fade
     data-index={index}
     data-field={field}
     data-key={d.key}
     fill={fillMap[d.key]}
     class="stroke-1 stroke-gray-900"
-    d={arc(d)}
+    d={pathD}
   />
 {/if}

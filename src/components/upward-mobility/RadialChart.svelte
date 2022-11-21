@@ -147,11 +147,14 @@
     <div class="col-span-6 row-span-4 row-start-4 lg:col-span-2 lg:row-span-full right-pad">
       <p class="mb-4 text-2xl font-bold uppercase dubois">Gardena</p>
       <ul class="flex flex-col gap-4 text-sm uppercase list-none dubois">
-        {#each dataset as d}
+        {#each dataset as d, i}
           <li
+            data-index={i}
             data-field="gardena"
             data-key={d.key}
-            class="flex flex-col transition-opacity duration-700 opacity-25"
+            class={`flex flex-col transition-opacity duration-700 ${
+              $activeKeySet.includes(`gardena-${i}`) ? "opacity-100" : "opacity-25"
+            }`}
           >
             <div class="flex items-center self-start gap-1">
               <div class={`w-4 h-4 border border-black rounded-full dot-${dotMap[d.key]}`} />
@@ -225,7 +228,9 @@
             data-index={i}
             data-field="fremont"
             data-key={d.key}
-            class="flex flex-col transition-opacity duration-700 opacity-25"
+            class={`flex flex-col transition-opacity duration-700 ${
+              $activeKeySet.includes(`fremont-${i}`) ? "opacity-100" : "opacity-25"
+            }`}
           >
             <div class="flex items-center self-end gap-1">
               <p class="font-bold">{@html fremontTract[d.key].label}</p>
