@@ -1,7 +1,6 @@
 <script>
-  import { arc as d3_arc } from "d3";
+  import { arc as d3_arc, interpolate } from "d3";
   import { beforeUpdate } from "svelte";
-  import { fade } from "svelte/transition";
 
   import { activeKeySet } from "./stores";
 
@@ -21,15 +20,23 @@
   const key = `${field}-${index}`;
 
   const dir = field === "gardena" ? 1 : -1;
+  const startAngle = 0;
   const endAngle = dir * yScale(d[field]);
 
   const arc = d3_arc()
     .innerRadius(paddingScale(index) - 15)
     .outerRadius(paddingScale(index + 1) - 20)
-    .startAngle(0)
-    .endAngle(endAngle);
+    .startAngle(startAngle);
+  // .endAngle(endAngle);
 
-  const pathD = arc(d);
+  const pathD = arc.endAngle(endAngle)(d);
+
+  const interpolater = interpolate(startAngle, endAngle);
+  const curve = (node, { delay = 0, duration = 400 }) => ({
+    delay,
+    duration,
+    css: (t) => `d: path("${arc.endAngle(interpolater(t))(d)}")`
+  });
 
   let isActive = false;
 
@@ -40,7 +47,7 @@
 
 {#if isActive}
   <path
-    transition:fade
+    transition:curve
     data-index={index}
     data-field={field}
     data-key={d.key}
