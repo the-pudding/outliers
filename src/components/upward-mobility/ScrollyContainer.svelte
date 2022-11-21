@@ -32,7 +32,7 @@
         step: `div .step`,
         // debug: true,
         progress: true,
-        offset: 0.5
+        offset: 0.75
       })
       .onStepEnter(handleStepEnter)
       .onStepProgress(handleStepProgress)
