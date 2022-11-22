@@ -46,8 +46,8 @@
       label: "4%"
     },
     share_black_stayed: {
-      value: 0.49,
-      label: "49%"
+      value: 0.04,
+      label: "<5%"
     },
     medhhinc_1990: {
       value: 0.86, // 86th percentile
