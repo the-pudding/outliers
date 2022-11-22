@@ -45,7 +45,7 @@
   {#if stains != undefined}
     {#each stains as stain, i}
       <div
-        style="top: {stain.randomH}px; left: {stain.randomW}px; transform: rotate({stain.randomRotate}deg); background-image: url('{stain.img}'), url('/assets/img/bg_texture.png')"
+        style="top: {stain.randomH}px; left: {stain.randomW}px; transform: rotate({stain.randomRotate}deg); background-image: url('{stain.img}'), url('https://pudding.cool/2022/11/upward-mobility/assets/img/bg_texture.png')"
       />
     {/each}
   {/if}
