@@ -55,6 +55,7 @@
   .stains {
     /* setting to 100% blows out container */
     width: 90%;
+    overflow-x: hidden;
     position: absolute;
     top: 0;
   }
