@@ -254,10 +254,6 @@
 </div>
 
 <style>
-  .description {
-    background-color: rgba(255, 250, 242, 0.95);
-  }
-
   .left-pad {
     padding-left: 1rem;
   }
