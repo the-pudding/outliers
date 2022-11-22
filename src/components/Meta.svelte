@@ -1,8 +1,8 @@
 <script>
-  export let title = "Title TK";
-  export let description = "Description TK";
-  export let url = "https://pudding.cool";
-  export let keywords = "";
+  export let title = "Upward Mobility";
+  export let description = "What role did the neighborhood you grew up in have in shaping your economic opportunities? Author Aaron Williams tells a data story about migration, community, and returning to your roots.";
+  export let url = "https://pudding.cool/2022/11/upward-mobility";
+  export let keywords = "economic, opportunity, migration, great migration, neighborhood, community, family, income, race";
   export let preloadFont = [];
 </script>
 

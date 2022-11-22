@@ -14,10 +14,10 @@ OUTPUT_PATH=src/data
 copy-data:
 	cp ${DATA_PATH} ${OUTPUT_PATH}
 	
-# aws-sync:
-# 	aws s3 sync build s3://pudding.cool/year/month/name --delete --cache-control 'max-age=31536000'
+aws-sync:
+	aws s3 sync build s3://pudding.cool/2022/11/upward-mobility --delete --cache-control 'max-age=31536000'
 
-# aws-cache:
-# 	aws cloudfront create-invalidation --distribution-id E13X38CRR4E04D --paths '/year/month/name*'	
+aws-cache:
+	aws cloudfront create-invalidation --distribution-id E13X38CRR4E04D --paths '/2022/11/upward-mobility*'	
 
-# pudding: aws-sync aws-cache
+pudding: aws-sync aws-cache

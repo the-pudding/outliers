@@ -30,7 +30,7 @@
         .attr("stroke-dashoffset", (d, i) => lineLengths[i])
         .transition()
         //.delay((d, i) => i * 100)
-        .duration(1000)
+        .duration(750)
         .ease(easeLinear)
         .attr("stroke-dashoffset", 0)
         .on("end", resolve);
@@ -76,13 +76,13 @@
   // }
 
   async function run() {
-    await popIn(largeUSPaths, "opacity", 1, 250, 0);
+    await popIn(largeUSPaths, "opacity", 1, 0, 0);
     await drawPaths(largeUSPaths);
     //await roughen('#large_x5F_us', '#D8284F', 0);
-    await popIn(smallUSPaths, "opacity", 1, 250, 0);
+    await popIn(smallUSPaths, "opacity", 1, 0, 0);
     await drawPaths(smallUSPaths);
     //await roughen('#small_x5F_us', '#282828', 1);
-    await popIn(filledPath, "fill", "#262626", 250, 0);
+    await popIn(filledPath, "fill", "#262626", 0, 0);
     await popIn(cutoutPhoto, "opacity", 1, 250, 0);
     await popIn(headlineSpan, "top", "-100px", 250, 250);
   }
@@ -307,6 +307,12 @@
   @media only screen and (min-width: 1000px) {
     .hed-text {
       font-size: 5.5rem;
+    }
+  }
+
+  @media only screen and (min-width: 1500px) {
+    .overlays {
+      height: calc(100vw / 2);
     }
   }
 </style>
