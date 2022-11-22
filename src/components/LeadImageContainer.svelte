@@ -30,31 +30,36 @@
       triggerStep: 1,
       endStep: 3,
       position: "row-start-1 col-start-2 col-span-6",
-      positionMobile: "row-start-2 col-start-1 col-span-8"
+      positionMobile: "row-start-2 col-start-1 col-span-8",
+      altText: "A black and white photo of the author's grandmother and grandfather posing for a picture together in front of an old car. The grandmother is wearing a dress, long coat, glasses, and a bonnet. The grandfather is wearing jeans with a long sleeve button up tucked in."
     },
     "madera-mom": {
       triggerStep: 2,
       endStep: 3,
       position:"row-start-2 col-start-6 col-span-6",
-      positionMobile: "row-start-3 col-start-3 col-span-8"
+      positionMobile: "row-start-3 col-start-3 col-span-8",
+      altText: "A black and white photo of the author's mother and grandmother sitting on a lawn with three small children."
     },
     "gardena-mom-and-me": {
       triggerStep: 4,
       endStep: 6,
       position: "row-start-1 col-start-2 col-span-5",
-      positionMobile: "row-start-2 col-start-1 col-span-6"
+      positionMobile: "row-start-2 col-start-1 col-span-6",
+      altText: "A color Polaroid photo of the author as a young boy being hugged by his mother in 1994. The author is wearing a purple tank top with patterned shorts and his mother is wearing a white tank top and striped pants."
     },
     "gardena-preschool": {
       triggerStep: 5,
       endStep: 6,
       position: "row-start-3 col-start-3 col-span-5",
-      positionMobile: "row-start-3 col-start-5 col-span-6"
+      positionMobile: "row-start-3 col-start-5 col-span-6",
+      altText: "A school portrait of the author from preschool. He is smiling with his front two teeth missing and is wearing a navy, red, green, and yellow striped shirt against a crushed blue background."
     },
     "fremont": {
       triggerStep: 7,
       endStep: 9,
       position: "row-start-3 col-start-6 col-span-6",
-      positionMobile: "row-start-3 col-start-1 col-span-8"
+      positionMobile: "row-start-3 col-start-1 col-span-8",
+      altText: "A photo of the author in an elemenary school classroom smiling and holding up a written report in 1999. the author is wearing a navy swish jacket with a navy and white plaid button-up shirt underneath."
     }
   }
 
@@ -214,6 +219,7 @@
             <ImageRaw 
               className="w-full"
               src={`assets/img/intro/${key}.jpg`} 
+              alt={positioningClasses[key].altText}
             />
           </div>
         </div> 
@@ -223,6 +229,7 @@
             <ImageRaw 
               className="w-full"
               src={`assets/img/intro/${key}.jpg`} 
+              alt={positioningClasses[key].altText}
             />
           </div>
         </div> 
