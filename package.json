@@ -36,7 +36,7 @@
     "node": ">= 16.13.0"
   },
   "browserslist": "> 0.5%, last 4 versions, not ie <= 11, not ie_mob <= 11",
-  "subdirectory": "upward-mobility",
+  "subdirectory": "/2022/11/upward-mobility",
   "dependencies": {
     "d3": "^7.3.0",
     "roughjs": "^4.5.2",
