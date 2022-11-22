@@ -53,7 +53,8 @@
 
 <style>
   .stains {
-    width: 100%;
+    /* setting to 100% blows out container */
+    width: 90%;
     position: absolute;
     top: 0;
   }
