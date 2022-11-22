@@ -51,7 +51,7 @@
       {/each}
     </div>
     {#if introH != undefined}
-      <Stains height={introH}/>
+      <Stains height={introH} />
     {/if}
   </section>
   <!-- scrolly -->
@@ -90,7 +90,7 @@
       {/each}
     </div>
     {#if preMapH != undefined}
-      <Stains height={preMapH}/>
+      <Stains height={preMapH} />
     {/if}
   </section>
   <!-- Radial bar chart -->
@@ -109,7 +109,7 @@
       {/each}
     </div>
     {#if outroH != undefined}
-      <Stains height={outroH}/>
+      <Stains height={outroH} />
     {/if}
   </section>
 </article>
