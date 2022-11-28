@@ -51,7 +51,7 @@
     },
     medhhinc_1990: {
       value: 0.86, // 86th percentile
-      label: "$81k (86th percentile)"
+      label: "$84k (86th percentile)"
     },
     medhhinc_2016: {
       value: 0.96, // 96th percentile
