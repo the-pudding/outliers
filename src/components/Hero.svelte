@@ -123,7 +123,7 @@
           </p>
           <p class="byline sm">
             With <a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a> and
-            <a href="https://pudding.cool/author/michelle-mcghee/">Michelle McGhee</a>
+            <a href="https://pudding.cool/author/michelle-pera-mcghee/">Michelle Pera-McGhee</a>
           </p>
         </div>
       </div>
@@ -139,7 +139,7 @@
             </p>
             <p class="mb-1 byline sm">
               With <a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a> and
-              <a href="https://pudding.cool/author/michelle-mcghee/">Michelle McGhee</a>
+              <a href="https://pudding.cool/author/michelle-pera-mcghee/">Michelle Pera-McGhee</a>
             </p>
             <p class="byline sm">
               Editing by <a href="https://pudding.cool/author/rob-smith/">Rob Smith</a>
